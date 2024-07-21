@@ -1,43 +1,7 @@
 #include <iostream>
 #include "cliente.h"
+#include "funcionescliente.h"
 using namespace std;
-
-//REGISTRO DE DIRECCION
-struct Direccion {
-	string distrito;
-	string calle;
-	string manzana;
-	string lote;
-};
-
-//REGISTRO DE CLIENTE
-struct Cliente {
-	string nombre;
-	string telefono;
-	Direccion direccionCliente;
-};
-
-//FUNCION PARA AGREGAR CLIENTES
-void agregarCliente(Cliente clientes[20], int &cantidadActualClientes) {
-	cantidadActualClientes++;
-	cout << "// AGREGAR CLIENTE //" << endl;
-	cout << "Nombre del cliente: ";
-	cin.ignore(); //LIMPIAR EL BUFFER POR EL SALTO DE LINEA
-	getline(cin, clientes[cantidadActualClientes].nombre);
-	cout << "Numero del cliente: ";
-	cin >> clientes[cantidadActualClientes].telefono;
-	cout << "// Direccion del cliente // " << endl;
-	cout << "Distrito: ";
-	cin.ignore(); //LIMPIAR EL BUFFER POR EL SALTO DE LINEA
-	getline(cin, clientes[cantidadActualClientes].direccionCliente.distrito);
-	cout << "Calle: ";
-	getline(cin, clientes[cantidadActualClientes].direccionCliente.calle);
-	cout << "Manzana: ";
-	getline(cin, clientes[cantidadActualClientes].direccionCliente.manzana);
-	cout << "Lote: ";
-	getline(cin, clientes[cantidadActualClientes].direccionCliente.lote);
-	cout << "// USUARIO AGREGADO CORRECTAMENTE //" << endl;
-}
 
 //FUNCION DEL MENU CLIENTE
 void menuCliente() {
@@ -61,7 +25,7 @@ void menuCliente() {
 	
 	//DO WHILE QUE REPITE EL MENU HASTA QUE SE SELECCIONE LA OPCION 6
 	do {
-		cout << "// MENU: CLIENTE //" << endl;
+		cout << "// MENÚ: CLIENTE //" << endl;
 		cout << "1. Agregar cliente" << endl;
 		cout << "2. Editar datos del cliente" << endl;
 		cout << "3. Ordenar clientes alfabeticamente" << endl;
@@ -76,6 +40,7 @@ void menuCliente() {
 				agregarCliente(clientes, cantidadActualClientes);
 				break;
 			case 2:
+				editarDatosCliente(clientes, cantidadActualClientes);
 				break;
 			case 3:
 				break;
