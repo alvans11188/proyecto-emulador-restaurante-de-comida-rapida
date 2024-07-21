@@ -3,11 +3,11 @@
 #include "carta.h"
 using namespace std;
 
-
 int main() {
 	int opcion;
 	
 	do {
+		cout << "// ADMINISTRAR LOCAL //" << endl;
 		cout << "1. Cliente" << endl;
 		cout << "2. Carta" << endl;
 		cout << "3. Despuensa" << endl;
