@@ -1,6 +1,8 @@
 #include <iostream>
 #include "cliente.h"
+#include "carta.h"
 using namespace std;
+
 
 int main() {
 	int opcion;
@@ -18,6 +20,7 @@ int main() {
 				menuCliente();
 				break;
 			case 2:
+				menuCarta();
 				break;
 			case 3:
 				break;
