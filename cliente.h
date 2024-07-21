@@ -2,5 +2,6 @@
 #define CLIENTE_H
 
 void menuCliente();
+void agregarCliente();
 
 #endif
