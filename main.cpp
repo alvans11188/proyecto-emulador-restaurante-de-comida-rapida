@@ -1,9 +1,10 @@
 #include <iostream>
 #include "cliente.h"
 #include "carta.h"
+#include "despensa.h"
 using namespace std;
 
-int main() {
+int main(){
 	int opcion;
 	
 	do {
@@ -23,6 +24,7 @@ int main() {
 				menuCarta();
 				break;
 			case 3:
+				menuDespensa();
 				break;
 			case 4:
 				break;
