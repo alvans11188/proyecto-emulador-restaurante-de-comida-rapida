@@ -4,10 +4,6 @@ using namespace std;
 //NUMERO MAXIMO DE PRODUCTOS
 const int MAX_ITEMS = 100;
 // Estructura de Producto
-struct Producto {
-    string nombre;
-    float precio;
-};
 
 // CADENAS CONCETENEDORAS DE PRODUCTOS
 

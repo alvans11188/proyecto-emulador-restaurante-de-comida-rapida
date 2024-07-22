@@ -1,4 +1,6 @@
 #include <iostream>
+#include "funcionesdespensa.h"
+#include "despensa.h"
 using namespace std;
 
 void menuDespensa(){
@@ -7,17 +9,18 @@ void menuDespensa(){
 	do{
 		cout << endl << endl;
 		cout << "INGRESANDO A LA DESPENSA..."; cout << endl << endl;
-		cout << "A) Ingresar productos a la despensa" << endl;
-		cout << "B) Editar productos de la despensa" << endl;
-		cout << "C) Mostrar productos alfabeticamente" << endl;
-		cout << "D) Mostrar stock de productos" << endl;
-		cout << "E) Mostrar productos mas vendidos" << endl;
+		cout << "A) Ingresar alimentos a la despensa" << endl;
+		cout << "B) Actualizar alimentos de la despensa" << endl;
+		cout << "C) Mostrar alimentos alfabeticamente" << endl;
+		cout << "D) Mostrar stock de alimentos" << endl;
+		cout << "E) Mostrar alimentos mas usados" << endl;
 		cout << "F) Salir de la despensa" << endl << endl;
 		cin >> opcion;
 		
 		switch(opcion){
 			
 			case 'A':
+				ingresarAlimentos();
 				break;
 			case 'B':
 				break;
@@ -33,4 +36,4 @@ void menuDespensa(){
 				break;
 		}
 	} while(opcion!='F');
-}
+} 
