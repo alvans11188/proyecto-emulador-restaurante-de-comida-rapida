@@ -11,9 +11,9 @@ using namespace std;
 //Gaseosas = 0.5 litrogaseosa
 //Agua = 0.5 litroagua
 
-const int MAX_ITEMS=10;
+const int max=10;
 
-Alimentos alimento[MAX_ITEMS] = {
+Alimentos alimento[max] = {
     {"Tomate", 4, 0.2},
     {"Lechuga", 0.5, 0.3},
     {"Bolsa de harina", 2, 1.5},
@@ -22,44 +22,57 @@ Alimentos alimento[MAX_ITEMS] = {
     {"Litro de agua", 2, 2.5}
 };
 
+void clearInputBuffer() {
+    cin.clear();
+    while (cin.get() != '\n');
+}
 
 const int limiteAlmacen = 100;
-
+const int opcion;
 int ingresarAlimentos(){
-	string opcion;
 	float c;
 	float minimoAlmacen = 0;
 	int n=0;
+	int aux=0;
 	if (minimoAlmacen != limiteAlmacen){
 		cout << endl << endl;
 		cout << "//IngresarAlimento" << endl;
-		cout << "(Tomate, Lechuga, Bolsa de harina, Carnes, Litro de gaseosa, Litro de agua)";
+		cout << "Lista de alimentos para el negocio" << endl;
+		cout << "(1.Tomate, 2.Lechuga, 3.Bolsa de harina, 4.Carnes, 5.Litro de gaseosa, 6.Litro de agua)";
 		cout << endl << endl;
 		
-		bool encontrado = false;
-		do{
-			cout << "Indique: ";
-			if(n>=0) cin.ignore();
-			getline(cin, opcion);
+        while (true) {
+            cout << "Indique: ";
+            cin >> opcion;
 			cout << endl;
-			for(int i=0; i<MAX_ITEMS; i++){
-				if(alimento[i].nombre==opcion){
-					cout << "Cantidad: ";
-					cin >> c;
-					minimoAlmacen += c;
-					cout << endl;
-			        cout << "Cantidad de " << alimento[i].nombre << " actualizada a " << alimento[i].cantidad << endl;
-			        bool encontrado = true;
-			        break;
-				} 
-			}
-			if(!encontrado){
-				cout << "¡Gasta en lo necesario!" << endl << endl;
-			}
-			
-		} while (!encontrado);
-	} else {
-		cout << "Limite maximo de alimentos." << endl;
+            if(opcion>6 || opcion<=0){
+	            cout << "Agregando " << alimento[opcion-1].nombre << endl << endl;
+	            cout << "Cantidad: ";
+	            cin >> c;
+	            alimento[opcion-1].cantidad += c;
+	            break;
+            } else {
+                cout << "Opcion no valida." << endl;
+            }
+        }
+    } else {
+        cout << "Limite maximo de alimentos.\n" << endl;
+    }
+    cout << endl;
+}
+
+int actualizarAlimentos(){
+	cout << endl;
+	cout << "//ActualizarAlimentos//" << endl << endl;
+	for(int i=0; i<max; i++){
+		cout << i << alimento[i].nombre << endl << endl;
+		cout << "Unidades disponibles: " << alimento[i].cantidad << endl;
+		cout << "Precio unitario: " << alimento[i].precio << endl;
 	}
+	cout << endl;
+	cout << "Indique: ";
+	getline(cin, opcion);
+	
+	if();
 }
 #endif

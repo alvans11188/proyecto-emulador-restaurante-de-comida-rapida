@@ -6,9 +6,8 @@ using namespace std;
 void menuDespensa(){
 	
 	char opcion;
+	cout << "INGRESANDO A LA DESPENSA..." << endl << endl;
 	do{
-		cout << endl << endl;
-		cout << "INGRESANDO A LA DESPENSA..."; cout << endl << endl;
 		cout << "A) Ingresar alimentos a la despensa" << endl;
 		cout << "B) Actualizar alimentos de la despensa" << endl;
 		cout << "C) Mostrar alimentos alfabeticamente" << endl;
@@ -23,6 +22,7 @@ void menuDespensa(){
 				ingresarAlimentos();
 				break;
 			case 'B':
+				actualizarAlimentos();
 				break;
 			case 'C':
 				break;
