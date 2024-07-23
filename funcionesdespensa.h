@@ -11,15 +11,15 @@ using namespace std;
 //Gaseosas = 0.5 litrogaseosa
 //Agua = 0.5 litroagua
 
-const int max=10;
+const int MAX_ITEMS=10;
 
-Alimentos alimento[max] = {
-    {"Tomate", 4, 0.2},
-    {"Lechuga", 0.5, 0.3},
-    {"Bolsa de harina", 2, 1.5},
+Alimentos alimento[MAX_ITEMS] = {
+    {"Tomates", 4, 0.2},
+    {"Lechugas", 0.5, 0.3},
+    {"Bolsas de harina", 2, 1.5},
     {"Carnes", 2, 2},
-    {"Litro de gaseosa", 2, 3},
-    {"Litro de agua", 2, 2.5}
+    {"Litros de gaseosa", 2, 3},
+    {"Litros de agua", 2, 2.5}
 };
 
 void clearInputBuffer() {
@@ -28,9 +28,10 @@ void clearInputBuffer() {
 }
 
 const int limiteAlmacen = 100;
-const int opcion;
+
 int ingresarAlimentos(){
 	float c;
+	int opcion;
 	float minimoAlmacen = 0;
 	int n=0;
 	int aux=0;
@@ -38,15 +39,15 @@ int ingresarAlimentos(){
 		cout << endl << endl;
 		cout << "//IngresarAlimento" << endl;
 		cout << "Lista de alimentos para el negocio" << endl;
-		cout << "(1.Tomate, 2.Lechuga, 3.Bolsa de harina, 4.Carnes, 5.Litro de gaseosa, 6.Litro de agua)";
+		cout << "(1.Tomates, 2.Lechugas, 3.Bolsas de harina, 4.Carnes, 5.Litros de gaseosa, 6.Litros de agua)";
 		cout << endl << endl;
 		
         while (true) {
             cout << "Indique: ";
             cin >> opcion;
 			cout << endl;
-            if(opcion>6 || opcion<=0){
-	            cout << "Agregando " << alimento[opcion-1].nombre << endl << endl;
+            if(opcion<=6 && opcion>0){
+	            cout << "Agregando '" << alimento[opcion-1].nombre << "'..." << endl << endl;
 	            cout << "Cantidad: ";
 	            cin >> c;
 	            alimento[opcion-1].cantidad += c;
@@ -62,17 +63,23 @@ int ingresarAlimentos(){
 }
 
 int actualizarAlimentos(){
+	int opcion;
 	cout << endl;
 	cout << "//ActualizarAlimentos//" << endl << endl;
-	for(int i=0; i<max; i++){
+	for(int i=0; i<MAX_ITEMS; i++){
 		cout << i << alimento[i].nombre << endl << endl;
 		cout << "Unidades disponibles: " << alimento[i].cantidad << endl;
 		cout << "Precio unitario: " << alimento[i].precio << endl;
 	}
 	cout << endl;
 	cout << "Indique: ";
-	getline(cin, opcion);
+	cin >> opcion;
 	
-	if();
+	cout << "Actualizando datos de '" << alimento[opcion].nombre << "'..." << endl << endl;
+	cout << "Unidades disponibles: ";
+	cin >> alimento[opcion].cantidad;
+	cout << "Precio unitario: ";
+	cin >> alimento[opcion].precio;
+	cout << endl << endl;
 }
 #endif
