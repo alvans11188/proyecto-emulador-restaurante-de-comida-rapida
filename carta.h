@@ -12,7 +12,7 @@ void inicializarproductos();
 
 struct Alimentos{
 	string nombre;
-	int cantidad;
+	float cantidad;
 	float precio;
 };
 

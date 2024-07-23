@@ -11,7 +11,7 @@ using namespace std;
 //Gaseosas = 0.5 litrogaseosa
 //Agua = 0.5 litroagua
 
-const int MAX_ITEMS=10;
+const int MAX_ITEMS=6;
 
 Alimentos alimento[MAX_ITEMS] = {
     {"Tomates", 4, 0.2},
@@ -29,7 +29,7 @@ void clearInputBuffer() {
 
 const int limiteAlmacen = 100;
 
-int ingresarAlimentos(){
+int AgregarAlimentos(){
 	float c;
 	int opcion;
 	float minimoAlmacen = 0;
@@ -37,10 +37,13 @@ int ingresarAlimentos(){
 	int aux=0;
 	if (minimoAlmacen != limiteAlmacen){
 		cout << endl << endl;
-		cout << "//IngresarAlimento" << endl;
-		cout << "Lista de alimentos para el negocio" << endl;
-		cout << "(1.Tomates, 2.Lechugas, 3.Bolsas de harina, 4.Carnes, 5.Litros de gaseosa, 6.Litros de agua)";
-		cout << endl << endl;
+		cout << "//AgregarAlimento" << endl;
+		cout << "Lista de alimentos para el negocio" << endl << endl;
+		
+		for(int i=0; i<MAX_ITEMS; i++){
+			cout << i+1 << ". " << alimento[i].nombre << "(" << alimento[i].cantidad << ")." << endl;
+		}
+		cout << endl;
 		
         while (true) {
             cout << "Indique: ";
@@ -48,12 +51,21 @@ int ingresarAlimentos(){
 			cout << endl;
             if(opcion<=6 && opcion>0){
 	            cout << "Agregando '" << alimento[opcion-1].nombre << "'..." << endl << endl;
-	            cout << "Cantidad: ";
-	            cin >> c;
-	            alimento[opcion-1].cantidad += c;
+	            while(c<=0){
+	            	cout << "Cantidad: ";
+		            cin >> c;
+		            cout << endl;
+		            if(c>0){
+		            	alimento[opcion-1].cantidad += c;
+		            	cout << "Se agregaron " << c << " '" << alimento[opcion-1].nombre << "' a la despensa." << endl << endl;
+		            	break;
+		            }else {
+		            	cout << "Ingrese una cantidad valida." << endl << endl;
+					}
+				}
 	            break;
             } else {
-                cout << "Opcion no valida." << endl;
+                cout << "Opcion no valida." << endl << endl;
             }
         }
     } else {

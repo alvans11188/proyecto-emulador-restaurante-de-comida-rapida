@@ -8,7 +8,7 @@ void menuDespensa(){
 	char opcion;
 	cout << "INGRESANDO A LA DESPENSA..." << endl << endl;
 	do{
-		cout << "A) Ingresar alimentos a la despensa" << endl;
+		cout << "A) Agregar alimentos a la despensa" << endl;
 		cout << "B) Actualizar alimentos de la despensa" << endl;
 		cout << "C) Mostrar alimentos alfabeticamente" << endl;
 		cout << "D) Mostrar stock de alimentos" << endl;
@@ -19,7 +19,7 @@ void menuDespensa(){
 		switch(opcion){
 			
 			case 'A':
-				ingresarAlimentos();
+				AgregarAlimentos();
 				break;
 			case 'B':
 				actualizarAlimentos();
