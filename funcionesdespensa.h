@@ -22,11 +22,6 @@ Alimentos alimento[MAX_ITEMS] = {
     {"Litros de agua", 2, 2.5}
 };
 
-void clearInputBuffer() {
-    cin.clear();
-    while (cin.get() != '\n');
-}
-
 const int limiteAlmacen = 100;
 
 int AgregarAlimentos(){
@@ -79,19 +74,20 @@ int actualizarAlimentos(){
 	cout << endl;
 	cout << "//ActualizarAlimentos//" << endl << endl;
 	for(int i=0; i<MAX_ITEMS; i++){
-		cout << i << alimento[i].nombre << endl << endl;
+		cout << i+1 << ". " << alimento[i].nombre << endl << endl;
 		cout << "Unidades disponibles: " << alimento[i].cantidad << endl;
-		cout << "Precio unitario: " << alimento[i].precio << endl;
+		cout << "Precio unitario: " << alimento[i].precio << endl << endl;
 	}
 	cout << endl;
 	cout << "Indique: ";
 	cin >> opcion;
+	cout << endl;
 	
-	cout << "Actualizando datos de '" << alimento[opcion].nombre << "'..." << endl << endl;
+	cout << "Actualizando datos de '" << alimento[opcion-1].nombre << "'..." << endl << endl;
 	cout << "Unidades disponibles: ";
-	cin >> alimento[opcion].cantidad;
+	cin >> alimento[opcion-1].cantidad;
 	cout << "Precio unitario: ";
-	cin >> alimento[opcion].precio;
-	cout << endl << endl;
+	cin >> alimento[opcion-1].precio;
+	cout << "Se actualizo '" << alimento[opcion-1].nombre << "' con exito." << endl << endl;
 }
 #endif
