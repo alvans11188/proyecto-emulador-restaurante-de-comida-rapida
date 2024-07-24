@@ -31,8 +31,7 @@ int AgregarAlimentos(){
 	int n=0;
 	int aux=0;
 	if (minimoAlmacen != limiteAlmacen){
-		cout << endl << endl;
-		cout << "//AgregarAlimento" << endl;
+		cout << "AGREGAR ALIMENTOS" << endl << endl;
 		cout << "Lista de alimentos para el negocio" << endl << endl;
 		
 		for(int i=0; i<MAX_ITEMS; i++){
@@ -71,8 +70,8 @@ int AgregarAlimentos(){
 
 int actualizarAlimentos(){
 	int opcion;
-	cout << endl;
-	cout << "//ActualizarAlimentos//" << endl << endl;
+
+	cout << "ACTUALIZAR ALIMENTOS" << endl << endl;
 	for(int i=0; i<MAX_ITEMS; i++){
 		cout << i+1 << ". " << alimento[i].nombre << endl << endl;
 		cout << "Unidades disponibles: " << alimento[i].cantidad << endl;
@@ -89,5 +88,30 @@ int actualizarAlimentos(){
 	cout << "Precio unitario: ";
 	cin >> alimento[opcion-1].precio;
 	cout << "Se actualizo '" << alimento[opcion-1].nombre << "' con exito." << endl << endl;
+}
+
+int mostrarStock(){
+	
+	cout << "STOCK DE LOS ALIMENTOS" << endl << endl;
+	Alimentos copia[MAX_ITEMS];
+	for(int i=0; i<MAX_ITEMS; i++){
+		copia[i] = alimento[i];
+	}
+	
+	Alimentos mayor;
+	for(int i=0; i<MAX_ITEMS-1; i++){
+		for(int j=0; j<MAX_ITEMS-1-i; j++){
+			if (copia[j].cantidad < copia[j + 1].cantidad) { 
+				mayor = copia[j];
+				copia[j] = copia[j+1];
+				copia[j+1] = mayor;
+			}
+		}
+	}
+	
+	cout << "(Ordenados de mayor a menor)" << endl << endl;
+	for(int i=0; i<MAX_ITEMS; i++){
+		cout << "(" << copia[i].cantidad << ") " << copia[i].nombre << "." << endl;
+	}
 }
 #endif

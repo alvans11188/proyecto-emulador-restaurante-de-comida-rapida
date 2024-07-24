@@ -6,16 +6,16 @@ using namespace std;
 void menuDespensa(){
 	
 	char opcion;
-	cout << "INGRESANDO A LA DESPENSA..." << endl << endl;
+	cout << "INGRESANDO A LA DESPENSA..." << endl;
 	do{
+		cout << endl;
 		cout << "A) Agregar alimentos a la despensa" << endl;
 		cout << "B) Actualizar alimentos de la despensa" << endl;
-		cout << "C) Mostrar alimentos alfabeticamente" << endl;
-		cout << "D) Mostrar stock de alimentos" << endl;
-		cout << "E) Mostrar alimentos mas usados" << endl;
-		cout << "F) Salir de la despensa" << endl << endl;
+		cout << "C) Mostrar stock de alimentos" << endl;
+		cout << "D) Mostrar alimentos mas usados" << endl;
+		cout << "E) Salir de la despensa" << endl << endl;
 		cin >> opcion;
-		
+		cout << endl << endl;
 		switch(opcion){
 			
 			case 'A':
@@ -25,12 +25,11 @@ void menuDespensa(){
 				actualizarAlimentos();
 				break;
 			case 'C':
+				mostrarStock();
 				break;
 			case 'D':
 				break;
 			case 'E':
-				break;
-			case 'F':
 				break;
 			default:
 				break;
