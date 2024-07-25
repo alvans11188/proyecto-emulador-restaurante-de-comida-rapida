@@ -1,6 +1,6 @@
 #include <iostream>
 #include "funcionesdespensa.h"
-#include "despensa.h"
+#include "menus.h"
 using namespace std;
 
 void menuDespensa(){
