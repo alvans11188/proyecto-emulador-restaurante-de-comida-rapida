@@ -1,6 +1,6 @@
-#include <iostream>
 #ifndef FUNCIONESCLIENTE_H
 #define FUNCIONESCLIENTE_H
+#include <iostream>
 using namespace std;
 
 //REGISTRO DE DIRECCION
