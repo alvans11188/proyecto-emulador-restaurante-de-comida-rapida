@@ -1,9 +1,10 @@
 #ifndef FUNCIONESDESPENSA_H
 #define FUNCIONESDESPENSA_H
-#include "carta.h"
 #include <string>
 #include <iostream>
 using namespace std;
+
+const int MAX_ITEMS=6;
 
 //Hamburguesa = 1 tomate, 0.25 lechuga, 0.5 bolsaharina, 0.5 carnes
 //Pizzas = 4 tomate, 2 bolsaharina, 2 carnes
@@ -11,7 +12,11 @@ using namespace std;
 //Gaseosas = 0.5 litrogaseosa
 //Agua = 0.5 litroagua
 
-const int MAX_ITEMS=6;
+struct Alimentos{
+	string nombre;
+	float cantidad;
+	float precio;
+};
 
 Alimentos alimento[MAX_ITEMS] = {
     {"Tomates", 4, 0.2},

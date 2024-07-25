@@ -1,7 +1,5 @@
 #include <iostream>
-#include "cliente.h"
-#include "carta.h"
-#include "despensa.h"
+#include "menus.h"
 using namespace std;
 
 int main(){
