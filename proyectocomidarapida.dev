@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
-UnitCount=9
+UnitCount=10
 
 [VersionInfo]
 Major=1
@@ -61,7 +61,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=menus.h
+FileName=cliente.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -130,8 +130,8 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit10]
-FileName=funcionesdespensa.h
+[Unit9]
+FileName=despensa.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -140,7 +140,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit9]
+[Unit10]
 FileName=funcionesdespensa.h
 CompileCpp=1
 Folder=

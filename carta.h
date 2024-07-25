@@ -4,6 +4,7 @@
 #include <iostream>
 using namespace std;
 
+void menuCarta();
 void mostrarCarta();
 void editarCarta();
 void agregarCarta();
