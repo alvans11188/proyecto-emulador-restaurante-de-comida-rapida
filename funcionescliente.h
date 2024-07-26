@@ -18,7 +18,8 @@ struct Cliente {
 	Direccion direccionCliente;
 };
 
+//FUNCION PARA AGREGAR CLIENTES
 void agregarCliente(Cliente clientes[20], int &cantidadActualClientes);
+//FUNCION PARA EDITAR DATOS DEL CLIENTES
 void editarDatosCliente(Cliente clientes[20], int &cantidadActualClientes);
-
 #endif

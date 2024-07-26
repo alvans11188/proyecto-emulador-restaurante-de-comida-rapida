@@ -1,6 +1,6 @@
 #include <iostream>
+#include "menus.h"
 #include "funcionesdespensa.h"
-#include "despensa.h"
 using namespace std;
 
 void menuDespensa(){
@@ -29,9 +29,8 @@ void menuDespensa(){
 				break;
 			case 'D':
 				break;
-			case 'E':
-				break;
 			default:
+				cout << "Valor ingresado incorrecto, vuelva a ingresar otro valor" << endl;
 				break;
 		}
 	} while(opcion!='F');

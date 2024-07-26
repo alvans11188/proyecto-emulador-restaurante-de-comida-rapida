@@ -1,7 +1,5 @@
 #include <iostream>
-#include "cliente.h"
-#include "carta.h"
-#include "despensa.h"
+#include "menus.h"
 using namespace std;
 
 int main(){
@@ -27,8 +25,7 @@ int main(){
 				menuDespensa();
 				break;
 			case 4:
-				break;
-			case 5:
+				menuFinanzas();
 				break;
 			default:
 				cout << "Valor ingresado incorrecto, vuelva a ingresar otro valor" << endl;	

@@ -1,12 +1,7 @@
 #include "funcionesdespensa.h"
+using namespace std;
 
-//Hamburguesa = 1 tomate, 0.25 lechuga, 0.5 bolsaharina, 0.5 carnes
-//Pizzas = 4 tomate, 2 bolsaharina, 2 carnes
-//Conos = 2 tomate, 0.5 lechuca, 1 bolsaharina 1 carnes
-//Gaseosas = 0.5 litrogaseosa
-//Agua = 0.5 litroagua
-
-Alimentos alimento[MAX_ITEMS] = {
+Alimentos alimento[MAX_ALIMENTOS] = {
     {"Tomates", 4, 0.2},
     {"Lechugas", 0.5, 0.3},
     {"Bolsas de harina", 2, 1.5},
@@ -25,7 +20,7 @@ void AgregarAlimentos(){
 		cout << "AGREGAR ALIMENTOS" << endl << endl;
 		cout << "Lista de alimentos para el negocio" << endl << endl;
 		
-		for(int i=0; i<MAX_ITEMS; i++){
+		for(int i=0; i<MAX_ALIMENTOS; i++){
 			cout << i+1 << ". " << alimento[i].nombre << "(" << alimento[i].cantidad << ")." << endl;
 		}
 		cout << endl;
@@ -54,7 +49,7 @@ void AgregarAlimentos(){
             }
         }
     } else {
-        cout << "Limite maximo de alimentos.\n" << endl;
+        cout << "Limite maximo de alimentos." << endl << endl;
     }
     cout << endl;
 }
@@ -63,7 +58,7 @@ void actualizarAlimentos(){
 	int opcion;
 
 	cout << "ACTUALIZAR ALIMENTOS" << endl << endl;
-	for(int i=0; i<MAX_ITEMS; i++){
+	for(int i=0; i<MAX_ALIMENTOS; i++){
 		cout << i+1 << ". " << alimento[i].nombre << endl << endl;
 		cout << "Unidades disponibles: " << alimento[i].cantidad << endl;
 		cout << "Precio unitario: " << alimento[i].precio << endl << endl;
@@ -84,14 +79,14 @@ void actualizarAlimentos(){
 void mostrarStock(){
 	
 	cout << "STOCK DE LOS ALIMENTOS" << endl << endl;
-	Alimentos copia[MAX_ITEMS];
-	for(int i=0; i<MAX_ITEMS; i++){
+	Alimentos copia[MAX_ALIMENTOS];
+	for(int i=0; i<MAX_ALIMENTOS; i++){
 		copia[i] = alimento[i];
 	}
 	
 	Alimentos mayor;
-	for(int i=0; i<MAX_ITEMS-1; i++){
-		for(int j=0; j<MAX_ITEMS-1-i; j++){
+	for(int i=0; i<MAX_ALIMENTOS-1; i++){
+		for(int j=0; j<MAX_ALIMENTOS-1-i; j++){
 			if (copia[j].cantidad < copia[j + 1].cantidad) { 
 				mayor = copia[j];
 				copia[j] = copia[j+1];
@@ -101,7 +96,7 @@ void mostrarStock(){
 	}
 	
 	cout << "(Ordenados de mayor a menor)" << endl << endl;
-	for(int i=0; i<MAX_ITEMS; i++){
+	for(int i=0; i<MAX_ALIMENTOS; i++){
 		cout << "(" << copia[i].cantidad << ") " << copia[i].nombre << "." << endl;
 	}
 }
