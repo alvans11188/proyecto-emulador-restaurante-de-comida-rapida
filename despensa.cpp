@@ -29,9 +29,8 @@ void menuDespensa(){
 				break;
 			case 'D':
 				break;
-			case 'E':
-				break;
 			default:
+				cout << "Valor ingresado incorrecto, vuelva a ingresar otro valor" << endl;
 				break;
 		}
 	} while(opcion!='F');

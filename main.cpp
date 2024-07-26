@@ -25,8 +25,7 @@ int main(){
 				menuDespensa();
 				break;
 			case 4:
-				break;
-			case 5:
+				menuFinanzas();
 				break;
 			default:
 				cout << "Valor ingresado incorrecto, vuelva a ingresar otro valor" << endl;	

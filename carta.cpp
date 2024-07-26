@@ -5,7 +5,7 @@ using namespace std;
 
 //FUNCION MENU CARTA
 void menuCarta() {
-	inicializarproductos();
+
     int opcion;
     do {
     	cout << "\n" << endl;
