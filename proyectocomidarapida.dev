@@ -19,7 +19,7 @@ ObjectOutput=
 LogOutput=
 LogOutputEnabled=0
 OverrideOutput=0
-OverrideOutputName=
+OverrideOutputName=proyectocomidarapida.exe
 HostApplication=
 UseCustomMakefile=0
 CustomMakefile=
@@ -28,8 +28,13 @@ Folders=
 IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
+<<<<<<< HEAD
 CompilerSettings=0000000000000000000000000
-UnitCount=7
+UnitCount=11
+=======
+CompilerSettings=00000000g0000000000000000
+UnitCount=14
+>>>>>>> 5aba6d5b1d68d288700fdf9c6b7311906380f666
 
 [VersionInfo]
 Major=1
@@ -39,29 +44,19 @@ Build=0
 LanguageID=1033
 CharsetID=1252
 CompanyName=
-FileVersion=
+FileVersion=1.0.0.0
 FileDescription=Developed using the Dev-C++ IDE
 InternalName=
 LegalCopyright=
 LegalTrademarks=
 OriginalFilename=
 ProductName=
-ProductVersion=
+ProductVersion=1.0.0.0
 AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit3]
-FileName=cliente.cpp
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit2]
-FileName=cliente.h
+FileName=funcionescliente.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -81,17 +76,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=funcionescliente.h
-CompileCpp=1
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit5]
-FileName=funcionescliente.cpp
+FileName=funcionescarta.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -101,7 +86,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=carta.h
+FileName=despensa.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -111,7 +96,110 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit7]
+FileName=menus.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit8]
+FileName=funcionesdespensa.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+<<<<<<< HEAD
+[Unit11]
+FileName=funcionesdespensa.cpp
+=======
+[Unit9]
+FileName=finanzas.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit10]
+FileName=funcionesfinanzas.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit11]
+FileName=funcionescliente.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit5]
 FileName=carta.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit2]
+FileName=cliente.cpp
+>>>>>>> 5aba6d5b1d68d288700fdf9c6b7311906380f666
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit12]
+<<<<<<< HEAD
+FileName=ventas.h
+=======
+FileName=funcionescarta.cpp
+>>>>>>> 5aba6d5b1d68d288700fdf9c6b7311906380f666
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit13]
+<<<<<<< HEAD
+FileName=ventas.cpp
+=======
+FileName=funcionesdespensa.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit14]
+FileName=funcionesfinanzas.cpp
+>>>>>>> 5aba6d5b1d68d288700fdf9c6b7311906380f666
 CompileCpp=1
 Folder=
 Compile=1

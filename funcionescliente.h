@@ -1,6 +1,6 @@
-#include <iostream>
 #ifndef FUNCIONESCLIENTE_H
 #define FUNCIONESCLIENTE_H
+#include <iostream>
 using namespace std;
 
 //REGISTRO DE DIRECCION
@@ -18,7 +18,8 @@ struct Cliente {
 	Direccion direccionCliente;
 };
 
+//FUNCION PARA AGREGAR CLIENTES
 void agregarCliente(Cliente clientes[20], int &cantidadActualClientes);
+//FUNCION PARA EDITAR DATOS DEL CLIENTES
 void editarDatosCliente(Cliente clientes[20], int &cantidadActualClientes);
-
 #endif
