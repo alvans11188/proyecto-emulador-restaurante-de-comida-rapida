@@ -34,7 +34,7 @@ int main() {
 		}
 
 	} while ( opcion !=5 );
-		cout << "Programa finalizado" << endl;
+		cout << "// Programa finalizado //" << endl;
 
 	return 0;
 }
