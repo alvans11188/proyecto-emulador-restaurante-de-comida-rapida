@@ -6,7 +6,7 @@ using namespace std;
 //FUNCION DEL MENU CLIENTE
 void menuCliente() {
 	int opcion;
-	const int cantidadClientes = 20;
+	const int cantidadClientes = 50;
 	int cantidadActualClientes = 9; //SON 10 PERO AL SER UN ARREGLO EMPIEZA POR "0"
 	
 	//SE AGREGAN 10 CLIENTES PREDEFINIDOS
@@ -43,6 +43,7 @@ void menuCliente() {
 				editarDatosCliente(clientes, cantidadActualClientes);
 				break;
 			case 3:
+				ordenarClientesAlfabeticamente(clientes, cantidadActualClientes);
 				break;
 			case 4:
 				break;
