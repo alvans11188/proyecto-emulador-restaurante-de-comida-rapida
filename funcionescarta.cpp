@@ -8,7 +8,7 @@ Producto hamburguesas[MAX_ITEMS] = {
 };
 
 Producto pizzas[MAX_ITEMS] = {
-    {"Pizza ersonal", 10.0},
+    {"Pizza personal", 10.0},
     {"Pizza mediana", 15.0},
     {"Pizza familiar", 25.0}
 };

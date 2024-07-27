@@ -1,19 +1,14 @@
 #include "funcionesdespensa.h"
 using namespace std;
 
-//Hamburguesa = 1 tomate, 0.25 lechuga, 0.5 bolsaharina, 0.5 carnes
-//Pizzas = 4 tomate, 2 bolsaharina, 2 carnes
-//Conos = 2 tomate, 0.5 lechuga, 1 bolsaharina 1 carnes
-//Gaseosas = 0.5 litrogaseosa
-//Agua = 0.5 litroagua
-
 Alimentos alimento[MAX_ALIMENTOS] = {
     {"Tomates", 40, 0.2}, // 0
-    {"Lechugas", 5, 0.3}, // 1
-    {"Bolsas de harina", 20, 1.5}, // 2
-    {"Carnes", 20, 2}, // 3
-    {"Litros de gaseosa", 20, 3}, //4
-    {"Litros de agua", 20, 2.5} //5
+    {"Lechugas", 5, 1}, // 1
+    {"Bolsas de harina", 20, 3.5}, // 2
+    {"Carnes", 20, 9}, // 3
+    {"Litros de gaseosa", 20, 4}, //4
+    {"Litros de agua", 20, 2.5}, //5
+    {"Queso", 10, 15}
 };
 
 void AgregarAlimentos(){

@@ -5,7 +5,26 @@
 #include <string>
 using namespace std;
 
-//Hamburguesa = 1 tomate, 0.25 lechuga, 0.5 bolsaharina, 0.5 carnes
+float aguasTotalUsadas = 0;
+float gaseosasTotalUsadas = 0;
+float quesosTotalUsados = 0;
+float carnesTotalUsadas = 0;
+float bolsasharinaTotalUsadas = 0;
+float lechugasTotalUsadas = 0;
+float tomatesTotalUsados = 0;
+
+GastoAlimento gastos[MAX_ALIMENTOS] = {
+                    {"Tomate", tomatesTotalUsados * alimento[0].precio},
+                    {"Lechugas", lechugasTotalUsadas * alimento[1].precio},
+                    {"Bolsas de harina", bolsasharinaTotalUsadas * alimento[2].precio},
+                    {"Carnes", carnesTotalUsadas * alimento[3].precio},
+                    {"Litros de gaseosa", gaseosasTotalUsadas * alimento[4].precio},
+                    {"Litros de agua", aguasTotalUsadas * alimento[5].precio},
+                    {"Queso", quesosTotalUsados * alimento[6].precio}
+                };
+// Tomate: 0.2   lechuga: 0.3  bolsaharina: 1.5   carnes: 2   				//Costo
+// litrosgaseosa: 3   litrosagua: 2.5														
+//Hamburguesa = 1 tomate, 0.25 lechuga, 0.5 bolsaharina, 0.15 carnes; 		// 1*0.2 + 0.25*0.3 + 0.5
 //Pizzas = 4 tomate, 2 bolsaharina, 2 carnes
 //Conos = 2 tomate, 0.5 lechuca, 1 bolsaharina 1 carnes
 //Gaseosas = 0.5 litrogaseosa
@@ -17,12 +36,15 @@ using namespace std;
    // {"Carnes" // 3				= 20u en despensa
    // {"Litros de gaseosa" //4		= 20u en despensa
     //{"Litros de agua" //5			= 20u en despensa
-int numFactura = 0;
-int ordenesTotales[MAX_FACTURAS] = {0};
-Ordenes orden[MAX_FACTURAS][MAX_FACTURAS];
-float montofinal[MAX_FACTURAS] = {0};
+int numFactura = 0;// iniciamos variable con 0
+int ordenesTotales[MAX_FACTURAS] = {0}; // iniciamos arreglo con 0
+Ordenes orden[MAX_FACTURAS][MAX_FACTURAS];//definimos matriz de orden "MAX_FACTURAS" 
+//filas: N* factura
+//columna: N* orden
+float montofinal[MAX_FACTURAS] = {0};// iniciamos arreglo con 0
 
-void ordenRegistro(Ordenes orden[], Producto producto[],  int item, int c, int cantidad){ //cada orden adquiere nombre y producto
+ //Funcion para que cada orden adquiere nombre y producto, ademas se suma por cada orden el precio de la orden + monto.
+void ordenRegistro(Ordenes orden[], Producto producto[],  int item, int c, int cantidad){
 // FACTURA = conjutno de ordeenes	
 	orden[c].nombre = producto[item - 1].nombre;
     orden[c].cantidad = cantidad;
@@ -36,13 +58,31 @@ void montoFinal(Ordenes orden[], int totalOrdenes, float& montofinal) {
     }
 }
 
+void ordenarGastos(GastoAlimento arr[], int n) {
+	GastoAlimento aux;
+    for (int i=0; i<n-1; i++) {
+        for (int j=i+1; j<n; j++) {
+            if (arr[i].gastos < arr[j].gastos) {
+                // Intercambiar gastos
+                aux = arr[i];
+                arr[i] = arr[j];
+                arr[j] = aux;
+            }
+        }
+    }
+}
+
+void ordenarGanancias(Producto arr[], int n) {
+	
+}
+
 void registrarVenta(){
 	int categoria;
 	int item;
 	string nombre;
 	int cantidad;
 	string respuesta;
-	int c=0;
+	int c=0; //para dar el orden a cada Orden
 	cout << endl << endl;
 	cout << "Registrando una orden..." << endl << endl;
 	do{ // MENU INTERFAZ
@@ -71,16 +111,24 @@ void registrarVenta(){
 	            cin >> item;
 	            cout << "Cantidad: ";
 				cin >> cantidad;
-				if(alimento[0].cantidad>=1*cantidad && alimento[1].cantidad>=0.25*cantidad && alimento[2].cantidad>=0.5*cantidad && alimento[3].cantidad>=0.5*cantidad){ // ingredientes para cocinar una hamburguesa
+				if(alimento[0].cantidad>=CTH*cantidad && alimento[1].cantidad>=CLH*cantidad && alimento[2].cantidad>=CBH*cantidad && alimento[3].cantidad>=CCH*cantidad && alimento[6].cantidad >= CQH*cantidad){ // ingredientes para cocinar una hamburguesa
 	            	ordenRegistro(orden[numFactura], hamburguesas, item, c, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
 					c++;
 					ordenesTotales[numFactura]++;
 					continuar = true;
 					//restando ingredientes usados
-					alimento[0].cantidad -= 1*cantidad; // tomate
-					alimento[1].cantidad -= 0.25*cantidad; // lechuga
-					alimento[2].cantidad -= 0.5*cantidad; //harina
-					alimento[3].cantidad -= 0.5*cantidad; //carnes
+					tomatesTotalUsados += CTH*cantidad;
+					lechugasTotalUsadas += CLH*cantidad;
+					bolsasharinaTotalUsadas += CBH*cantidad;
+					carnesTotalUsadas += CCH*cantidad;
+					quesosTotalUsados += CQH*cantidad;
+					
+					alimento[0].cantidad -= CTH*cantidad; // tomate
+					alimento[1].cantidad -= CLH*cantidad; // lechuga
+					alimento[2].cantidad -= CBH*cantidad; //harina
+					alimento[3].cantidad -= CCH*cantidad; //carnes
+					alimento[6].cantidad -= CQH*cantidad; // queso
+					
 				} else {
 					suficiente = false;
 					continuar = false;
@@ -96,15 +144,21 @@ void registrarVenta(){
 	            cin >> item;
 	            cout << "Cantidad: ";
 	            cin >> cantidad;
-				if(alimento[0].cantidad>=4*cantidad &&  alimento[2].cantidad>=2*cantidad && alimento[3].cantidad>=2*cantidad){ // ingredientes para cocinar una hamburguesa
+				if(alimento[0].cantidad>=CTP*cantidad &&  alimento[2].cantidad>=CBP*cantidad && alimento[3].cantidad>=CCP*cantidad && alimento[6].cantidad >= CQP*cantidad){ // ingredientes para cocinar una hamburguesa
 	            	ordenRegistro(orden[numFactura], pizzas, item, c, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
 					c++;
-					ordenesTotales[numFactura]++;;
+					ordenesTotales[numFactura]++;
 					continuar = true;
 					//restando ingredientes usados
-					alimento[0].cantidad -= 4*cantidad;
-					alimento[2].cantidad -= 2*cantidad;
-					alimento[3].cantidad -= 2*cantidad;
+					tomatesTotalUsados += CTP*cantidad;
+					bolsasharinaTotalUsadas += CBP*cantidad;
+					carnesTotalUsadas += CCP*cantidad;
+					quesosTotalUsados += CQP*cantidad;
+					 
+					alimento[0].cantidad -= CTP*cantidad;
+					alimento[2].cantidad -= CBP*cantidad;
+					alimento[3].cantidad -= CCP*cantidad;
+					alimento[6].cantidad -= CQP*cantidad;
 				} else {
 					suficiente = false;
 					continuar = false;
@@ -121,16 +175,24 @@ void registrarVenta(){
 	            cin >> item;
 	            cout << "Cantidad: ";
 				cin >> cantidad;
-				if(alimento[0].cantidad>=2*cantidad && alimento[1].cantidad>=0.5*cantidad && alimento[2].cantidad>=1*cantidad && alimento[3].cantidad>=1*cantidad){ // ingredientes para cocinar una hamburguesa
+				if(alimento[0].cantidad>=CTC*cantidad && alimento[1].cantidad>=CLC*cantidad && alimento[2].cantidad>=CBC*cantidad && alimento[3].cantidad>=CCC*cantidad && alimento[6].cantidad >= CQC*cantidad){ // ingredientes para cocinar una hamburguesa
 	            	ordenRegistro(orden[numFactura], conos, item, c, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
 					c++;
 					ordenesTotales[numFactura]++;
 					continuar = true;
 					//restando ingredientes usados
-					alimento[0].cantidad -= 2*cantidad; // tomate
-					alimento[1].cantidad -= 0.5*cantidad; // lechuga
-					alimento[2].cantidad -= 1*cantidad; //harina
-					alimento[3].cantidad -= 1*cantidad; //carnes
+					tomatesTotalUsados += CTC*cantidad;
+					lechugasTotalUsadas += CLC*cantidad;
+					bolsasharinaTotalUsadas += CBC*cantidad;
+					carnesTotalUsadas += CCC*cantidad;
+					quesosTotalUsados += CQC*cantidad;
+					
+					alimento[0].cantidad -= CTC*cantidad; // tomate
+					alimento[1].cantidad -= CLC*cantidad; // lechuga
+					alimento[2].cantidad -= CBC*cantidad; //harina
+					alimento[3].cantidad -= CCC*cantidad; //carnes
+					alimento[6].cantidad -= CQC*cantidad; // queso
+					
 				} else {
 					suficiente = false;
 					continuar = false;
@@ -146,13 +208,15 @@ void registrarVenta(){
 	            cin >> item;
 	            cout << "Cantidad: ";
 	            cin >> cantidad;
-				if(alimento[4].cantidad>=0.5*cantidad){ // ingredientes para cocinar una hamburguesa
+				if(alimento[4].cantidad>=CG*cantidad){ // ingredientes para cocinar una hamburguesa
 	            	ordenRegistro(orden[numFactura], gaseosas, item, c, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
 					c++;
 					ordenesTotales[numFactura]++;
 					continuar = true;
 					//restando ingredientes usados
-					alimento[4].cantidad -= 0.5*cantidad;
+					gaseosasTotalUsadas += CG*cantidad;
+					alimento[4].cantidad -= CG*cantidad;
+					
 				} else {
 					suficiente = false;
 					continuar = false;
@@ -168,13 +232,14 @@ void registrarVenta(){
 	            cin >> item;
 	            cout << "Cantidad: ";
 	            cin >> cantidad;
-				if(alimento[5].cantidad>=0.5*cantidad){ // ingredientes para cocinar una hamburguesa
+				if(alimento[5].cantidad>=CA*cantidad){ // ingredientes para cocinar una hamburguesa
 	            	ordenRegistro(orden[numFactura], aguas, item, c, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
 					c++;
 					ordenesTotales[numFactura]++;
 					continuar = true;
 					//restando ingredientes usados
-					alimento[5].cantidad -= 0.5*cantidad;
+					aguasTotalUsadas += CA*cantidad;
+					alimento[5].cantidad -= CA*cantidad;
 				} else {
 					suficiente = false;
 					continuar = false;
@@ -192,7 +257,7 @@ void registrarVenta(){
 	    	cout << "¿Va a agregar algo mas a la orden?(si/no)= ";
 	    	cin >> respuesta;
 		}
-	} while(respuesta!= "no"&&categoria!=6);
+	} while(respuesta!= "no" &&categoria!=6);
 	
    cout << endl;
    cout << "FACTURA" << endl << endl;
@@ -223,7 +288,33 @@ void mostrarOrdenes(){
 }
 
 void gastosGanancias(){
-	
+	cout << endl;
+	char respuesta;
+	bool valido = true;
+	do{
+		cout << "¿Que quieres ver?" << endl << endl;
+		cout << "- ) Gastos." << endl;
+		cout << "+ ) Ganancias." << endl;
+		cin >> respuesta;
+		cout << endl;
+		switch(respuesta){
+			case '-':
+				cout << "Gastos consumidos hasta el momento (mayor a menor)" << endl << endl;
+                ordenarGastos(gastos, MAX_ALIMENTOS);
+                for(int i=0; i<MAX_ALIMENTOS; i++){
+                	cout << gastos[i].nombre << "(" << alimento[i].cantidad << "): S/." << -gastos[i].gastos << endl;
+				}
+ 				break;
+			case '+':
+				cout << "Ganancias hasta el momento (mayor a menor)" << endl << endl;
+				break;
+			default:
+				cout << "Opcion no valida." << endl;
+				valido = false;
+				break;
+		}
+		cout << endl;
+	} while(!valido);
 }
 
 void ordenarVentas(){
