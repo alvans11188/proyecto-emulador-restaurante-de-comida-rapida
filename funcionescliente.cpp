@@ -1,8 +1,9 @@
+#include <iostream>
 #include "funcionescliente.h"
 using namespace std;
 
 //FUNCION PARA AGREGAR CLIENTES
-void agregarCliente(Cliente clientes[20], int &cantidadActualClientes) {
+void agregarCliente(Cliente clientes[50], int &cantidadActualClientes) {
 	cantidadActualClientes++;
 	cout << "// AGREGAR CLIENTE //" << endl;
 	cout << "Nombre del cliente: ";
@@ -25,7 +26,7 @@ void agregarCliente(Cliente clientes[20], int &cantidadActualClientes) {
 }
 
 //FUNCION PARA EDITAR DATOS DEL CLIENTES
-void editarDatosCliente(Cliente clientes[20], int &cantidadActualClientes) {
+void editarDatosCliente(Cliente clientes[50], int &cantidadActualClientes) {
 	int clienteEditar; //POSICION DE MEMORIA QUE LUEGO SERA EL CLIENTE QUE SE VA A EDITAR
 	cout << "// EDITAR CLIENTE //" << endl;
 	
@@ -59,4 +60,55 @@ void editarDatosCliente(Cliente clientes[20], int &cantidadActualClientes) {
 	cout << "Lote: ";
 	getline(cin, clientes[clienteEditar].direccionCliente.lote);
 	cout << "// USUARIO AGREGADO CORRECTAMENTE //" << endl;
+}
+
+//FUNCION PARA ORDENAR LOS CLIENTES ALFABETICAMENTE
+void ordenarClientesAlfabeticamente(Cliente clientes[50], int &cantidadActualClientes) {
+	//AUXILIARES PARA CADA DATO DEL CLIENTE QUE SE VA A ORDENAR
+	string auxiliar1, auxiliar2, auxiliar3, auxiliar4, auxiliar5, auxiliar6;
+	//BUCLE FOR PARA ORDENAR DE LA A-Z
+	for ( int i = 0; i <= cantidadActualClientes; i++ ) {
+		for ( int j = i + 1; j <= cantidadActualClientes; j++ ) {
+			if ( clientes[i].nombre > clientes[j].nombre ) {
+				//GUARDANDO TODOS LOS DATOS DEL CLIENTE EN LOS AUXILIARES
+				auxiliar1 = clientes[i].nombre;
+				auxiliar2 = clientes[i].telefono;
+				auxiliar3 = clientes[i].direccionCliente.distrito;
+				auxiliar4 = clientes[i].direccionCliente.calle;
+				auxiliar5 = clientes[i].direccionCliente.manzana;
+				auxiliar6 = clientes[i].direccionCliente.lote;
+				
+				//REEMPLAZAMOS LOS DATOS DEL CLIENTE "i" POR LOS DATOS DEL CLIENTE "j"
+				clientes[i].nombre = clientes[j].nombre;
+				clientes[i].telefono = clientes[j].telefono;
+				clientes[i].direccionCliente.distrito = clientes[j].direccionCliente.distrito;
+				clientes[i].direccionCliente.calle = clientes[j].direccionCliente.calle;
+				clientes[i].direccionCliente.manzana = clientes[j].direccionCliente.manzana;
+				clientes[i].direccionCliente.lote = clientes[j].direccionCliente.lote;
+				
+				//REEMPLAZAMOS LOS DATOS DEL CLIENTE "j" POR LOS QUE ALMACENAMOS EN LOS AUXILIARES
+				clientes[j].nombre = auxiliar1; 
+				clientes[j].telefono = auxiliar2;
+				clientes[j].direccionCliente.distrito = auxiliar3;
+				clientes[j].direccionCliente.calle = auxiliar4;
+				clientes[j].direccionCliente.manzana = auxiliar5;
+				clientes[j].direccionCliente.lote = auxiliar6;
+			}
+		}
+	}
+	
+	//BUCLE PARA MOSTRAR LOS CLIENTES ORDENADOS Y SUS DATOS
+	cout << "// CLIENTES ORDENADOS ALFABETICAMENTE //" << endl;
+	
+	for ( int i = 0; i <= cantidadActualClientes; i++ ) {
+		cout << "Cliente Nro " << i + 1 << ":" << endl;
+		cout << "Nombre: " << clientes[i].nombre << endl;
+		cout << "Telefono: " << clientes[i].telefono << endl;
+		
+		cout << "// DIRECCION DEL CLIENTE // " << endl;
+		cout << "Distrito: " << clientes[i].direccionCliente.distrito << endl;
+		cout << "Calle: " << clientes[i].direccionCliente.calle << endl;
+		cout << "Manzana: " << clientes[i].direccionCliente.manzana << endl;
+		cout << "Lote: " << clientes[i].direccionCliente.lote << endl << endl;
+	}
 }
