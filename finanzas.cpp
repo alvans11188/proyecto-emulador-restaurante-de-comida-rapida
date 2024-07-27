@@ -10,7 +10,7 @@ void menuFinanzas(){
 		cout << endl;
 		cout << "Elija que accion va a realizar." << endl << endl;
 		cout << "A) Registrar una orden." << endl;
-		cout << "B) Mostrar ordenes registradas." << endl;
+		cout << "B) Mostrar facturas de ordenes registradas." << endl;
 		cout << "C) Gastos y ganancias." << endl;
 		cout << "D) Ordenar por lo mas o menos vendido." << endl;
 		cout << "E) Estadisticas generales." << endl;
