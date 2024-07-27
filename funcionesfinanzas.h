@@ -4,13 +4,14 @@
 #include <string>
 using namespace std;
 
-const int MAX_FACTURA = 100;
+const int MAX_FACTURAS = 100;
 
-struct FacturaItem {
-    string nombre;
-    float precio;
-    int cantidad;
+struct Ordenes{
+	string nombre;
+	int cantidad;
+	float monto;
 };
+
 
 void registrarVenta();
 void mostrarOrdenes();

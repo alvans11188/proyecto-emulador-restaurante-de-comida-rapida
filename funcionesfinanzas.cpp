@@ -17,20 +17,15 @@ using namespace std;
    // {"Carnes" // 3				= 20u en despensa
    // {"Litros de gaseosa" //4		= 20u en despensa
     //{"Litros de agua" //5			= 20u en despensa
-    
-    
-struct Ordenes{
-	string nombre;
-	int cantidad;
-	float monto;
-};
 
 void ordenRegistro(Ordenes orden[], Producto producto[],  int item, int c, int cantidad){
 	orden[c].nombre = producto[item-1].nombre;
 	orden[c].cantidad = cantidad;
 	orden[c].monto = producto[item-1].precio*cantidad;
 }
-Ordenes orden[MAX_FACTURA];
+
+Ordenes orden[MAX_FACTURAS];
+
 void registrarVenta(){
 	int categoria;
 	int item;
