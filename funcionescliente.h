@@ -19,9 +19,9 @@ struct Cliente {
 };
 
 //FUNCION PARA AGREGAR CLIENTES
-void agregarCliente(Cliente clientes[20], int &cantidadActualClientes);
+void agregarCliente(Cliente clientes[50], int &cantidadActualClientes);
 //FUNCION PARA EDITAR DATOS DEL CLIENTES
-void editarDatosCliente(Cliente clientes[20], int &cantidadActualClientes);
+void editarDatosCliente(Cliente clientes[50], int &cantidadActualClientes);
 //FUNCION PARA ORDENAR ALFABETICAMENTE LOS CLIENTES
-void ordenarClientesAlfabeticamente(Cliente clientes[20], int &cantidadActualClientes);
+void ordenarClientesAlfabeticamente(Cliente clientes[50], int &cantidadActualClientes);
 #endif
