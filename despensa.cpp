@@ -12,7 +12,7 @@ void menuDespensa(){
 		cout << "A) Agregar alimentos a la despensa" << endl;
 		cout << "B) Actualizar alimentos de la despensa" << endl;
 		cout << "C) Mostrar stock de alimentos" << endl;
-		cout << "D) Mostrar alimentos mas usados" << endl;
+		cout << "D) Mostrar alimentos mas y menos usados" << endl;
 		cout << "E) Salir de la despensa" << endl << endl;
 		cin >> opcion;
 		cout << endl << endl;
@@ -28,6 +28,7 @@ void menuDespensa(){
 				mostrarStock();
 				break;
 			case 'D':
+				mostrarMasMenosUsados();
 				break;
 			case 'E':
 				cout << "Saliendo de la despensa..." << endl;

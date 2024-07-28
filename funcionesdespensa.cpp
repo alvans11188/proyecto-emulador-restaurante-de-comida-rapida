@@ -1,4 +1,5 @@
 #include "funcionesdespensa.h"
+#include "funcionesfinanzas.h"
 using namespace std;
 
 Alimentos alimento[MAX_ALIMENTOS] = {
@@ -101,3 +102,72 @@ void mostrarStock(){
 		cout << "(" << copia[i].cantidad << ") " << copia[i].nombre << "." << endl;
 	}
 }
+
+
+void ordenarPorMasUsados(GastoAlimento arr[], int n) {
+	GastoAlimento aux;
+    for (int i=0; i<n-1; i++) {
+        for (int j=i+1; j<n; j++) {
+            if (arr[i].cantidadUsada < arr[j].cantidadUsada) {
+                // Intercambiar gastos
+                aux = arr[i];
+                arr[i] = arr[j];
+                arr[j] = aux;
+            }
+        }
+    }
+}
+
+void ordenarPorMenosUsados(GastoAlimento arr[], int n) {
+    GastoAlimento aux;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (arr[i].cantidadUsada > arr[j].cantidadUsada) {
+                // Intercambiar productos
+                aux = arr[i];
+                arr[i] = arr[j];
+                arr[j] = aux;
+            }
+        }
+    }
+}
+
+void mostrarMasMenosUsados(){
+	
+	/*
+	struct GastoAlimento {
+    string nombre;
+    float gastos;
+    float cantidadUsada;
+	};	
+	*/
+	cout << endl;
+	char opcion;
+	cout << "ORDENAR ALIMENTOS USADOS" << endl << endl;
+	do{
+		cout << "a) De mayor a menor." << endl;
+		cout << "b) De menor a mayor." << endl << endl;
+		cout << "= ";
+		cin >> opcion;
+		cout << endl;
+		switch(opcion){
+			case 'a':
+				cout << "Ordenado de mayor a menor uso." << endl << endl;
+				ordenarPorMasUsados(gastos, MAX_ALIMENTOS);
+				break;
+			case 'b':
+				cout << "Ordenado de menor a mayor uso." << endl << endl;
+				ordenarPorMenosUsados(gastos, MAX_ALIMENTOS);
+				break;
+			default:
+				cout << "Opcion no valida. Intente de nuevo." << endl << endl;
+				break;
+		}
+	}while(opcion!='a'&& opcion!='b');
+
+		for(int i=0; i<MAX_ALIMENTOS; i++){
+			cout << i+1 << ". " << " (" << gastos[i].cantidadUsada << ")" << gastos[i].nombre << endl;
+		}
+	cout << endl;
+}
+
