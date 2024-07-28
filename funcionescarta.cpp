@@ -37,7 +37,7 @@ int numAguas = 2;
 
 // FUNCION MOSTRAR CARTA
 void mostrarCarta() {
-    cout << "\nCARTA DE HOY" << endl;
+    cout << "\n // CARTA DE HOY //" << endl;
 
     cout << "Hamburguesas:" << endl;
     for (int i = 0; i < numHamburguesas; i++) {
@@ -65,6 +65,8 @@ void mostrarCarta() {
 //FUNCION PARA EDITAR CARTA
 void editarCarta() {
     int categoria, item;
+    do {
+    	
     cout << "\n// EDITAR CARTA //" << endl;
     cout << "Seleccione la categoría para editar:" << endl;
     cout << "1. Hamburguesas" << endl;
@@ -72,6 +74,7 @@ void editarCarta() {
     cout << "3. Conos" << endl;
     cout << "4. Gaseosas" << endl;
     cout << "5. Aguas" << endl;
+    cout << "6. Volver al menu anterior" << endl;
     cin >> categoria;
 
     switch (categoria) {
@@ -165,10 +168,14 @@ void editarCarta() {
                 cout << "Producto no valido." << endl;
             }
             break;
+        case 6:
+        	cout << "Regresando al menu anterior" << endl;
+        	break;
         default:
             cout << "Categoría no encontrada." << endl;
             break;
     }
+    }while (categoria != 6);
 }
 //FUNCION PARA AGREGAR A LA CARTA
 void agregarCarta() {
@@ -306,6 +313,7 @@ void ordenarCarta() {
 //FUNCION PARA ELIMINAR PRODUCTOS DE LA CARTA
 void eliminarCarta() {
     int categoria, item;
+    do {
     cout << "\n// ELIMINAR PRODUCTO //" << endl;
     cout << "Seleccione la categoría del producto a eliminar:" << endl;
     cout << "1. Hamburguesas" << endl;
@@ -313,6 +321,7 @@ void eliminarCarta() {
     cout << "3. Conos" << endl;
     cout << "4. Gaseosas" << endl;
     cout << "5. Aguas" << endl;
+    cout << "6. Volver al menu anterior" << endl;
     cin >> categoria;
 
     switch (categoria) {
@@ -401,10 +410,14 @@ void eliminarCarta() {
                 cout << "Producto no valido." << endl;
             }
             break;
+        case 6:
+        	cout << "Regresando al menu anterior" << endl;
+        	break;
         default:
-            cout << "Categoría no encontrada." << endl;
+            cout << "Categoría no encontrada, Ingrese una categoria del 1 al 6" << endl;
             break;
     }
+    } while (categoria!=6);
 }
 //USAR EN FUNCIONESFINANZAS.CPP
 
