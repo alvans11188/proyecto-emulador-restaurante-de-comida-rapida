@@ -14,6 +14,8 @@ const float costeConos = alimento[0].precio*CTC + alimento[1].precio*CLC + alime
 const float costeGaseosas = alimento[4].precio*CG;
 const float costeAguas = alimento[5].precio*CA;
 
+const int totalComidas = numHamburguesas + numPizzas + numConos + numGaseosas + numAguas;
+
 float aguasTotalUsadas = 0;
 float gaseosasTotalUsadas = 0;
 float quesosTotalUsados = 0;
@@ -83,11 +85,12 @@ void ordenarGastos(GastoAlimento arr[], int n) {
     }
 }
 
-void ordenarGanancias(Producto arr[], int n) {
-    Producto aux;
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = i + 1; j < n; j++) {
-            if (arr[i].precio < arr[j].precio) {
+void ordenarPorMasVendidos(paraOrdenarVentas arr[], int n) {
+	paraOrdenarVentas aux;
+    for (int i=0; i<n-1; i++) {
+        for (int j=i+1; j<n; j++) {
+            if (arr[i].total < arr[j].total) {
+                // Intercambiar gastos
                 aux = arr[i];
                 arr[i] = arr[j];
                 arr[j] = aux;
@@ -95,6 +98,21 @@ void ordenarGanancias(Producto arr[], int n) {
         }
     }
 }
+
+void ordenarPorMenosVendidos(paraOrdenarVentas arr[], int n) {
+	paraOrdenarVentas aux;
+    for (int i=0; i<n-1; i++) {
+        for (int j=i+1; j<n; j++) {
+            if (arr[i].total > arr[j].total) {
+                // Intercambiar gastos
+                aux = arr[i];
+                arr[i] = arr[j];
+                arr[j] = aux;
+            }
+        }
+    }
+}
+
 
 void gananciasTotales(Ordenes orden[][MAX_FACTURAS], float& montoFinalGanancias) {
     for (int i = 0; i <MAX_FACTURAS; i++) {
@@ -324,6 +342,7 @@ void mostrarOrdenes(){
 		for(int j=0; j<ordenesPorFactura[i]; j++){
 			cout << "(" << orden[i][j].cantidad << ") " << orden[i][j].nombre << " S/. " << orden[i][j].monto << endl;
 		}
+		cout << endl;
 		cout << "Monto final: S/. " << montoDeFactura[i] << endl << endl;
 	}
 	cout << endl;
@@ -342,18 +361,18 @@ void agregarMontoArreglo(){
 		ordenarVentas[numHamburguesas+i].coste = costePizzas;
 	}
 	for(int i=0; i<numConos; i++){
-		ordenarVentas[numPizzas+i].nombre = conos[i].nombre;
-		ordenarVentas[numPizzas+i].total = conos[i].cantidadVendida*conos[i].precio;
-		ordenarVentas[numPizzas+i].coste = costeConos;
+		ordenarVentas[numHamburguesas+numPizzas+i].nombre = conos[i].nombre;
+		ordenarVentas[numHamburguesas+numPizzas+i].total = conos[i].cantidadVendida*conos[i].precio;
+		ordenarVentas[numHamburguesas+numPizzas+i].coste = costeConos;
 	}
 	for(int i=0; i<numGaseosas; i++){
-		ordenarVentas[numConos+i].nombre = gaseosas[i].nombre;
-		ordenarVentas[numConos+i].total = gaseosas[i].cantidadVendida*gaseosas[i].precio;
-		ordenarVentas[numConos+i].coste = costeGaseosas;
+		ordenarVentas[numHamburguesas+numPizzas+numConos+i].nombre = gaseosas[i].nombre;
+		ordenarVentas[numHamburguesas+numPizzas+numConos+i].total = gaseosas[i].cantidadVendida*gaseosas[i].precio;
+		ordenarVentas[numHamburguesas+numPizzas+numConos+i].coste = costeGaseosas;
 	}
 	for(int i=0; i<numAguas; i++){
-		ordenarVentas[numGaseosas+i].nombre = aguas[i].nombre;
-		ordenarVentas[numGaseosas+i].total = aguas[i].cantidadVendida*aguas[i].precio;
+		ordenarVentas[numHamburguesas+numPizzas+numConos+numGaseosas+i].nombre = aguas[i].nombre;
+		ordenarVentas[numHamburguesas+numPizzas+numConos+numGaseosas+i].total = aguas[i].cantidadVendida*aguas[i].precio;
 	}
 }
 void gastosGanancias(){
@@ -380,18 +399,22 @@ void gastosGanancias(){
                 for(int i=0; i<numHamburguesas; i++){
                 	cout  << hamburguesas[i].nombre << ": S/. " << hamburguesas[i].cantidadVendida*hamburguesas[i].precio << endl;
 				}
+				cout << endl;
                 cout << "PIZZAS" << endl << endl;
 				for(int i=0; i<numPizzas; i++){
                 	cout << pizzas[i].nombre << ": S/. " << pizzas[i].cantidadVendida*pizzas[i].precio << endl;
 				}
+				cout << endl;
                 cout << "CONOS" << endl << endl;
 				for(int i=0; i<numConos; i++){
                 	cout << conos[i].nombre << ": S/. " << conos[i].cantidadVendida*conos[i].precio << endl;
 				}
+				cout << endl;
                 cout << "GASEOSAS" << endl << endl;
 				for(int i=0; i<numGaseosas; i++){
                 	cout << gaseosas[i].nombre << ": S/. " << gaseosas[i].cantidadVendida*gaseosas[i].precio << endl;
 				}
+				cout << endl;
                 cout << "AGUAS" << endl << endl;
 				for(int i=0; i<numAguas; i++){
                 	cout << aguas[i].nombre << ": S/. " << aguas[i].cantidadVendida*aguas[i].precio << endl;
@@ -409,12 +432,35 @@ void gastosGanancias(){
 }
 
 void ordenarMasVendido(){
+	cout << endl;
+	char opcion;
 	agregarMontoArreglo();
-	for(int i=0; i<MAX_ITEMS; i++){
+	cout << "ORDENAR POR GANANCIAS" << endl << endl;
+	cout << "a) De mayor a menor." << endl;
+	cout << "b) De menor a mayor." << endl << endl;
+	cout << "= ";
+	cin >> opcion;
+	
+	switch(opcion){
+		case 'a':
+			cout << "Ordenado de mayor a menor ganancias." << endl << endl;
+			ordenarPorMasVendidos(ordenarVentas, totalComidas);
+			break;
+		case 'b':
+			cout << "Ordenado de mayor a menor ganancias." << endl << endl;
+			ordenarPorMenosVendidos(ordenarVentas, totalComidas);
+			break;
+		default:
+			break;
+	}
+	
+	for(int i=0; i<totalComidas; i++){
 		ordenarVentas[i].roas = ordenarVentas[i].total / ordenarVentas[i].coste;
+		cout << i+1 << ". " << ordenarVentas[i].nombre << ": S/. " << ordenarVentas[i].total << endl;
 	}
 }
 
 void estadisticasGenerales(){
-	
+	cout << endl;
+	cout << "ESTADISTICAS GENERALES DEL NEGOCIO" << endl << endl;
 }
