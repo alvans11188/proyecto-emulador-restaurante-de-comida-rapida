@@ -49,7 +49,9 @@ void menuCliente() {
 			case 5:
 				break;
 			default:
+				cout << "Valor ingresado incorrecto, vuelva a ingresar otro valor" << endl;
 				break;
 		}
 	} while ( opcion != 5 );
+	cout << "// VOLVIENDO AL MENU PRINCIPAL //" << endl << endl;
 }
