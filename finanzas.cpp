@@ -4,7 +4,6 @@
 using namespace std;
 
 void menuFinanzas(){
-	agregarMontoArreglo();
 	char opcion;
 	cout << "INGRESANDO AL AREA DE FINANZAS..." << endl;
 	do{

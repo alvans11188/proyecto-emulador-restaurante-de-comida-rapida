@@ -49,7 +49,6 @@ void mostrarOrdenes();
 void gastosGanancias();
 void ordenarMasVendido();
 void estadisticasGenerales();
-
 void agregarMontoArreglo();
 
 #endif
