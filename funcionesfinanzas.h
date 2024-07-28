@@ -18,17 +18,36 @@ struct Ordenes{
 struct GastoAlimento {
     string nombre;
     float gastos;
+    float cantidadUsada;
 };
 
+struct paraOrdenarVentas{
+	string nombre;
+	float total;
+	float roas;
+	float coste;
+};
+
+extern paraOrdenarVentas ordenarVentas[MAX_ITEMS];
 extern Ordenes orden[MAX_FACTURAS][MAX_FACTURAS];
 
-extern float montofinal[MAX_FACTURAS];
-extern int ordenesTotales[MAX_FACTURAS];
+extern float montoDeFactura[MAX_FACTURAS];
+extern int ordenesPorFactura[MAX_FACTURAS];
+extern float montoFinalGanancias;
+extern int ordenesTotales;
 
+struct ventasDeComidas{
+	string nombre;
+	int cantidad;
+	int monto;
+};
+
+extern ventasDeComidas ventasComidas[MAX_FACTURAS];
+// ventasComidas[0].comidas[0].nombre
 void registrarVenta();
 void mostrarOrdenes();
 void gastosGanancias();
-void ordenarVentas();
+void ordenarMasVendido();
 void estadisticasGenerales();
 
 #endif

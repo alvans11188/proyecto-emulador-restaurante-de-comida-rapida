@@ -29,7 +29,7 @@ void menuFinanzas(){
 				gastosGanancias();
 				break;
 			case 'D':
-				ordenarVentas();
+				ordenarMasVendido();
 				break;
 			case 'E':
 				estadisticasGenerales();

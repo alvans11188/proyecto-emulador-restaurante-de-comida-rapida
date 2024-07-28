@@ -41,6 +41,7 @@ const float CCH = 0.15; //carnes
 const float CQH = 0.05; //queso
 // 1(0.2) + 0.1(1) + 0.25(3.5) + 0.15(9) + 0.05(15) = 3.275
 
+
 // Cantidad de Ingredientes en una Pizza
 const float CTP = 4; //tomate
 const float CBP = 0.7; //bolsa de harina
@@ -54,6 +55,7 @@ const float CLC = 0.5; //lechuga
 const float CBC = 0.25; //bolsa de harina
 const float CCC = 0.2; //carnes
 const float CQC = 0.1; //queso
+
 
 // 2(0.2) + 0.5(1) + 0.25(3.5) + 0.2(9) + 0.1(15) = 4.2875
 
