@@ -2,7 +2,6 @@
 #define FUNCIONESFINANZAS_H
 #include "funcionescarta.h"
 #include "funcionesdespensa.h"
-#include <string>
 using namespace std;
 
 const int MAX_FACTURAS = 100; //tambien se usa para el maximo de ordenes en una factura
@@ -24,7 +23,7 @@ struct GastoAlimento {
 struct paraOrdenarVentas{
 	string nombre;
 	float total;
-	float roas;
+	float RIG;
 	float coste;
 };
 
@@ -34,6 +33,7 @@ extern Ordenes orden[MAX_FACTURAS][MAX_FACTURAS];
 extern float montoDeFactura[MAX_FACTURAS];
 extern int ordenesPorFactura[MAX_FACTURAS];
 extern float montoFinalGanancias;
+extern float montoFinalGastos;
 extern int ordenesTotales;
 
 struct ventasDeComidas{
@@ -49,6 +49,8 @@ void mostrarOrdenes();
 void gastosGanancias();
 void ordenarMasVendido();
 void estadisticasGenerales();
+void agregarMontoArreglo();
 
 #endif
+
 

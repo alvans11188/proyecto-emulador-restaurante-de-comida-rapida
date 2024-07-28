@@ -6,6 +6,7 @@
 using namespace std;
 
 float montoFinalGanancias = 0;
+float montoFinalGastos = 0;
 int ordenesTotales=0;
 
 const float costeHamburguesas = alimento[0].precio*CTH + alimento[1].precio*CLH + alimento[2].precio*CBH + alimento[3].precio*CCH + alimento[6].precio*CQH;
@@ -23,7 +24,6 @@ float carnesTotalUsadas = 0;
 float bolsasharinaTotalUsadas = 0;
 float lechugasTotalUsadas = 0;
 float tomatesTotalUsados = 0;
-
 GastoAlimento gastos[MAX_ALIMENTOS] = {
                     {"Tomate", tomatesTotalUsados * alimento[0].precio},
                     {"Lechugas", lechugasTotalUsadas * alimento[1].precio},
@@ -40,7 +40,6 @@ GastoAlimento gastos[MAX_ALIMENTOS] = {
 //Conos = 2 tomate, 0.5 lechuca, 1 bolsaharina 1 carnes
 //Gaseosas = 0.5 litrogaseosa
 //Agua = 0.5 litroagua
-
 	//{"Tomates" // 0  				= 40u en despensa
    // {"Lechugas" // 1|				= 5u en despoensa
    // {"Bolsas de harina", // 2		= 20u en despensa
@@ -63,14 +62,12 @@ void ordenRegistro(Ordenes orden[], Producto producto[],  int item, int c, int c
     orden[c].cantidad = cantidad;
     orden[c].monto = producto[item - 1].precio * cantidad;
 }
-
 //el & es para que la funcion modifique el valor de una variable
 void montoPorFactura(Ordenes orden[], int n, float& montoDeFactura) {
     for (int i = 0; i < n; i++) {
         montoDeFactura += orden[i].monto;
     }
 }
-
 void ordenarGastos(GastoAlimento arr[], int n) {
 	GastoAlimento aux;
     for (int i=0; i<n-1; i++) {
@@ -85,6 +82,19 @@ void ordenarGastos(GastoAlimento arr[], int n) {
     }
 }
 
+void ordenarGanancias(Producto arr[], int n) {
+    Producto aux;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (arr[i].precio < arr[j].precio) {
+                // Intercambiar productos
+                aux = arr[i];
+                arr[i] = arr[j];
+                arr[j] = aux;
+            }
+        }
+    }
+}         	
 void ordenarPorMasVendidos(paraOrdenarVentas arr[], int n) {
 	paraOrdenarVentas aux;
     for (int i=0; i<n-1; i++) {
@@ -100,11 +110,11 @@ void ordenarPorMasVendidos(paraOrdenarVentas arr[], int n) {
 }
 
 void ordenarPorMenosVendidos(paraOrdenarVentas arr[], int n) {
-	paraOrdenarVentas aux;
-    for (int i=0; i<n-1; i++) {
-        for (int j=i+1; j<n; j++) {
+    paraOrdenarVentas aux;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
             if (arr[i].total > arr[j].total) {
-                // Intercambiar gastos
+                // Intercambiar productos
                 aux = arr[i];
                 arr[i] = arr[j];
                 arr[j] = aux;
@@ -113,7 +123,38 @@ void ordenarPorMenosVendidos(paraOrdenarVentas arr[], int n) {
     }
 }
 
+void gastosTotales(){
+	for(int i=0; i<MAX_ALIMENTOS; i++){
+		montoFinalGastos += gastos[i].cantidadUsada*alimento[i].precio;
+	}
+}
 
+void generarRIG(paraOrdenarVentas arr[], ventasDeComidas arr2[], int n){
+	
+	for (int i = 0; i < n; i++) {
+    	arr[i].RIG = 0; // Inicializar RIG
+    // Inicializar otros campos si es necesario
+	}
+	
+	for(int i=0; i<n; i++){
+		// arr[i].coste != 0      <----
+		arr[i].RIG = arr[i].total / arr[i].coste*arr2[i].cantidad;
+	}
+}
+
+void ordenarPorRIG(paraOrdenarVentas arr[], int n){
+	paraOrdenarVentas aux;
+    for (int i=0; i<n-1; i++) {
+        for (int j=i+1; j<n; j++) {
+            if (arr[i].RIG < arr[j].RIG) {
+                // Intercambiar gastos
+                aux = arr[i];
+                arr[i] = arr[j];
+                arr[j] = aux;
+            }
+        }
+    }
+}
 void gananciasTotales(Ordenes orden[][MAX_FACTURAS], float& montoFinalGanancias) {
     for (int i = 0; i <MAX_FACTURAS; i++) {
         for (int j = 0; j <MAX_FACTURAS; j++) {
@@ -121,7 +162,6 @@ void gananciasTotales(Ordenes orden[][MAX_FACTURAS], float& montoFinalGanancias)
         }
     }
 }
-
 void registrarVenta(){
 	int categoria;
 	int item;
@@ -332,7 +372,6 @@ void registrarVenta(){
    cout << "Total a pagar: S/. " << montoDeFactura[numFactura] << endl;
    numFactura++;
 }
-
 void mostrarOrdenes(){
 	cout << endl;
 	cout << "MOSTRANDO FACTURAS REGISTRADAS" << endl << endl;
@@ -347,7 +386,6 @@ void mostrarOrdenes(){
 	}
 	cout << endl;
 }
-
 void agregarMontoArreglo(){
 	
 	for(int i=0; i<numHamburguesas; i++){
@@ -361,25 +399,32 @@ void agregarMontoArreglo(){
 		ordenarVentas[numHamburguesas+i].coste = costePizzas;
 	}
 	for(int i=0; i<numConos; i++){
+		ordenarVentas[numPizzas+i].nombre = conos[i].nombre;
+		ordenarVentas[numPizzas+i].total = conos[i].cantidadVendida*conos[i].precio;
+		ordenarVentas[numPizzas+i].coste = costeConos;
 		ordenarVentas[numHamburguesas+numPizzas+i].nombre = conos[i].nombre;
 		ordenarVentas[numHamburguesas+numPizzas+i].total = conos[i].cantidadVendida*conos[i].precio;
 		ordenarVentas[numHamburguesas+numPizzas+i].coste = costeConos;
 	}
 	for(int i=0; i<numGaseosas; i++){
+		ordenarVentas[numConos+i].nombre = gaseosas[i].nombre;
+		ordenarVentas[numConos+i].total = gaseosas[i].cantidadVendida*gaseosas[i].precio;
+		ordenarVentas[numConos+i].coste = costeGaseosas;
 		ordenarVentas[numHamburguesas+numPizzas+numConos+i].nombre = gaseosas[i].nombre;
 		ordenarVentas[numHamburguesas+numPizzas+numConos+i].total = gaseosas[i].cantidadVendida*gaseosas[i].precio;
 		ordenarVentas[numHamburguesas+numPizzas+numConos+i].coste = costeGaseosas;
 	}
 	for(int i=0; i<numAguas; i++){
+		ordenarVentas[numGaseosas+i].nombre = aguas[i].nombre;
+		ordenarVentas[numGaseosas+i].total = aguas[i].cantidadVendida*aguas[i].precio;
 		ordenarVentas[numHamburguesas+numPizzas+numConos+numGaseosas+i].nombre = aguas[i].nombre;
 		ordenarVentas[numHamburguesas+numPizzas+numConos+numGaseosas+i].total = aguas[i].cantidadVendida*aguas[i].precio;
 	}
 }
 void gastosGanancias(){
+	montoFinalGanancias=0;
 	cout << endl;
 	char respuesta;
-	bool valido = true;
-	do{
 		cout << "¿Que quieres ver?" << endl << endl;
 		cout << "- ) Gastos." << endl;
 		cout << "+ ) Ganancias." << endl;
@@ -422,13 +467,12 @@ void gastosGanancias(){
 				cout << endl;
 				gananciasTotales(orden, montoFinalGanancias);
 				cout << "Ganancias totales: S/." << montoFinalGanancias << endl;
+				break;
 			default:
 				cout << "Opcion no valida." << endl;
-				valido = false;
 				break;
 		}
 		cout << endl;
-	} while(!valido);
 }
 
 void ordenarMasVendido(){
@@ -440,27 +484,134 @@ void ordenarMasVendido(){
 	cout << "b) De menor a mayor." << endl << endl;
 	cout << "= ";
 	cin >> opcion;
-	
+
 	switch(opcion){
 		case 'a':
 			cout << "Ordenado de mayor a menor ganancias." << endl << endl;
 			ordenarPorMasVendidos(ordenarVentas, totalComidas);
 			break;
 		case 'b':
-			cout << "Ordenado de mayor a menor ganancias." << endl << endl;
+			cout << "Ordenado de menor a mayor ganancias." << endl << endl;
 			ordenarPorMenosVendidos(ordenarVentas, totalComidas);
 			break;
 		default:
 			break;
 	}
-	
-	for(int i=0; i<totalComidas; i++){
-		ordenarVentas[i].roas = ordenarVentas[i].total / ordenarVentas[i].coste;
-		cout << i+1 << ". " << ordenarVentas[i].nombre << ": S/. " << ordenarVentas[i].total << endl;
-	}
+
+		for(int i=0; i<totalComidas; i++){
+			ordenarVentas[i].RIG = ordenarVentas[i].total / ordenarVentas[i].coste;
+			cout << i+1 << ". " << ordenarVentas[i].nombre << ": S/. " << ordenarVentas[i].total << endl;
+		}
 }
 
 void estadisticasGenerales(){
+	gastosTotales();
+	gananciasTotales(orden, montoFinalGanancias);
+	generarRIG(ordenarVentas, ventasComidas, totalComidas);
+	ordenarPorRIG(ordenarVentas, totalComidas);
 	cout << endl;
-	cout << "ESTADISTICAS GENERALES DEL NEGOCIO" << endl << endl;
+	string contrasenaJhonel="2024-119026";
+	string contrasenaAlex="2024-119042";
+	string contrasenaDante="2024-119039";
+	string contrasena;
+	char opcion;
+	cout << "Indique la contraseña" << endl << endl;
+	cout << "= ";
+	cin >> contrasena;
+	cout << endl;
+	
+	float gananciaNeta = montoFinalGanancias - montoFinalGastos;
+	float margenGananciaNeta = (gananciaNeta/montoFinalGanancias)*100;
+	float ROI = (gananciaNeta/montoFinalGastos)*100;
+	float RIG = (montoFinalGanancias/montoFinalGastos);
+	float RIGcomidas;
+	
+	if(contrasena==contrasenaJhonel || contrasena==contrasenaAlex || contrasena==contrasenaDante ){
+		if(contrasena==contrasenaJhonel){
+			cout << "¡Bienvenido Ingeniero Jhonel, revise como va su negocio!" << endl;
+		} else if(contrasena==contrasenaAlex){
+			cout << "¡Bienvenido Ingeniero Alex, revise como va su negocio!" << endl;
+		} else {
+			cout << "¡Bienvenido Ingeniero Dante, revise como va su negocio!" << endl;
+		}
+		do{
+			cout << endl;
+			cout << "ESTADISTICAS GENERALES DEL NEGOCIO" << endl << endl;
+			cout << "a) Ingresos brutos." << endl;
+			cout << "b) Egresos brutos." << endl;
+			cout << "c) Ingresos netos." << endl;
+			cout << "d) Ticket promedio de factura." << endl;
+			cout << "e) Margen de Ganancia Neta." << endl;
+			cout << "f) ROI (Retorno sobre la inversion)." << endl;
+			cout << "g) RIG (Ratio de Ingresos sobre Gastos)." << endl;
+			cout << "h) Ver todas las metricas juntas." << endl;
+			cout << "i) Salir." << endl << endl;
+			cout << "= ";
+			cin >> opcion;
+			cout << endl;
+			switch(opcion){
+				case 'a':
+					cout << "Ingresos brutos (totales) del negocio." << endl;
+					cout << "--> " << montoFinalGanancias << endl;
+					break;
+				case 'b':
+					cout << "Egresos brutos (totales) del negocio." << endl;
+					cout << "--> " << montoFinalGastos << endl;
+					break;
+				case 'c':
+					cout << "Ingresos netos del negocio." << endl << endl;
+					cout << "Ingresos totales: " << montoFinalGanancias << endl;
+					cout << "Egresos totales: " << montoFinalGastos << endl;
+					cout << "Ingresos netos: " << gananciaNeta << endl;
+					break;
+				case 'd':
+					if(numFactura>0){
+						cout << "Cuanto se gasta por factura: " << endl;
+						cout << "= " << montoFinalGanancias/numFactura << endl;	
+					}else{
+						cout << "No hay facturas por analizar." << endl;
+					}
+					break;
+				case 'e':
+					cout << "El margen de ganancia neta del negocio es: " << endl;
+					cout << "= " << margenGananciaNeta << "%" << endl;
+					break;
+				case 'f':
+					cout << "El ROI de su negocio es: " << endl;
+					cout << "= " << ROI << "%" << endl << endl;
+					cout << "Eso quiere decir que por cada S/.1 gastado, usted esta ganando " << ROI << "% adicional, osea S/. " << 1+ROI/100 << endl;
+					break;
+				case 'g':
+					cout << "El RIG de su negocio es: " << endl;
+					cout << "= " << RIG << endl << endl;
+					cout << "Eso quiere decir que por cada S/. 1 gastado, usted gana S/. " << RIG << endl;
+					break;
+				case 'h':
+					cout << "Ingresos brutos" << endl << endl;
+					cout << "= S/. " << montoFinalGanancias << endl << endl;
+					cout << "Egresos brutos"  << endl << endl;
+					cout << "= S/. " << montoFinalGastos << endl << endl;
+					cout << "Ingresos netos"  << endl << endl;
+					cout << "= S/. " << gananciaNeta << endl << endl;
+					cout << "Ticket promedio de factura"  << endl << endl;
+					cout << "= S/. " << montoFinalGanancias/numFactura << endl << endl;
+					cout << "Margen de Ganancia Neta"  << endl << endl;
+					cout << "= " << margenGananciaNeta << "%" << endl << endl;
+					cout << "ROI"  << endl << endl;
+					cout << "= " << ROI << "%" << endl << endl;
+					cout << "RIG"  << endl << endl;
+					cout << "= S/. " << RIG << endl;
+					break;
+				case 'i':
+					cout << "Saliendo del area de estadisticas generales..." << endl;
+					break;
+				default:
+					cout << "Opcion no valida. Intente de nuevo." << endl;
+					break;
+			}
+			cout << endl;
+		}while(opcion!='i');
+	} else {
+		cout << "Usuario invalido. No puede ingresar, lo siento." << endl;
+	}
 }
