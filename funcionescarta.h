@@ -7,6 +7,7 @@ using namespace std;
 struct Producto {
     string nombre;
     float precio;
+    int cantidadVendida;
 };
 
 const int MAX_ITEMS = 100;

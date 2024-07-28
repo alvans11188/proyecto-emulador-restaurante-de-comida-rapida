@@ -2,12 +2,13 @@
 using namespace std;
 
 Alimentos alimento[MAX_ALIMENTOS] = {
-    {"Tomates", 4, 0.2},
-    {"Lechugas", 0.5, 0.3},
-    {"Bolsas de harina", 2, 1.5},
-    {"Carnes", 2, 2},
-    {"Litros de gaseosa", 2, 3},
-    {"Litros de agua", 2, 2.5}
+    {"Tomates", 40, 0.2}, // 0
+    {"Lechugas", 5, 1}, // 1
+    {"Bolsas de harina", 20, 3.5}, // 2
+    {"Carnes", 20, 9}, // 3
+    {"Litros de gaseosa", 20, 4}, //4
+    {"Litros de agua", 20, 2.5}, //5
+    {"Queso", 10, 15}
 };
 
 void AgregarAlimentos(){

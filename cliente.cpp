@@ -44,6 +44,7 @@ void menuCliente() {
 				ordenarClientesAlfabeticamente(clientes, cantidadActualClientes);
 				break;
 			case 4:
+				eliminarClientes(clientes, cantidadActualClientes);
 				break;
 			case 5:
 				break;
