@@ -8,7 +8,7 @@ Producto hamburguesas[MAX_ITEMS] = {
 };
 
 Producto pizzas[MAX_ITEMS] = {
-    {"Pizza ersonal", 10.0},
+    {"Pizza personal", 10.0},
     {"Pizza mediana", 15.0},
     {"Pizza familiar", 25.0}
 };
@@ -61,6 +61,7 @@ void mostrarCarta() {
         cout << "      " << aguas[i].nombre << " S/. " << aguas[i].precio << endl;
     }
 }
+
 //FUNCION PARA EDITAR CARTA
 void editarCarta() {
     int categoria, item;
@@ -229,6 +230,176 @@ void agregarCarta() {
             break;
     }
 }
+//FUNCION ORDENAR CARTA
+void ordenarCarta() {
+   int categoria;
+    cout << "\n// ORDENAR CARTA //" << endl;
+    cout << "Seleccione la categoría para ordenar por precio decendente:" << endl;
+    cout << "1. Hamburguesas" << endl;
+    cout << "2. Pizzas" << endl;
+    cout << "3. Conos" << endl;
+    cout << "4. Gaseosas" << endl;
+    cout << "5. Aguas" << endl;
+    cin >> categoria;
 
+    switch (categoria) {
+        case 1:
+            for (int i = 0; i < numHamburguesas - 1; i++) {
+                for (int j = 0; j < numHamburguesas - i - 1; j++) {
+                    if (hamburguesas[j].precio > hamburguesas[j + 1].precio) {
+                        swap(hamburguesas[j], hamburguesas[j + 1]);
+                    }
+                }
+            }
+            cout << "Hamburguesas ordenadas satisfactoriamente" << endl;
+            break;
+        case 2:
+            for (int i = 0; i < numPizzas - 1; i++) {
+                for (int j = 0; j < numPizzas - i - 1; j++) {
+                    if (pizzas[j].precio > pizzas[j + 1].precio) {
+                        swap(pizzas[j], pizzas[j + 1]);
+                    }
+                }
+            }
+            cout << "Pizzas ordenadas satisfactoriamente" << endl;
+            break;
+        case 3:
+            for (int i = 0; i < numConos - 1; i++) {
+                for (int j = 0; j < numConos - i - 1; j++) {
+                    if (conos[j].precio > conos[j + 1].precio) {
+                        swap(conos[j], conos[j + 1]);
+                    }
+                }
+            }
+            cout << "Conos ordenados satisfactoriamente" << endl;
+            break;
+        case 4:
+            for (int i = 0; i < numGaseosas - 1; i++) {
+                for (int j = 0; j < numGaseosas - i - 1; j++) {
+                    if (gaseosas[j].precio > gaseosas[j + 1].precio) {
+                        swap(gaseosas[j], gaseosas[j + 1]);
+                    }
+                }
+            }
+            cout << "Gaseosas ordenadas satisfactoriamente" << endl;
+            break;
+        case 5:
+            for (int i = 0; i < numAguas - 1; i++) {
+                for (int j = 0; j < numAguas - i - 1; j++) {
+                    if (aguas[j].precio > aguas[j + 1].precio) {
+                        swap(aguas[j], aguas[j + 1]);
+                    }
+                }
+            }
+            cout << "Aguas ordenadas satisfactoriamente" << endl;
+            break;
+        default:
+            cout << "Categoría no encontrada." << endl;
+            break;
+    }
+}
+//FUNCION PARA ELIMINAR PRODUCTOS DE LA CARTA
+void eliminarCarta() {
+    int categoria, item;
+    cout << "\n// ELIMINAR PRODUCTO //" << endl;
+    cout << "Seleccione la categoría del producto a eliminar:" << endl;
+    cout << "1. Hamburguesas" << endl;
+    cout << "2. Pizzas" << endl;
+    cout << "3. Conos" << endl;
+    cout << "4. Gaseosas" << endl;
+    cout << "5. Aguas" << endl;
+    cin >> categoria;
+
+    switch (categoria) {
+        case 1:
+            cout << "Seleccione el producto a eliminar:" << endl;
+            for (int i = 0; i < numHamburguesas; i++) {
+                cout << i + 1 << ". " << hamburguesas[i].nombre << " S/. " << hamburguesas[i].precio << endl;
+            }
+            cin >> item;
+            item -= 1;
+            if (item >= 0 && item < numHamburguesas) {
+                for (int i = item; i < numHamburguesas - 1; i++) {
+                    hamburguesas[i] = hamburguesas[i + 1];
+                }
+                numHamburguesas--;
+                cout << "Producto eliminado satisfactoriamente" << endl;
+            } else {
+                cout << "Producto no valido." << endl;
+            }
+            break;
+        case 2:
+            cout << "Seleccione el producto a eliminar:" << endl;
+            for (int i = 0; i < numPizzas; i++) {
+                cout << i + 1 << ". " << pizzas[i].nombre << " S/. " << pizzas[i].precio << endl;
+            }
+            cin >> item;
+            item -= 1;
+            if (item >= 0 && item < numPizzas) {
+                for (int i = item; i < numPizzas - 1; i++) {
+                    pizzas[i] = pizzas[i + 1];
+                }
+                numPizzas--;
+                cout << "Producto eliminado satisfactoriamente" << endl;
+            } else {
+                cout << "Producto no valido." << endl;
+            }
+            break;
+        case 3:
+            cout << "Seleccione el producto a eliminar:" << endl;
+            for (int i = 0; i < numConos; i++) {
+                cout << i + 1 << ". " << conos[i].nombre << " S/. " << conos[i].precio << endl;
+            }
+            cin >> item;
+            item -= 1;
+            if (item >= 0 && item < numConos) {
+                for (int i = item; i < numConos - 1; i++) {
+                    conos[i] = conos[i + 1];
+                }
+                numConos--;
+                cout << "Producto eliminado satisfactoriamente" << endl;
+            } else {
+                cout << "Producto no valido." << endl;
+            }
+            break;
+        case 4:
+            cout << "Seleccione el producto a eliminar:" << endl;
+            for (int i = 0; i < numGaseosas; i++) {
+                cout << i + 1 << ". " << gaseosas[i].nombre << " S/. " << gaseosas[i].precio << endl;
+            }
+            cin >> item;
+            item -= 1;
+            if (item >= 0 && item < numGaseosas) {
+                for (int i = item; i < numGaseosas - 1; i++) {
+                    gaseosas[i] = gaseosas[i + 1];
+                }
+                numGaseosas--;
+                cout << "Producto eliminado satisfactoriamente" << endl;
+            } else {
+                cout << "Producto no valido." << endl;
+            }
+            break;
+        case 5:
+            cout << "Seleccione el producto a eliminar:" << endl;
+            for (int i = 0; i < numAguas; i++) {
+                cout << i + 1 << ". " << aguas[i].nombre << " S/. " << aguas[i].precio << endl;
+            }
+            cin >> item;
+            item -= 1;
+            if (item >= 0 && item < numAguas) {
+                for (int i = item; i < numAguas - 1; i++) {
+                    aguas[i] = aguas[i + 1];
+                }
+                numAguas--;
+                cout << "Producto eliminado satisfactoriamente" << endl;
+            } else {
+                cout << "Producto no valido." << endl;
+            }
+            break;
+        default:
+            cout << "Categoría no encontrada." << endl;
+            break;
+    }
+}
 //USAR EN FUNCIONESFINANZAS.CPP
 

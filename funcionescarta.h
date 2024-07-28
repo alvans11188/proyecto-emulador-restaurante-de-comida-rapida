@@ -28,4 +28,9 @@ void mostrarCarta();
 void editarCarta();
 //FUNCION PARA AGREGAR A LA CARTA
 void agregarCarta();
+//FUNCION PARA ORDENAR CARTA
+void ordenarCarta();
+//FUNCION PARA ELIMNAR ALGUN PRODUCTO DE LA CARTA
+void eliminarCarta();
+
 #endif
