@@ -64,21 +64,22 @@ void mostrarCarta() {
 
 //FUNCION PARA EDITAR CARTA
 void editarCarta() {
-    int categoria, item;
+    int  item;
+	char categoria;
     do {
     	
     cout << "\n// EDITAR CARTA //" << endl;
-    cout << "Seleccione la categoría para editar:" << endl;
-    cout << "1. Hamburguesas" << endl;
-    cout << "2. Pizzas" << endl;
-    cout << "3. Conos" << endl;
-    cout << "4. Gaseosas" << endl;
-    cout << "5. Aguas" << endl;
-    cout << "6. Volver al menu anterior" << endl;
+    cout << "Seleccione la categoria para editar:" << endl;
+    cout << "A. Hamburguesas" << endl;
+    cout << "B. Pizzas" << endl;
+    cout << "C. Conos" << endl;
+    cout << "D. Gaseosas" << endl;
+    cout << "E. Aguas" << endl;
+    cout << "F. Volver al menu anterior" << endl;
     cin >> categoria;
-
+    
     switch (categoria) {
-        case 1:
+        case 'A':
             cout << "Seleccione el producto a editar:" << endl;
             for (int i = 0; i < numHamburguesas; i++) {
                 cout << i + 1 << ". " << hamburguesas[i].nombre << " S/. " << hamburguesas[i].precio << endl;
@@ -86,7 +87,7 @@ void editarCarta() {
             cin >> item;
             item -= 1;
             if (item >= 0 && item < numHamburguesas) {
-                cin.ignore(); // Ignorar el carácter de nueva línea residual
+                cin.ignore(); // Ignorar el primer valor
                 cout << "Nuevo nombre: ";
                 getline(cin, hamburguesas[item].nombre);
                 cout << "Nuevo precio: ";
@@ -96,7 +97,7 @@ void editarCarta() {
                 cout << "Producto no valido." << endl;
             }
             break;
-        case 2:
+        case 'B':
             cout << "Seleccione el producto a editar:" << endl;
             for (int i = 0; i < numPizzas; i++) {
                 cout << i + 1 << ". " << pizzas[i].nombre << " S/. " << pizzas[i].precio << endl;
@@ -114,7 +115,7 @@ void editarCarta() {
                 cout << "Producto no valido." << endl;
             }
             break;
-        case 3:
+        case 'C':
             cout << "Seleccione el producto a editar:" << endl;
             for (int i = 0; i < numConos; i++) {
                 cout << i + 1 << ". " << conos[i].nombre << " S/. " << conos[i].precio << endl;
@@ -132,7 +133,7 @@ void editarCarta() {
                 cout << "Producto no valido." << endl;
             }
             break;
-        case 4:
+        case 'D':
             cout << "Seleccione el producto a editar:" << endl;
             for (int i = 0; i < numGaseosas; i++) {
                 cout << i + 1 << ". " << gaseosas[i].nombre << " S/. " << gaseosas[i].precio << endl;
@@ -150,7 +151,7 @@ void editarCarta() {
                 cout << "Producto no valido." << endl;
             }
             break;
-        case 5:
+        case 'E':
             cout << "Seleccione el producto a editar:" << endl;
             for (int i = 0; i < numAguas; i++) {
                 cout << i + 1 << ". " << aguas[i].nombre << " S/. " << aguas[i].precio << endl;
@@ -168,94 +169,134 @@ void editarCarta() {
                 cout << "Producto no valido." << endl;
             }
             break;
-        case 6:
+        case 'F':
         	cout << "Regresando al menu anterior" << endl;
         	break;
         default:
-            cout << "Categoría no encontrada." << endl;
+            cout << "Categoria no encontrada." << endl;
             break;
-    }
-    }while (categoria != 6);
+    } 
+
+	
+    }while (categoria != 'F');
 }
 //FUNCION PARA AGREGAR A LA CARTA
 void agregarCarta() {
-    int categoria;
+    char categoria;
     Producto nuevoProducto;
+    do{
     cout << "\n// AGREGAR PRODUCTO A LA CARTA //" << endl;
-    cout << "Seleccione la categoría para agregar un nuevo producto:" << endl;
-    cout << "1. Hamburguesas" << endl;
-    cout << "2. Pizzas" << endl;
-    cout << "3. Conos" << endl;
-    cout << "4. Gaseosas" << endl;
-    cout << "5. Aguas" << endl;
+    cout << "Seleccione la categoria para agregar un nuevo producto:" << endl;
+    cout << "A. Hamburguesas" << endl;
+    cout << "B. Pizzas" << endl;
+    cout << "C. Conos" << endl;
+    cout << "D. Gaseosas" << endl;
+    cout << "E. Aguas" << endl;
+    cout << "F. Volver al menu anterior" << endl;
     cin >> categoria;
 
-    cout << "Ingrese el nombre del nuevo producto: ";
-    cin.ignore();
-    getline(cin, nuevoProducto.nombre);
-    cout << "Ingrese el precio del nuevo producto: ";
-    cin >> nuevoProducto.precio;
-
+   
      switch (categoria) {
-        case 1:
+     	
+        case 'A':
+        	cout << "Ingrese el nombre del nuevo producto: ";
+		    cin.ignore();
+		    getline(cin, nuevoProducto.nombre);
+		    cout << "Ingrese el precio del nuevo producto: ";
+		    cin >> nuevoProducto.precio;
             if (numHamburguesas < MAX_ITEMS) {
                 hamburguesas[numHamburguesas] = nuevoProducto;
                 numHamburguesas++;
+            cout << "Producto agregado exitosamente" << endl;
             } else {
                 cout << "No se puede agregar más hamburguesas." << endl;
             }
             break;
-        case 2:
+        case 'B':
+        	cout << "Ingrese el nombre del nuevo producto: ";
+		    cin.ignore();
+		    getline(cin, nuevoProducto.nombre);
+		    cout << "Ingrese el precio del nuevo producto: ";
+		    cin >> nuevoProducto.precio;
             if (numPizzas < MAX_ITEMS) {
                 pizzas[numPizzas] = nuevoProducto;
                 numPizzas++;
+            cout << "Producto agregado exitosamente" << endl;
             } else {
                 cout << "No se puede agregar más pizzas." << endl;
             }
             break;
-        case 3:
+        case 'C':
+        	cout << "Ingrese el nombre del nuevo producto: ";
+		    cin.ignore();
+		    getline(cin, nuevoProducto.nombre);
+		    cout << "Ingrese el precio del nuevo producto: ";
+		    cin >> nuevoProducto.precio;
             if (numConos < MAX_ITEMS) {
                 conos[numConos] = nuevoProducto;
                 numConos++;
+            cout << "Producto agregado exitosamente" << endl;
             } else {
                 cout << "No se puede agregar más conos." << endl;
             }
             break;
-        case 4:
+        case 'D':
+        	cout << "Ingrese el nombre del nuevo producto: ";
+		    cin.ignore();
+		    getline(cin, nuevoProducto.nombre);
+		    cout << "Ingrese el precio del nuevo producto: ";
+		    cin >> nuevoProducto.precio;
             if (numGaseosas < MAX_ITEMS) {
                 gaseosas[numGaseosas] = nuevoProducto;
                 numGaseosas++;
+            cout << "Producto agregado exitosamente" << endl;
             } else {
                 cout << "No se puede agregar más gaseosas." << endl;
             }
             break;
-        case 5:
+        case 'E':
+        	cout << "Ingrese el nombre del nuevo producto: ";
+		    cin.ignore();
+		    getline(cin, nuevoProducto.nombre);
+		    cout << "Ingrese el precio del nuevo producto: ";
+		    cin >> nuevoProducto.precio;
             if (numAguas < MAX_ITEMS) {
                 aguas[numAguas] = nuevoProducto;
                 numAguas++;
+            cout << "Producto agregado exitosamente" << endl;
             } else {
                 cout << "No se puede agregar más aguas." << endl;
             }
             break;
+    	case 'F':
+    		categoria = 'F';
+    		break;
         default:
-            cout << "Categoría no encontrada." << endl;
+            cout << "Valor no valido, asegurese de ingresar una letra de la A hasta la F" << endl;
             break;
     }
+    
+	}while (categoria !='F');
+	cout << "Volviendo al menu anterior.." << endl;
 }
 //FUNCION ORDENAR CARTA
 void ordenarCarta() {
-   int categoria;
+   char categoria;
+   do {
+   	
+  
     cout << "\n// ORDENAR CARTA //" << endl;
     cout << "Seleccione la categoría para ordenar por precio decendente:" << endl;
-    cout << "1. Hamburguesas" << endl;
-    cout << "2. Pizzas" << endl;
-    cout << "3. Conos" << endl;
-    cout << "4. Gaseosas" << endl;
-    cout << "5. Aguas" << endl;
+    cout << "A. Hamburguesas" << endl;
+    cout << "B. Pizzas" << endl;
+    cout << "C. Conos" << endl;
+    cout << "D. Gaseosas" << endl;
+    cout << "E. Aguas" << endl;
+    cout << "F. Volver al menu anterior" << endl;
     cin >> categoria;
 
     switch (categoria) {
-        case 1:
+        case 'A':
             for (int i = 0; i < numHamburguesas - 1; i++) {
                 for (int j = 0; j < numHamburguesas - i - 1; j++) {
                     if (hamburguesas[j].precio > hamburguesas[j + 1].precio) {
@@ -265,7 +306,7 @@ void ordenarCarta() {
             }
             cout << "Hamburguesas ordenadas satisfactoriamente" << endl;
             break;
-        case 2:
+        case 'B':
             for (int i = 0; i < numPizzas - 1; i++) {
                 for (int j = 0; j < numPizzas - i - 1; j++) {
                     if (pizzas[j].precio > pizzas[j + 1].precio) {
@@ -275,7 +316,7 @@ void ordenarCarta() {
             }
             cout << "Pizzas ordenadas satisfactoriamente" << endl;
             break;
-        case 3:
+        case 'C':
             for (int i = 0; i < numConos - 1; i++) {
                 for (int j = 0; j < numConos - i - 1; j++) {
                     if (conos[j].precio > conos[j + 1].precio) {
@@ -285,7 +326,7 @@ void ordenarCarta() {
             }
             cout << "Conos ordenados satisfactoriamente" << endl;
             break;
-        case 4:
+        case 'D':
             for (int i = 0; i < numGaseosas - 1; i++) {
                 for (int j = 0; j < numGaseosas - i - 1; j++) {
                     if (gaseosas[j].precio > gaseosas[j + 1].precio) {
@@ -295,7 +336,7 @@ void ordenarCarta() {
             }
             cout << "Gaseosas ordenadas satisfactoriamente" << endl;
             break;
-        case 5:
+        case 'E':
             for (int i = 0; i < numAguas - 1; i++) {
                 for (int j = 0; j < numAguas - i - 1; j++) {
                     if (aguas[j].precio > aguas[j + 1].precio) {
@@ -305,27 +346,32 @@ void ordenarCarta() {
             }
             cout << "Aguas ordenadas satisfactoriamente" << endl;
             break;
+        case 'F':
+        	cout << "Volviendo al menu anterior" << endl;
+        	break;
         default:
-            cout << "Categoría no encontrada." << endl;
+            cout << "Categoría no encontrada o ingreso un valor en minuscula, asegurese que su valor ingresado sea en mayuscula" << endl;
             break;
     }
+    } while (categoria =! 'F');
 }
 //FUNCION PARA ELIMINAR PRODUCTOS DE LA CARTA
 void eliminarCarta() {
-    int categoria, item;
+    int item;
+    char categoria;
     do {
     cout << "\n// ELIMINAR PRODUCTO //" << endl;
     cout << "Seleccione la categoría del producto a eliminar:" << endl;
-    cout << "1. Hamburguesas" << endl;
-    cout << "2. Pizzas" << endl;
-    cout << "3. Conos" << endl;
-    cout << "4. Gaseosas" << endl;
-    cout << "5. Aguas" << endl;
-    cout << "6. Volver al menu anterior" << endl;
+    cout << "A. Hamburguesas" << endl;
+    cout << "B. Pizzas" << endl;
+    cout << "C. Conos" << endl;
+    cout << "D. Gaseosas" << endl;
+    cout << "E. Aguas" << endl;
+    cout << "F. Volver al menu anterior" << endl;
     cin >> categoria;
 
     switch (categoria) {
-        case 1:
+        case 'A':
             cout << "Seleccione el producto a eliminar:" << endl;
             for (int i = 0; i < numHamburguesas; i++) {
                 cout << i + 1 << ". " << hamburguesas[i].nombre << " S/. " << hamburguesas[i].precio << endl;
@@ -342,7 +388,7 @@ void eliminarCarta() {
                 cout << "Producto no valido." << endl;
             }
             break;
-        case 2:
+        case 'B':
             cout << "Seleccione el producto a eliminar:" << endl;
             for (int i = 0; i < numPizzas; i++) {
                 cout << i + 1 << ". " << pizzas[i].nombre << " S/. " << pizzas[i].precio << endl;
@@ -359,7 +405,7 @@ void eliminarCarta() {
                 cout << "Producto no valido." << endl;
             }
             break;
-        case 3:
+        case 'C':
             cout << "Seleccione el producto a eliminar:" << endl;
             for (int i = 0; i < numConos; i++) {
                 cout << i + 1 << ". " << conos[i].nombre << " S/. " << conos[i].precio << endl;
@@ -376,7 +422,7 @@ void eliminarCarta() {
                 cout << "Producto no valido." << endl;
             }
             break;
-        case 4:
+        case 'D':
             cout << "Seleccione el producto a eliminar:" << endl;
             for (int i = 0; i < numGaseosas; i++) {
                 cout << i + 1 << ". " << gaseosas[i].nombre << " S/. " << gaseosas[i].precio << endl;
@@ -393,7 +439,7 @@ void eliminarCarta() {
                 cout << "Producto no valido." << endl;
             }
             break;
-        case 5:
+        case 'E':
             cout << "Seleccione el producto a eliminar:" << endl;
             for (int i = 0; i < numAguas; i++) {
                 cout << i + 1 << ". " << aguas[i].nombre << " S/. " << aguas[i].precio << endl;
@@ -410,7 +456,7 @@ void eliminarCarta() {
                 cout << "Producto no valido." << endl;
             }
             break;
-        case 6:
+        case 'F':
         	cout << "Regresando al menu anterior" << endl;
         	break;
         default:
