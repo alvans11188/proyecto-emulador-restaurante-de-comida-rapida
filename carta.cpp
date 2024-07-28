@@ -42,5 +42,5 @@ void menuCarta() {
                 break;
         }
         
-    } while (opcion != 6); //EN CASO SELECCIONAR EL NUMERO 6 REGRESA AL MENU ANTERIOR
+    } while (opcion != 'F'); //EN CASO SELECCIONAR EL NUMERO 6 REGRESA AL MENU ANTERIOR
 }
