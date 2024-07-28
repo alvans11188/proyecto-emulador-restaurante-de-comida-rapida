@@ -1,6 +1,7 @@
-#include <iostream>
+
 #include "menus.h"
 #include "funcionescarta.h"
+#include <iostream>
 using namespace std;
 
 //FUNCION MENU CARTA
@@ -28,7 +29,7 @@ void menuCarta() {
             	agregarCarta();
                 break;
             case 4:
-                
+                ordenarCarta();
                 break;
             case 5:
                 
