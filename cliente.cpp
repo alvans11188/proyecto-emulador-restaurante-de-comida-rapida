@@ -28,10 +28,9 @@ void menuCliente() {
 		cout << "// MENÚ: CLIENTE //" << endl;
 		cout << "1. Agregar cliente" << endl;
 		cout << "2. Editar datos del cliente" << endl;
-		cout << "3. Ordenar clientes alfabeticamente" << endl;
-		cout << "4. Mostrar clientes registrados" << endl;
-		cout << "5. Eliminar clientes" << endl;
-		cout << "6. Volver al menu principal" << endl;
+		cout << "3. Ordenar y mostrar clientes alfabeticamente" << endl;
+		cout << "4. Eliminar clientes" << endl;
+		cout << "5. Volver al menu principal" << endl;
 		cin >> opcion;
 		
 		//SWITCH PARA LAS DISTINTAS FUNCIONES DEL MENU CLIENTE
@@ -49,10 +48,8 @@ void menuCliente() {
 				break;
 			case 5:
 				break;
-			case 6:
-				break;
 			default:
 				break;
 		}
-	} while ( opcion != 6 );
+	} while ( opcion != 5 );
 }
