@@ -9,11 +9,11 @@ void menuCarta() {
 	
     int opcion;
     do {
-    	cout << "\n" << endl;
+    	cout << "\n // MENU CARTA // " << endl;
         cout << "1. Mostrar carta" << endl;
         cout << "2. Editar carta" << endl;
         cout << "3. Agregar comida a la carta" << endl;
-        cout << "4. Ordenar carta según el precio" << endl;
+        cout << "4. Ordenar carta segun el precio" << endl;
         cout << "5. Eliminar producto" << endl;
         cout << "6. Volver al menú principal" << endl;
         cin >> opcion;
@@ -35,7 +35,7 @@ void menuCarta() {
                 eliminarCarta();
                 break;
             case 6:
-                cout << "Regresando al menu inicial" << endl;
+                cout << "Regresando al menu principal" << endl;
                 break;
             default:
                 cout << "Valor ingresado incorrecto, vuelva a ingresar otro valor" << endl;
