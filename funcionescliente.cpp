@@ -22,7 +22,7 @@ void agregarCliente(Cliente clientes[50], int &cantidadActualClientes) {
 	getline(cin, clientes[cantidadActualClientes].direccionCliente.manzana);
 	cout << "Lote: ";
 	getline(cin, clientes[cantidadActualClientes].direccionCliente.lote);
-	cout << "// USUARIO AGREGADO CORRECTAMENTE //" << endl;
+	cout << "// USUARIO AGREGADO CORRECTAMENTE //" << endl << endl;
 }
 
 //FUNCION PARA EDITAR DATOS DEL CLIENTES
@@ -34,7 +34,7 @@ void editarDatosCliente(Cliente clientes[50], int &cantidadActualClientes) {
 		cout << "Ingrese la posicion del usuario que desea editar (1 - " << cantidadActualClientes + 1 << "): ";
 		cin >> clienteEditar;
 		if ( clienteEditar >= 1 && clienteEditar <= cantidadActualClientes + 1 ) {
-			cout << "// POSICION VALIDA //" << endl;
+			cout << "// POSICION VALIDA //" << endl << endl;
 		} else {
 			cout << "// ERROR: VALOR INCORRECTO //" << endl;
 		}
@@ -59,7 +59,7 @@ void editarDatosCliente(Cliente clientes[50], int &cantidadActualClientes) {
 	getline(cin, clientes[clienteEditar].direccionCliente.manzana);
 	cout << "Lote: ";
 	getline(cin, clientes[clienteEditar].direccionCliente.lote);
-	cout << "// USUARIO AGREGADO CORRECTAMENTE //" << endl;
+	cout << "// USUARIO AGREGADO CORRECTAMENTE //" << endl << endl;
 }
 
 //FUNCION PARA ORDENAR LOS CLIENTES ALFABETICAMENTE
