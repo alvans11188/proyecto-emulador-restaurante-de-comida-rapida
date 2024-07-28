@@ -6,11 +6,10 @@ using namespace std;
 //FUNCION DEL MENU CLIENTE
 void menuCliente() {
 	int opcion;
-	const int cantidadClientes = 50;
 	int cantidadActualClientes = 9; //SON 10 PERO AL SER UN ARREGLO EMPIEZA POR "0"
 	
 	//SE AGREGAN 10 CLIENTES PREDEFINIDOS
-	Cliente clientes[cantidadClientes] = {
+	Cliente clientes[50] = {
 		{"Carlos Flores", "827364958", {"Miraflores", "Av. Pardo", "Mz. B", "Lt. 12"}}, //POSICION 0
 		{"Juan Perez", "817361123", {"San Isidro", "Calle Las Flores", "Mz. F", "Lt. 8"}}, //POSICION 1
 		{"Maria Lopez", "917345991", {"Barranco", "Av. Grau", "Mz. C", "Lt. 5"}}, //POSICION 2
