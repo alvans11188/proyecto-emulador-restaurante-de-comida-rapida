@@ -83,8 +83,9 @@ void editarCarta() {
             cin >> item;
             item -= 1;
             if (item >= 0 && item < numHamburguesas) {
+                cin.ignore(); // Ignorar el carácter de nueva línea residual
                 cout << "Nuevo nombre: ";
-                cin >> hamburguesas[item].nombre;
+                getline(cin, hamburguesas[item].nombre);
                 cout << "Nuevo precio: ";
                 cin >> hamburguesas[item].precio;
                 cout << "Producto editado satisfactoriamente" << endl;
@@ -100,8 +101,9 @@ void editarCarta() {
             cin >> item;
             item -= 1;
             if (item >= 0 && item < numPizzas) {
+                cin.ignore();
                 cout << "Nuevo nombre: ";
-                cin >> pizzas[item].nombre;
+                getline(cin, pizzas[item].nombre);
                 cout << "Nuevo precio: ";
                 cin >> pizzas[item].precio;
                 cout << "Producto editado satisfactoriamente" << endl;
@@ -117,8 +119,9 @@ void editarCarta() {
             cin >> item;
             item -= 1;
             if (item >= 0 && item < numConos) {
+                cin.ignore();
                 cout << "Nuevo nombre: ";
-                cin >> conos[item].nombre;
+                getline(cin, conos[item].nombre);
                 cout << "Nuevo precio: ";
                 cin >> conos[item].precio;
                 cout << "Producto editado satisfactoriamente" << endl;
@@ -134,8 +137,9 @@ void editarCarta() {
             cin >> item;
             item -= 1;
             if (item >= 0 && item < numGaseosas) {
+                cin.ignore();
                 cout << "Nuevo nombre: ";
-                cin >> gaseosas[item].nombre;
+                getline(cin, gaseosas[item].nombre);
                 cout << "Nuevo precio: ";
                 cin >> gaseosas[item].precio;
                 cout << "Producto editado satisfactoriamente" << endl;
@@ -151,8 +155,9 @@ void editarCarta() {
             cin >> item;
             item -= 1;
             if (item >= 0 && item < numAguas) {
+                cin.ignore();
                 cout << "Nuevo nombre: ";
-                cin >> aguas[item].nombre;
+                getline(cin, aguas[item].nombre);
                 cout << "Nuevo precio: ";
                 cin >> aguas[item].precio;
                 cout << "Producto editado satisfactoriamente" << endl;
