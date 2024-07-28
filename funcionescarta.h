@@ -30,5 +30,7 @@ void editarCarta();
 void agregarCarta();
 //FUNCION PARA ORDENAR CARTA
 void ordenarCarta();
+//FUNCION PARA ELIMNAR ALGUN PRODUCTO DE LA CARTA
+void eliminarCarta();
 
 #endif
