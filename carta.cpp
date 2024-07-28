@@ -7,38 +7,38 @@ using namespace std;
 //FUNCION MENU CARTA
 void menuCarta() {
 	
-    int opcion;
+    char opcion;
     do {
     	cout << "\n // MENU CARTA // " << endl;
-        cout << "1. Mostrar carta" << endl;
-        cout << "2. Editar carta" << endl;
-        cout << "3. Agregar comida a la carta" << endl;
-        cout << "4. Ordenar carta segun el precio" << endl;
-        cout << "5. Eliminar producto" << endl;
-        cout << "6. Volver al menú principal" << endl;
+        cout << "A) Mostrar carta" << endl;
+        cout << "B) Editar carta" << endl;
+        cout << "C) Agregar comida a la carta" << endl;
+        cout << "D) Ordenar carta segun el precio" << endl;
+        cout << "E) Eliminar producto" << endl;
+        cout << "F) Salir del area de carta" << endl;
         cin >> opcion;
         // SWITCH PARA SELECIONAR LAS DIFERENTES OPCIONES DEL MENU CARTA
         switch (opcion) {
-            case 1:
+            case 'A':
             	mostrarCarta();
                 break;
-            case 2:
+            case 'B':
                 editarCarta();
                 break;
-            case 3:
+            case 'C':
             	agregarCarta();
                 break;
-            case 4:
+            case 'D':
                 ordenarCarta();
                 break;
-            case 5:
+            case 'E':
                 eliminarCarta();
                 break;
-            case 6:
+            case 'F':
                 cout << "Regresando al menu principal" << endl;
                 break;
             default:
-                cout << "Valor ingresado incorrecto, vuelva a ingresar otro valor" << endl;
+                cout << "Opcion no valida, intente de nuevo" << endl;
                 break;
         }
         
