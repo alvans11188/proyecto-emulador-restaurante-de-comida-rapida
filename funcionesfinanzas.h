@@ -29,7 +29,7 @@ struct paraOrdenarVentas{
 
 extern paraOrdenarVentas ordenarVentas[MAX_ITEMS];
 extern Ordenes orden[MAX_FACTURAS][MAX_FACTURAS];
-
+extern GastoAlimento gastos[MAX_ALIMENTOS];
 extern float montoDeFactura[MAX_FACTURAS];
 extern int ordenesPorFactura[MAX_FACTURAS];
 extern float montoFinalGanancias;

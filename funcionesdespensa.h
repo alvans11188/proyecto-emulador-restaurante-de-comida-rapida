@@ -75,5 +75,5 @@ extern float aguasTotalUsadas;
 void AgregarAlimentos();
 void actualizarAlimentos();
 void mostrarStock();
-
+void mostrarMasMenosUsados();
 #endif
