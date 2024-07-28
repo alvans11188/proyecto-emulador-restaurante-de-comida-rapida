@@ -32,7 +32,7 @@ void menuCarta() {
                 ordenarCarta();
                 break;
             case 5:
-                
+                eliminarCarta();
                 break;
             case 6:
                 cout << "Regresando al menu inicial" << endl;

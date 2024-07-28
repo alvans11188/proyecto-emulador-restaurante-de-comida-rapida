@@ -13,7 +13,7 @@ void editarCarta();
 void agregarCarta();
 void inicializarproductos();
 void ordenarCarta();
-
+void eliminarCarta();
 
 
 #endif
