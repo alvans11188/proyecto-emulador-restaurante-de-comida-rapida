@@ -1,17 +1,19 @@
 #ifndef CARTA_H
 #define CARTA_H
 #include <iostream>
-using namespace std;
 
+using namespace std;
+struct Producto {
+    string nombre;
+    float precio;
+};
 void menuCarta();
 void mostrarCarta();
 void editarCarta();
 void agregarCarta();
 void inicializarproductos();
+void ordenarCarta();
 
-struct Producto {
-    string nombre;
-    float precio;
-};
+
 
 #endif
