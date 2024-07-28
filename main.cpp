@@ -2,10 +2,11 @@
 #include "menus.h"
 using namespace std;
 
-int main(){
+int main() {
 	int opcion;
 	
 	do {
+		//OPCIONES A ESCOGER
 		cout << "// ADMINISTRAR LOCAL //" << endl;
 		cout << "1. Cliente" << endl;
 		cout << "2. Carta" << endl;
@@ -14,6 +15,7 @@ int main(){
 		cout << "5. Salir del programa" << endl;
 		cin >> opcion;
 		
+		//SWITCH CON EL MENU A ESCOGER
 		switch (opcion){
 			case 1:
 				menuCliente();
@@ -31,8 +33,8 @@ int main(){
 				cout << "Valor ingresado incorrecto, vuelva a ingresar otro valor" << endl;	
 		}
 
-	} while (opcion !=5 );
-		cout << "Programa finalizado" << endl;
+	} while ( opcion !=5 );
+		cout << "// Programa finalizado //" << endl;
 
 	return 0;
 }
