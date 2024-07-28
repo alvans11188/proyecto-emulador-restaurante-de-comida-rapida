@@ -17,7 +17,7 @@ void menuFinanzas(){
 		cout << "F) Salir del area de finanzas." << endl << endl;
 		cout << "= ";
 		cin >> opcion;
-		
+		cout << endl;
 		switch(opcion){
 			case 'A':
 				registrarVenta();
@@ -35,6 +35,7 @@ void menuFinanzas(){
 				estadisticasGenerales();
 				break;
 			default:
+				cout << "Opcion no valida. Intente de nuevo." << endl;
 				break;
 		}
 		cout << endl;

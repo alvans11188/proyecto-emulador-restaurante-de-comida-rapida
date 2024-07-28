@@ -81,7 +81,6 @@ void ordenarGastos(GastoAlimento arr[], int n) {
         }
     }
 }
-
 void ordenarGanancias(Producto arr[], int n) {
     Producto aux;
     for (int i = 0; i < n - 1; i++) {
@@ -108,7 +107,6 @@ void ordenarPorMasVendidos(paraOrdenarVentas arr[], int n) {
         }
     }
 }
-
 void ordenarPorMenosVendidos(paraOrdenarVentas arr[], int n) {
     paraOrdenarVentas aux;
     for (int i = 0; i < n - 1; i++) {
@@ -122,13 +120,11 @@ void ordenarPorMenosVendidos(paraOrdenarVentas arr[], int n) {
         }
     }
 }
-
 void gastosTotales(){
 	for(int i=0; i<MAX_ALIMENTOS; i++){
 		montoFinalGastos += gastos[i].cantidadUsada*alimento[i].precio;
 	}
 }
-
 void generarRIG(paraOrdenarVentas arr[], ventasDeComidas arr2[], int n){
 	
 	for (int i = 0; i < n; i++) {
@@ -141,7 +137,6 @@ void generarRIG(paraOrdenarVentas arr[], ventasDeComidas arr2[], int n){
 		arr[i].RIG = arr[i].total / arr[i].coste*arr2[i].cantidad;
 	}
 }
-
 void ordenarPorRIG(paraOrdenarVentas arr[], int n){
 	paraOrdenarVentas aux;
     for (int i=0; i<n-1; i++) {
@@ -156,12 +151,49 @@ void ordenarPorRIG(paraOrdenarVentas arr[], int n){
     }
 }
 void gananciasTotales(Ordenes orden[][MAX_FACTURAS], float& montoFinalGanancias) {
+	montoFinalGanancias = 0;
     for (int i = 0; i <MAX_FACTURAS; i++) {
         for (int j = 0; j <MAX_FACTURAS; j++) {
             montoFinalGanancias += orden[i][j].monto;
         }
     }
 }
+void agregarMontoArreglo(){
+	
+	for(int i=0; i<numHamburguesas; i++){
+		ordenarVentas[i].nombre = hamburguesas[i].nombre;
+		ordenarVentas[i].total = hamburguesas[i].cantidadVendida*hamburguesas[i].precio;
+		ordenarVentas[i].coste = costeHamburguesas;
+	}
+	for(int i=0; i<numPizzas; i++){
+		ordenarVentas[numHamburguesas+i].nombre = pizzas[i].nombre;
+		ordenarVentas[numHamburguesas+i].total = pizzas[i].cantidadVendida*pizzas[i].precio;
+		ordenarVentas[numHamburguesas+i].coste = costePizzas;
+	}
+	for(int i=0; i<numConos; i++){
+		ordenarVentas[numPizzas+i].nombre = conos[i].nombre;
+		ordenarVentas[numPizzas+i].total = conos[i].cantidadVendida*conos[i].precio;
+		ordenarVentas[numPizzas+i].coste = costeConos;
+		ordenarVentas[numHamburguesas+numPizzas+i].nombre = conos[i].nombre;
+		ordenarVentas[numHamburguesas+numPizzas+i].total = conos[i].cantidadVendida*conos[i].precio;
+		ordenarVentas[numHamburguesas+numPizzas+i].coste = costeConos;
+	}
+	for(int i=0; i<numGaseosas; i++){
+		ordenarVentas[numConos+i].nombre = gaseosas[i].nombre;
+		ordenarVentas[numConos+i].total = gaseosas[i].cantidadVendida*gaseosas[i].precio;
+		ordenarVentas[numConos+i].coste = costeGaseosas;
+		ordenarVentas[numHamburguesas+numPizzas+numConos+i].nombre = gaseosas[i].nombre;
+		ordenarVentas[numHamburguesas+numPizzas+numConos+i].total = gaseosas[i].cantidadVendida*gaseosas[i].precio;
+		ordenarVentas[numHamburguesas+numPizzas+numConos+i].coste = costeGaseosas;
+	}
+	for(int i=0; i<numAguas; i++){
+		ordenarVentas[numGaseosas+i].nombre = aguas[i].nombre;
+		ordenarVentas[numGaseosas+i].total = aguas[i].cantidadVendida*aguas[i].precio;
+		ordenarVentas[numHamburguesas+numPizzas+numConos+numGaseosas+i].nombre = aguas[i].nombre;
+		ordenarVentas[numHamburguesas+numPizzas+numConos+numGaseosas+i].total = aguas[i].cantidadVendida*aguas[i].precio;
+	}
+}
+
 void registrarVenta(){
 	int categoria;
 	int item;
@@ -188,162 +220,195 @@ void registrarVenta(){
 		cout << endl;
 	    switch (categoria) {
 	        case 1:
-	            cout << "Seleccione la hamburguesa:" << endl; // interfaz de menu de hamburguesas
-	            for (int i = 0; i < numHamburguesas; i++) {
-	                cout << i + 1 << ". " << hamburguesas[i].nombre << " S/. " << hamburguesas[i].precio << endl;
-	            }
-	            cout << endl;
-	            cout << "= ";
-	            cin >> item;
-	            cout << "Cantidad: ";
-				cin >> cantidad;
-				if(alimento[0].cantidad>=CTH*cantidad && alimento[1].cantidad>=CLH*cantidad && alimento[2].cantidad>=CBH*cantidad && alimento[3].cantidad>=CCH*cantidad && alimento[6].cantidad >= CQH*cantidad){ // ingredientes para cocinar una hamburguesa
-	            	ordenRegistro(orden[numFactura], hamburguesas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
-					ordenesTotales++;
-					ordenesPorFactura[numFactura]++;
-					continuar = true;
-					//restando ingredientes usados
-					gastos[0].cantidadUsada += CTH*cantidad;
-					gastos[1].cantidadUsada += CLH*cantidad;
-					gastos[2].cantidadUsada += CBH*cantidad;
-					gastos[3].cantidadUsada += CCH*cantidad;
-					gastos[6].cantidadUsada += CQH*cantidad;
-					
-					alimento[0].cantidad -= CTH*cantidad; // tomate
-					alimento[1].cantidad -= CLH*cantidad; // lechuga
-					alimento[2].cantidad -= CBH*cantidad; //harina
-					alimento[3].cantidad -= CCH*cantidad; //carnes
-					alimento[6].cantidad -= CQH*cantidad; // queso
-					
-					hamburguesas[item-1].cantidadVendida += cantidad;
-					
-				} else {
-					suficiente = false;
-					continuar = false;
-				}
+	        	do{
+		            cout << "Seleccione la hamburguesa:" << endl; // interfaz de menu de hamburguesas
+		            for (int i = 0; i < numHamburguesas; i++) {
+		                cout << i + 1 << ". " << hamburguesas[i].nombre << " S/. " << hamburguesas[i].precio << endl;
+		            }
+		            cout << endl;
+		            cout << "= ";
+		            cin >> item;
+		            cout << endl;
+			        if(0<item && item<=numHamburguesas){
+			            cout << "Cantidad: ";
+						cin >> cantidad;
+						if(alimento[0].cantidad>=CTH*cantidad && alimento[1].cantidad>=CLH*cantidad && alimento[2].cantidad>=CBH*cantidad && alimento[3].cantidad>=CCH*cantidad && alimento[6].cantidad >= CQH*cantidad){ // ingredientes para cocinar una hamburguesa
+			            	ordenRegistro(orden[numFactura], hamburguesas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
+							ordenesTotales++;
+							ordenesPorFactura[numFactura]++;
+							continuar = true;
+							//restando ingredientes usados
+							gastos[0].cantidadUsada += CTH*cantidad;
+							gastos[1].cantidadUsada += CLH*cantidad;
+							gastos[2].cantidadUsada += CBH*cantidad;
+							gastos[3].cantidadUsada += CCH*cantidad;
+							gastos[6].cantidadUsada += CQH*cantidad;
+							
+							alimento[0].cantidad -= CTH*cantidad; // tomate
+							alimento[1].cantidad -= CLH*cantidad; // lechuga
+							alimento[2].cantidad -= CBH*cantidad; //harina
+							alimento[3].cantidad -= CCH*cantidad; //carnes
+							alimento[6].cantidad -= CQH*cantidad; // queso
+							
+							hamburguesas[item-1].cantidadVendida += cantidad;
+							
+						} else {
+							suficiente = false;
+							continuar = false;
+						}
+					} else {
+						cout << "Opcion no valida. Intente de nuevo." << endl << endl;
+					}
+				} while(item>numHamburguesas || item<=0);
 				break;
 	        case 2:
-	            cout << "Seleccione la pizza:" << endl;// interfaz de menu de pizzas
-	            for (int i = 0; i < numPizzas; i++) {
-	                cout << i + 1 << ". " << pizzas[i].nombre << " S/. " << pizzas[i].precio << endl;
-	            }
-	            cout << endl;
-	            cout << "= ";
-	            cin >> item;
-	            cout << "Cantidad: ";
-	            cin >> cantidad;
-				if(alimento[0].cantidad>=CTP*cantidad &&  alimento[2].cantidad>=CBP*cantidad && alimento[3].cantidad>=CCP*cantidad && alimento[6].cantidad >= CQP*cantidad){ // ingredientes para cocinar una hamburguesa
-	            	ordenRegistro(orden[numFactura], pizzas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
-					ordenesTotales++;
-					ordenesPorFactura[numFactura]++;
-					continuar = true;
-					//restando ingredientes usados
-					gastos[0].cantidadUsada += CTP*cantidad;
-					gastos[2].cantidadUsada += CBP*cantidad;
-					gastos[3].cantidadUsada += CCP*cantidad;
-					gastos[6].cantidadUsada += CQP*cantidad;
-					 
-					alimento[0].cantidad -= CTP*cantidad;
-					alimento[2].cantidad -= CBP*cantidad;
-					alimento[3].cantidad -= CCP*cantidad;
-					alimento[6].cantidad -= CQP*cantidad;
-					
-					pizzas[item-1].cantidadVendida += cantidad;
-					
-				} else {
-					suficiente = false;
-					continuar = false;
-				}
-	            break;
-	            
+	        	do{
+		            cout << "Seleccione la pizza:" << endl;// interfaz de menu de pizzas
+		            for (int i = 0; i < numPizzas; i++) {
+		                cout << i + 1 << ". " << pizzas[i].nombre << " S/. " << pizzas[i].precio << endl;
+		            }
+		            cout << endl;
+		            cout << "= ";
+		            cin >> item;
+		            cout << endl;
+			        if(0<item && item<=numPizzas){
+			            cout << "Cantidad: ";
+			            cin >> cantidad;
+						if(alimento[0].cantidad>=CTP*cantidad &&  alimento[2].cantidad>=CBP*cantidad && alimento[3].cantidad>=CCP*cantidad && alimento[6].cantidad >= CQP*cantidad){ // ingredientes para cocinar una hamburguesa
+			            	ordenRegistro(orden[numFactura], pizzas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
+							ordenesTotales++;
+							ordenesPorFactura[numFactura]++;
+							continuar = true;
+							//restando ingredientes usados
+							gastos[0].cantidadUsada += CTP*cantidad;
+							gastos[2].cantidadUsada += CBP*cantidad;
+							gastos[3].cantidadUsada += CCP*cantidad;
+							gastos[6].cantidadUsada += CQP*cantidad;
+							 
+							alimento[0].cantidad -= CTP*cantidad;
+							alimento[2].cantidad -= CBP*cantidad;
+							alimento[3].cantidad -= CCP*cantidad;
+							alimento[6].cantidad -= CQP*cantidad;
+							
+							pizzas[item-1].cantidadVendida += cantidad;
+							
+						} else {
+							suficiente = false;
+							continuar = false;
+						}
+					} else {
+						cout << "Opcion no valida. Intente de nuevo." << endl << endl;
+					}
+				} while(item>numPizzas || item<=0);
+	            break;  
 	        case 3:
-	            cout << "Seleccione el cono:" << endl; // interfaz de menu de conos
-	            for (int i = 0; i < numConos; i++) {
-	                cout << i + 1 << ". " << conos[i].nombre << " S/. " << conos[i].precio << endl;
-	            }
-	            cout << endl;
-	            cout << "= ";
-	            cin >> item;
-	            cout << "Cantidad: ";
-				cin >> cantidad;
-				if(alimento[0].cantidad>=CTC*cantidad && alimento[1].cantidad>=CLC*cantidad && alimento[2].cantidad>=CBC*cantidad && alimento[3].cantidad>=CCC*cantidad && alimento[6].cantidad >= CQC*cantidad){ // ingredientes para cocinar una hamburguesa
-	            	ordenRegistro(orden[numFactura], conos, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
-					ordenesTotales++;
-					ordenesPorFactura[numFactura]++;
-					continuar = true;
-					//restando ingredientes usados
-					gastos[0].cantidadUsada += CTC*cantidad;
-					gastos[1].cantidadUsada += CLC*cantidad;
-					gastos[2].cantidadUsada += CBC*cantidad;
-					gastos[3].cantidadUsada += CCC*cantidad;
-					gastos[6].cantidadUsada += CQC*cantidad;
-					
-					alimento[0].cantidad -= CTC*cantidad; // tomate
-					alimento[1].cantidad -= CLC*cantidad; // lechuga
-					alimento[2].cantidad -= CBC*cantidad; //harina
-					alimento[3].cantidad -= CCC*cantidad; //carnes
-					alimento[6].cantidad -= CQC*cantidad; // queso
-					
-					conos[item-1].cantidadVendida += cantidad;
-					
-				} else {
-					suficiente = false;
-					continuar = false;
-				}
+	        	do{
+		            cout << "Seleccione el cono:" << endl; // interfaz de menu de conos
+		            for (int i = 0; i < numConos; i++) {
+		                cout << i + 1 << ". " << conos[i].nombre << " S/. " << conos[i].precio << endl;
+		            }
+		            cout << endl;
+		            cout << "= ";
+		            cin >> item;
+			        cout << endl;
+				    if(0<item && item<=numConos){
+			            cout << "Cantidad: ";
+						cin >> cantidad;
+						if(alimento[0].cantidad>=CTC*cantidad && alimento[1].cantidad>=CLC*cantidad && alimento[2].cantidad>=CBC*cantidad && alimento[3].cantidad>=CCC*cantidad && alimento[6].cantidad >= CQC*cantidad){ // ingredientes para cocinar una hamburguesa
+			            	ordenRegistro(orden[numFactura], conos, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
+							ordenesTotales++;
+							ordenesPorFactura[numFactura]++;
+							continuar = true;
+							//restando ingredientes usados
+							gastos[0].cantidadUsada += CTC*cantidad;
+							gastos[1].cantidadUsada += CLC*cantidad;
+							gastos[2].cantidadUsada += CBC*cantidad;
+							gastos[3].cantidadUsada += CCC*cantidad;
+							gastos[6].cantidadUsada += CQC*cantidad;
+							
+							alimento[0].cantidad -= CTC*cantidad; // tomate
+							alimento[1].cantidad -= CLC*cantidad; // lechuga
+							alimento[2].cantidad -= CBC*cantidad; //harina
+							alimento[3].cantidad -= CCC*cantidad; //carnes
+							alimento[6].cantidad -= CQC*cantidad; // queso
+							
+							conos[item-1].cantidadVendida += cantidad;	
+						} else {
+							suficiente = false;
+							continuar = false;
+						}
+					} else {
+						cout << "Opcion no valida. Intente de nuevo." << endl << endl;
+					}
+				} while(item>numConos || item<=0);
 	            break;
 	        case 4:
-	            cout << "Seleccione la gaseosa:" << endl;
-	            for (int i = 0; i < numGaseosas; i++) {
-	                cout << i + 1 << ". " << gaseosas[i].nombre << " S/. " << gaseosas[i].precio << endl;
-	            }
-	            cout << endl;
-	            cout << "= ";
-	            cin >> item;
-	            cout << "Cantidad: ";
-	            cin >> cantidad;
-				if(alimento[4].cantidad>=CG*cantidad){ // ingredientes para cocinar una hamburguesa
-	            	ordenRegistro(orden[numFactura], gaseosas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
-					ordenesTotales++;
-					ordenesPorFactura[numFactura]++;
-					continuar = true;
-					//restando ingredientes usados
-					gastos[4].cantidadUsada += CG*cantidad;
-					
-					alimento[4].cantidad -= CG*cantidad;
-					
-					gaseosas[item-1].cantidadVendida += cantidad;
-					
-				} else {
-					suficiente = false;
-					continuar = false;
-				}
+	        	do{
+		            cout << "Seleccione la gaseosa:" << endl;
+		            for (int i = 0; i < numGaseosas; i++) {
+		                cout << i + 1 << ". " << gaseosas[i].nombre << " S/. " << gaseosas[i].precio << endl;
+		            }
+		            cout << endl;
+		            cout << "= ";
+		            cin >> item;
+		            cout << endl;
+		            if(0<item && item<=numGaseosas){
+			            cout << "Cantidad: ";
+			            cin >> cantidad;
+						if(alimento[4].cantidad>=CG*cantidad){ // ingredientes para cocinar una hamburguesa
+			            	ordenRegistro(orden[numFactura], gaseosas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
+							ordenesTotales++;
+							ordenesPorFactura[numFactura]++;
+							continuar = true;
+							//restando ingredientes usados
+							gastos[4].cantidadUsada += CG*cantidad;
+							
+							alimento[4].cantidad -= CG*cantidad;
+							
+							gaseosas[item-1].cantidadVendida += cantidad;
+							
+						} else {
+							suficiente = false;
+							continuar = false;
+						}
+					} else {
+						cout << "Opcion no valida. Intente de nuevo." << endl << endl;
+					}
+				} while(item>numGaseosas || item<=0);
 	            break;
 	        case 5:
-	            cout << "Seleccione el agua:" << endl;
-	            for (int i = 0; i < numAguas; i++) {
-	                cout << i + 1 << ". " << aguas[i].nombre << " S/. " << aguas[i].precio << endl;
-	            }
-	            cout << endl;
-	            cout << "= ";
-	            cin >> item;
-	            cout << "Cantidad: ";
-	            cin >> cantidad;
-				if(alimento[5].cantidad>=CA*cantidad){ // ingredientes para cocinar una hamburguesa
-	            	ordenRegistro(orden[numFactura], aguas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
-					ordenesTotales++;
-					ordenesPorFactura[numFactura]++;
-					continuar = true;
-					//restando ingredientes usados
-					gastos[5].cantidadUsada += CA*cantidad;
-					
-					alimento[5].cantidad -= CA*cantidad;
-					
-					aguas[item-1].cantidadVendida += cantidad;
-					
-				} else {
-					suficiente = false;
-					continuar = false;
-				}
+	        	do{
+		            cout << "Seleccione el agua:" << endl;
+		            for (int i = 0; i < numAguas; i++) {
+		                cout << i + 1 << ". " << aguas[i].nombre << " S/. " << aguas[i].precio << endl;
+		            }
+		            cout << endl;
+		            cout << "= ";
+		            cin >> item;
+			        cout << endl;
+				    if(0<item && item<=numAguas){
+			            cout << "Cantidad: ";
+			            cin >> cantidad;
+						if(alimento[5].cantidad>=CA*cantidad){ // ingredientes para cocinar una hamburguesa
+			            	ordenRegistro(orden[numFactura], aguas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
+							ordenesTotales++;
+							ordenesPorFactura[numFactura]++;
+							continuar = true;
+							//restando ingredientes usados
+							gastos[5].cantidadUsada += CA*cantidad;
+							
+							alimento[5].cantidad -= CA*cantidad;
+							
+							aguas[item-1].cantidadVendida += cantidad;
+							
+						} else {
+							suficiente = false;
+							continuar = false;
+						}
+					} else {
+						cout << "Opcion no valida. Intente de nuevo." << endl << endl;
+					}
+				} while(item>numAguas || item<=0);
 	            break;
 	        default:
 	            cout << "Categoria no valida." << endl;
@@ -386,124 +451,95 @@ void mostrarOrdenes(){
 	}
 	cout << endl;
 }
-void agregarMontoArreglo(){
-	
-	for(int i=0; i<numHamburguesas; i++){
-		ordenarVentas[i].nombre = hamburguesas[i].nombre;
-		ordenarVentas[i].total = hamburguesas[i].cantidadVendida*hamburguesas[i].precio;
-		ordenarVentas[i].coste = costeHamburguesas;
-	}
-	for(int i=0; i<numPizzas; i++){
-		ordenarVentas[numHamburguesas+i].nombre = pizzas[i].nombre;
-		ordenarVentas[numHamburguesas+i].total = pizzas[i].cantidadVendida*pizzas[i].precio;
-		ordenarVentas[numHamburguesas+i].coste = costePizzas;
-	}
-	for(int i=0; i<numConos; i++){
-		ordenarVentas[numPizzas+i].nombre = conos[i].nombre;
-		ordenarVentas[numPizzas+i].total = conos[i].cantidadVendida*conos[i].precio;
-		ordenarVentas[numPizzas+i].coste = costeConos;
-		ordenarVentas[numHamburguesas+numPizzas+i].nombre = conos[i].nombre;
-		ordenarVentas[numHamburguesas+numPizzas+i].total = conos[i].cantidadVendida*conos[i].precio;
-		ordenarVentas[numHamburguesas+numPizzas+i].coste = costeConos;
-	}
-	for(int i=0; i<numGaseosas; i++){
-		ordenarVentas[numConos+i].nombre = gaseosas[i].nombre;
-		ordenarVentas[numConos+i].total = gaseosas[i].cantidadVendida*gaseosas[i].precio;
-		ordenarVentas[numConos+i].coste = costeGaseosas;
-		ordenarVentas[numHamburguesas+numPizzas+numConos+i].nombre = gaseosas[i].nombre;
-		ordenarVentas[numHamburguesas+numPizzas+numConos+i].total = gaseosas[i].cantidadVendida*gaseosas[i].precio;
-		ordenarVentas[numHamburguesas+numPizzas+numConos+i].coste = costeGaseosas;
-	}
-	for(int i=0; i<numAguas; i++){
-		ordenarVentas[numGaseosas+i].nombre = aguas[i].nombre;
-		ordenarVentas[numGaseosas+i].total = aguas[i].cantidadVendida*aguas[i].precio;
-		ordenarVentas[numHamburguesas+numPizzas+numConos+numGaseosas+i].nombre = aguas[i].nombre;
-		ordenarVentas[numHamburguesas+numPizzas+numConos+numGaseosas+i].total = aguas[i].cantidadVendida*aguas[i].precio;
-	}
-}
 void gastosGanancias(){
 	montoFinalGanancias=0;
 	cout << endl;
 	char respuesta;
 		cout << "¿Que quieres ver?" << endl << endl;
 		cout << "- ) Gastos." << endl;
-		cout << "+ ) Ganancias." << endl;
-		cin >> respuesta;
-		cout << endl;
-		switch(respuesta){
-			case '-':
-				cout << "Gastos consumidos hasta el momento (mayor a menor)" << endl << endl;
-                ordenarGastos(gastos, MAX_ALIMENTOS);
-                for(int i=0; i<MAX_ALIMENTOS; i++){
-                	cout << gastos[i].nombre << " (" << gastos[i].cantidadUsada << "): S/." << -gastos[i].cantidadUsada*alimento[i].precio << endl;
-				}
- 				break;
-			case '+':
-				cout << "Ganancias por categoria" << endl << endl;
-                cout << "HAMBURGUESAS" << endl << endl;
-                for(int i=0; i<numHamburguesas; i++){
-                	cout  << hamburguesas[i].nombre << ": S/. " << hamburguesas[i].cantidadVendida*hamburguesas[i].precio << endl;
-				}
-				cout << endl;
-                cout << "PIZZAS" << endl << endl;
-				for(int i=0; i<numPizzas; i++){
-                	cout << pizzas[i].nombre << ": S/. " << pizzas[i].cantidadVendida*pizzas[i].precio << endl;
-				}
-				cout << endl;
-                cout << "CONOS" << endl << endl;
-				for(int i=0; i<numConos; i++){
-                	cout << conos[i].nombre << ": S/. " << conos[i].cantidadVendida*conos[i].precio << endl;
-				}
-				cout << endl;
-                cout << "GASEOSAS" << endl << endl;
-				for(int i=0; i<numGaseosas; i++){
-                	cout << gaseosas[i].nombre << ": S/. " << gaseosas[i].cantidadVendida*gaseosas[i].precio << endl;
-				}
-				cout << endl;
-                cout << "AGUAS" << endl << endl;
-				for(int i=0; i<numAguas; i++){
-                	cout << aguas[i].nombre << ": S/. " << aguas[i].cantidadVendida*aguas[i].precio << endl;
-				}
-				cout << endl;
-				gananciasTotales(orden, montoFinalGanancias);
-				cout << "Ganancias totales: S/." << montoFinalGanancias << endl;
-				break;
-			default:
-				cout << "Opcion no valida." << endl;
-				break;
-		}
+		cout << "+ ) Ganancias." << endl << endl;
+		
+		do{
+			cout << "= ";
+			cin >> respuesta;
+			cout << endl;
+			
+			switch(respuesta){
+				case '-':
+					cout << "Gastos consumidos hasta el momento (mayor a menor)" << endl << endl;
+	                ordenarGastos(gastos, MAX_ALIMENTOS);
+	                for(int i=0; i<MAX_ALIMENTOS; i++){
+	                	cout << gastos[i].nombre << " (" << gastos[i].cantidadUsada << "): S/." << -gastos[i].cantidadUsada*alimento[i].precio << endl;
+					}
+	 				break;
+				case '+':
+					cout << "Ganancias por categoria" << endl << endl;
+	                cout << "HAMBURGUESAS" << endl << endl;
+	                for(int i=0; i<numHamburguesas; i++){
+	                	cout  << hamburguesas[i].nombre << ": S/. " << hamburguesas[i].cantidadVendida*hamburguesas[i].precio << endl;
+					}
+					cout << endl;
+	                cout << "PIZZAS" << endl << endl;
+					for(int i=0; i<numPizzas; i++){
+	                	cout << pizzas[i].nombre << ": S/. " << pizzas[i].cantidadVendida*pizzas[i].precio << endl;
+					}
+					cout << endl;
+	                cout << "CONOS" << endl << endl;
+					for(int i=0; i<numConos; i++){
+	                	cout << conos[i].nombre << ": S/. " << conos[i].cantidadVendida*conos[i].precio << endl;
+					}
+					cout << endl;
+	                cout << "GASEOSAS" << endl << endl;
+					for(int i=0; i<numGaseosas; i++){
+	                	cout << gaseosas[i].nombre << ": S/. " << gaseosas[i].cantidadVendida*gaseosas[i].precio << endl;
+					}
+					cout << endl;
+	                cout << "AGUAS" << endl << endl;
+					for(int i=0; i<numAguas; i++){
+	                	cout << aguas[i].nombre << ": S/. " << aguas[i].cantidadVendida*aguas[i].precio << endl;
+					}
+					cout << endl;
+					gananciasTotales(orden, montoFinalGanancias);
+					cout << "Ganancias totales: S/." << montoFinalGanancias << endl;
+					break;
+					default:
+						cout << "Opcion no valida. Intente de nuevo." << endl << endl;
+					break;
+			}
+		}while(respuesta!='+' && respuesta != '-');
 		cout << endl;
 }
-
 void ordenarMasVendido(){
 	cout << endl;
 	char opcion;
 	agregarMontoArreglo();
 	cout << "ORDENAR POR GANANCIAS" << endl << endl;
-	cout << "a) De mayor a menor." << endl;
-	cout << "b) De menor a mayor." << endl << endl;
-	cout << "= ";
-	cin >> opcion;
-
-	switch(opcion){
-		case 'a':
-			cout << "Ordenado de mayor a menor ganancias." << endl << endl;
-			ordenarPorMasVendidos(ordenarVentas, totalComidas);
-			break;
-		case 'b':
-			cout << "Ordenado de menor a mayor ganancias." << endl << endl;
-			ordenarPorMenosVendidos(ordenarVentas, totalComidas);
-			break;
-		default:
-			break;
-	}
+	do{
+		cout << "a) De mayor a menor." << endl;
+		cout << "b) De menor a mayor." << endl << endl;
+		cout << "= ";
+		cin >> opcion;
+		cout << endl;
+		switch(opcion){
+			case 'a':
+				cout << "Ordenado de mayor a menor ganancias." << endl << endl;
+				ordenarPorMasVendidos(ordenarVentas, totalComidas);
+				break;
+			case 'b':
+				cout << "Ordenado de menor a mayor ganancias." << endl << endl;
+				ordenarPorMenosVendidos(ordenarVentas, totalComidas);
+				break;
+			default:
+				cout << "Opcion no valida. Intente de nuevo." << endl << endl;
+				break;
+		}
+	}while(opcion!='a'&& opcion!='b');
 
 		for(int i=0; i<totalComidas; i++){
 			ordenarVentas[i].RIG = ordenarVentas[i].total / ordenarVentas[i].coste;
 			cout << i+1 << ". " << ordenarVentas[i].nombre << ": S/. " << ordenarVentas[i].total << endl;
 		}
 }
-
 void estadisticasGenerales(){
 	gastosTotales();
 	gananciasTotales(orden, montoFinalGanancias);
