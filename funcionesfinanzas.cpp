@@ -369,7 +369,7 @@ void registrarVenta(){
 	    	cout << "No hay suficientes ingredientes." << endl;
 		}
 	    if(continuar){
-	    	cout << "¿Va a agregar algo mas a la orden?(si/no)= ";
+	    	cout << "?Va a agregar algo mas a la orden?(si/no)= ";
 	    	cin >> respuesta;
 		}
 	} while(respuesta!= "no" &&categoria!=6);
@@ -407,7 +407,7 @@ void gastosGanancias(){
 	cout << endl;
 	char respuesta;
 	bool valido = true;
-	cout << "¿Que quieres ver?" << endl << endl;
+	cout << "?Que quieres ver?" << endl << endl;
 	cout << "-) Gastos." << endl;
 	cout << "+) Ganancias." << endl << endl;
 	do{
@@ -499,7 +499,7 @@ void estadisticasGenerales(){
 	string contrasenaDante="2024-119039";
 	string contrasena;
 	char opcion;
-	cout << "Indique la contraseña" << endl << endl;
+	cout << "Indique la contrase?a" << endl << endl;
 	cout << "= ";
 	cin >> contrasena;
 	cout << endl;
@@ -512,11 +512,11 @@ void estadisticasGenerales(){
 	
 	if(contrasena==contrasenaJhonel || contrasena==contrasenaAlex || contrasena==contrasenaDante ){
 		if(contrasena==contrasenaJhonel){
-			cout << "¡Bienvenido Ingeniero Jhonel, revise como va su negocio!" << endl;
+			cout << "?Bienvenido Ingeniero Jhonel, revise como va su negocio!" << endl;
 		} else if(contrasena==contrasenaAlex){
-			cout << "¡Bienvenido Ingeniero Alex, revise como va su negocio!" << endl;
+			cout << "?Bienvenido Ingeniero Alex, revise como va su negocio!" << endl;
 		} else {
-			cout << "¡Bienvenido Ingeniero Dante, revise como va su negocio!" << endl;
+			cout << "?Bienvenido Ingeniero Dante, revise como va su negocio!" << endl;
 		}
 		do{
 			cout << endl;
