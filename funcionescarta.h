@@ -1,6 +1,5 @@
 #ifndef FUNCIONESCARTA_H
 #define FUNCIONESCARTA_H
-#include <string>
 #include <iostream>
 using namespace std;
 

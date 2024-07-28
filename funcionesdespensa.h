@@ -1,6 +1,5 @@
 #ifndef FUNCIONESDESPENSA_H
 #define FUNCIONESDESPENSA_H
-#include <string>
 #include <iostream>
 using namespace std;
 
