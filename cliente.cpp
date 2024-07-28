@@ -5,7 +5,7 @@ using namespace std;
 
 //FUNCION DEL MENU CLIENTE
 void menuCliente() {
-	int opcion;
+	char opcion;
 	int cantidadActualClientes = 9; //SON 10 PERO AL SER UN ARREGLO EMPIEZA POR "0"
 	
 	//SE AGREGAN 10 CLIENTES PREDEFINIDOS
@@ -24,34 +24,34 @@ void menuCliente() {
 	
 	//DO WHILE QUE REPITE EL MENU HASTA QUE SE SELECCIONE LA OPCION 6
 	do {
-		cout << "// MENÚ: CLIENTE //" << endl;
-		cout << "1. Agregar cliente" << endl;
-		cout << "2. Editar datos del cliente" << endl;
-		cout << "3. Ordenar y mostrar clientes alfabeticamente" << endl;
-		cout << "4. Eliminar clientes" << endl;
-		cout << "5. Volver al menu principal" << endl;
+		cout << "// MENU: CLIENTE //" << endl;
+		cout << "A. Agregar cliente" << endl;
+		cout << "B. Editar datos del cliente" << endl;
+		cout << "C. Ordenar y mostrar clientes alfabeticamente" << endl;
+		cout << "D. Eliminar clientes" << endl;
+		cout << "E. Volver al menu principal" << endl;
 		cin >> opcion;
-		
+			
 		//SWITCH PARA LAS DISTINTAS FUNCIONES DEL MENU CLIENTE
 		switch ( opcion ) {
-			case 1:
+			case 'A':
 				agregarCliente(clientes, cantidadActualClientes);
 				break;
-			case 2:
+			case 'B':
 				editarDatosCliente(clientes, cantidadActualClientes);
 				break;
-			case 3:
+			case 'C':
 				ordenarClientesAlfabeticamente(clientes, cantidadActualClientes);
 				break;
-			case 4:
+			case 'D':
 				eliminarClientes(clientes, cantidadActualClientes);
 				break;
-			case 5:
+			case 'E':
 				break;
 			default:
-				cout << "Valor ingresado incorrecto, vuelva a ingresar otro valor" << endl;
+				cout << "ERROR: VALOR INVALIDO" << endl << endl;
 				break;
 		}
-	} while ( opcion != 5 );
+	} while ( opcion != 'E' );
 	cout << "// VOLVIENDO AL MENU PRINCIPAL //" << endl << endl;
 }
