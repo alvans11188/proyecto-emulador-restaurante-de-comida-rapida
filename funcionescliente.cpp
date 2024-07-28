@@ -112,3 +112,29 @@ void ordenarClientesAlfabeticamente(Cliente clientes[50], int &cantidadActualCli
 		cout << "Lote: " << clientes[i].direccionCliente.lote << endl << endl;
 	}
 }
+
+//FUNCION PARA ELIMINAR CLIENTES
+void eliminarClientes(Cliente clientes[50], int &cantidadActualClientes) {
+	//POSICION QUE EL USUARIO VA A ELIMINAR
+	int posicionEliminar;
+	cout << "// ELIMINAR CLIENTE //" << endl;
+	cout << "Eliga que cliente desea eliminar (1 - " << cantidadActualClientes + 1 << "): "; //SE SUMA MÁS UNO PORQUE EL 0 CUENTA COMO UNA POSICIÓN DE UN CLIENTE
+	cin >> posicionEliminar;
+	
+	//VERIFICAR QUE LA POSICIÓN ESTÁ DENTRO DEL RANGO
+	if ( posicionEliminar >= 1 && posicionEliminar <= cantidadActualClientes + 1 ) {
+		//BUCLE FOR PARA SUSTITUIR LA POSICION ELIMINADA
+		for ( int i = posicionEliminar - 1; i < cantidadActualClientes - 1; i++ ) { //SE LE RESTA 1 A "POSICIONELIMINAR" PARA QUE ENCAJE CON LA POSICIÓN ESCOGIDA, PORQUE COMO EL 0 CUENTA COMO POSICIÓN DE MEMORIA, EL 0 CUENTA Y SI EL USUARIO ESCOGE 1, SE REFIERE A LA POSICIÓN 0
+			clientes[i].nombre = clientes[i + 1].nombre;
+			clientes[i].telefono = clientes[i + 1].telefono;
+			clientes[i].direccionCliente.distrito = clientes[i + 1].direccionCliente.distrito;
+			clientes[i].direccionCliente.calle = clientes[i + 1].direccionCliente.calle;
+			clientes[i].direccionCliente.manzana = clientes[i + 1].direccionCliente.manzana;
+			clientes[i].direccionCliente.lote = clientes[i + 1].direccionCliente.lote;
+		}
+		cantidadActualClientes--; //SE LE RESTA UNO PORQUE SE ELIMINO UN CLIENTE Y LA CANTIDAD ACTUAL SE REDUCE
+		cout << "// CLIENTE ELIMINADO CORRECTAMENTE // " << endl << endl;
+	} else {
+		cout << "Ingreso un número inválido" << endl << endl;
+	}
+}

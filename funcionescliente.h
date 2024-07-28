@@ -24,4 +24,6 @@ void agregarCliente(Cliente clientes[50], int &cantidadActualClientes);
 void editarDatosCliente(Cliente clientes[50], int &cantidadActualClientes);
 //FUNCION PARA ORDENAR ALFABETICAMENTE LOS CLIENTES
 void ordenarClientesAlfabeticamente(Cliente clientes[50], int &cantidadActualClientes);
+//FUNCION PARA ELIMINAR CLIENTES
+void eliminarClientes(Cliente clientes[50], int &cantidadActualClientes);
 #endif

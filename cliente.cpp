@@ -6,11 +6,10 @@ using namespace std;
 //FUNCION DEL MENU CLIENTE
 void menuCliente() {
 	int opcion;
-	const int cantidadClientes = 50;
 	int cantidadActualClientes = 9; //SON 10 PERO AL SER UN ARREGLO EMPIEZA POR "0"
 	
 	//SE AGREGAN 10 CLIENTES PREDEFINIDOS
-	Cliente clientes[cantidadClientes] = {
+	Cliente clientes[50] = {
 		{"Carlos Flores", "827364958", {"Miraflores", "Av. Pardo", "Mz. B", "Lt. 12"}}, //POSICION 0
 		{"Juan Perez", "817361123", {"San Isidro", "Calle Las Flores", "Mz. F", "Lt. 8"}}, //POSICION 1
 		{"Maria Lopez", "917345991", {"Barranco", "Av. Grau", "Mz. C", "Lt. 5"}}, //POSICION 2
@@ -28,10 +27,9 @@ void menuCliente() {
 		cout << "// MENÚ: CLIENTE //" << endl;
 		cout << "1. Agregar cliente" << endl;
 		cout << "2. Editar datos del cliente" << endl;
-		cout << "3. Ordenar clientes alfabeticamente" << endl;
-		cout << "4. Mostrar clientes registrados" << endl;
-		cout << "5. Eliminar clientes" << endl;
-		cout << "6. Volver al menu principal" << endl;
+		cout << "3. Ordenar y mostrar clientes alfabeticamente" << endl;
+		cout << "4. Eliminar clientes" << endl;
+		cout << "5. Volver al menu principal" << endl;
 		cin >> opcion;
 		
 		//SWITCH PARA LAS DISTINTAS FUNCIONES DEL MENU CLIENTE
@@ -46,13 +44,14 @@ void menuCliente() {
 				ordenarClientesAlfabeticamente(clientes, cantidadActualClientes);
 				break;
 			case 4:
+				eliminarClientes(clientes, cantidadActualClientes);
 				break;
 			case 5:
 				break;
-			case 6:
-				break;
 			default:
+				cout << "Valor ingresado incorrecto, vuelva a ingresar otro valor" << endl;
 				break;
 		}
-	} while ( opcion != 6 );
+	} while ( opcion != 5 );
+	cout << "// VOLVIENDO AL MENU PRINCIPAL //" << endl << endl;
 }
