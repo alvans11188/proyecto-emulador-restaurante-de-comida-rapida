@@ -96,7 +96,7 @@ void mostrarCarta() {
     espacio();
 	c='-';
 	color(hConsole, 8);
-	texto = "VOLVIENDO AL MENU CARTA...";
+	texto = "| VOLVIENDO AL MENU CARTA... |";
 	enlinear(texto, c);
 }
 //FUNCION PARA EDITAR CARTA
@@ -175,7 +175,7 @@ void editarCarta() {
 	                espacio();
 	                
 	                color(hConsole, 10);
-					texto = "PRODUCTO EDITADO SATISFACTORIAMENTE";
+					texto = "> PRODUCTO EDITADO SATISFACTORIAMENTE <";
 					enlinear(texto, c);
 	            } else {
 	                color(hConsole, 4);
@@ -215,7 +215,7 @@ void editarCarta() {
 	                espacio();
 	                
 	                color(hConsole, 10);
-					texto = "PRODUCTO EDITADO SATISFACTORIAMENTE";
+					texto = "> PRODUCTO EDITADO SATISFACTORIAMENTE <";
 					enlinear(texto, c);
 	            } else {
 	            	color(hConsole, 4);
@@ -255,7 +255,7 @@ void editarCarta() {
 	                espacio();
 	                
 	                color(hConsole, 10);
-					texto = "PRODUCTO EDITADO SATISFACTORIAMENTE";
+					texto = "> PRODUCTO EDITADO SATISFACTORIAMENTE <";
 					enlinear(texto, c);
 	            } else {
 	            	color(hConsole, 4);
@@ -295,7 +295,7 @@ void editarCarta() {
 	                espacio();
 	                
 	                color(hConsole, 10);
-					texto = "PRODUCTO EDITADO SATISFACTORIAMENTE";
+					texto = "> PRODUCTO EDITADO SATISFACTORIAMENTE <";
 					enlinear(texto, c);
 	            } else {
 	            	color(hConsole, 4);
@@ -335,7 +335,7 @@ void editarCarta() {
 	                espacio();
 	                
 	                color(hConsole, 10);
-					texto = "PRODUCTO EDITADO SATISFACTORIAMENTE";
+					texto = "> PRODUCTO EDITADO SATISFACTORIAMENTE <";
 					enlinear(texto, c);
 	            } else {
 	            	color(hConsole, 4);
@@ -357,14 +357,14 @@ void editarCarta() {
 	cout << endl << endl;
     }while (categoria != 'f');
 		color(hConsole, 10);
-		texto = "EDICION DE CARTA TERMINADA";
+		texto = "| EDICION DE CARTA TERMINADA |";
 		enlinear(texto, c);
 		color(hConsole, 7);
 		
 		cout << endl << endl;
 
 		color(hConsole, 8);
-		texto = "VOLVIENDO AL MENU CARTA...";
+		texto = "| VOLVIENDO AL MENU CARTA... |";
 		enlinear(texto, c);
 }
 //FUNCION PARA AGREGAR A LA CARTA
@@ -434,7 +434,7 @@ void agregarCarta() {
 	            cout << endl;
 	            
 	            color(hConsole, 10);
-				texto = "PRODUCTO AGREGADO EXITOSAMENTE";
+				texto = "> PRODUCTO AGREGADO EXITOSAMENTE <";
 				enlinear(texto, c);
 	            } else {
 	               
@@ -462,7 +462,7 @@ void agregarCarta() {
 	            cout << endl;
 	            
 	            color(hConsole, 10);
-				texto = "PRODUCTO AGREGADO EXITOSAMENTE";
+				texto = "> PRODUCTO AGREGADO EXITOSAMENTE <";
 				enlinear(texto, c);
 	            } else {
 	                
@@ -490,7 +490,7 @@ void agregarCarta() {
 	            cout << endl;
 	            
 	            color(hConsole, 10);
-				texto = "PRODUCTO AGREGADO EXITOSAMENTE";
+				texto = "> PRODUCTO AGREGADO EXITOSAMENTE <";
 				enlinear(texto, c);
 	            } else {
 	                
@@ -518,7 +518,7 @@ void agregarCarta() {
 	            cout << endl;
 	            
 	            color(hConsole, 10);
-				texto = "PRODUCTO AGREGADO EXITOSAMENTE";
+				texto = "> PRODUCTO AGREGADO EXITOSAMENTE <";
 				enlinear(texto, c);
 	            } else {
 	                
@@ -546,7 +546,7 @@ void agregarCarta() {
 	            cout << endl;
 	            
 	            color(hConsole, 10);
-				texto = "PRODUCTO AGREGADO EXITOSAMENTE";
+				texto = "> PRODUCTO AGREGADO EXITOSAMENTE <";
 				enlinear(texto, c);
 	            } else {
 	                
@@ -570,14 +570,14 @@ void agregarCarta() {
 	}while (categoria !='F');
 	
 		color(hConsole, 10);
-		texto = "EDICION DE CARTA TERMINADA";
+		texto = "| EDICION DE CARTA TERMINADA |";
 		enlinear(texto, c);
 		color(hConsole, 7);
 	
 		cout << endl << endl;
 	
 		color(hConsole, 8);
-		texto = "VOLVIENDO AL MENU CARTA...";
+		texto = "| VOLVIENDO AL MENU CARTA... |";
 		enlinear(texto, c);
 		color(hConsole, 7);
 }
@@ -635,7 +635,7 @@ void ordenarCarta() {
                     }
                 }
             }
-            texto= "Hamburguesas ordenadas satisfactoriamente";
+            texto= "> Hamburguesas ordenadas satisfactoriamente <";
             enlinear(texto, c);
             break;
         case 'B':
@@ -646,7 +646,7 @@ void ordenarCarta() {
                     }
                 }
             }
-            texto= "Pizzas ordenadas satisfactoriamente";
+            texto= "> Pizzas ordenadas satisfactoriamente <";
             enlinear(texto, c);
             break;
         case 'C':
@@ -657,7 +657,7 @@ void ordenarCarta() {
                     }
                 }
             }
-            texto = "Conos ordenados satisfactoriamente";
+            texto = "> Conos ordenados satisfactoriamente <";
             enlinear(texto, c);
             break;
         case 'D':
@@ -668,7 +668,7 @@ void ordenarCarta() {
                     }
                 }
             }
-            texto = "Gaseosas ordenadas satisfactoriamente";
+            texto = "> Gaseosas ordenadas satisfactoriamente <";
             enlinear(texto, c);
             break;
         case 'E':
@@ -679,7 +679,7 @@ void ordenarCarta() {
                     }
                 }
             }
-            texto = "Aguas ordenadas satisfactoriamente";
+            texto = "> Aguas ordenadas satisfactoriamente <";
             enlinear(texto, c);
             break;
         case 'F':
@@ -694,14 +694,14 @@ void ordenarCarta() {
     } while (categoria != 'F');
     
     	color(hConsole, 10);
-		texto = "SE ORDENO LA CARTA SATISFACTORIAMENTE";
+		texto = "| SE ORDENO LA CARTA SATISFACTORIAMENTE |";
 		enlinear(texto, c);
 		color(hConsole, 7);
 	
 		cout << endl << endl;
 	
 		color(hConsole, 8);
-		texto = "VOLVIENDO AL MENU CARTA...";
+		texto = "| VOLVIENDO AL MENU CARTA... |";
 		enlinear(texto, c);
 		color(hConsole, 7);
 }
@@ -772,7 +772,7 @@ void eliminarCarta() {
                 numHamburguesas--;
                 
                 color(hConsole, 10);
-                texto = "PRODUCTO ELIMINADO SATISFACTORIAMENTE";
+                texto = "> PRODUCTO ELIMINADO SATISFACTORIAMENTE <";
                 enlinear(texto, c);
             } else {
                 color(hConsole, 4);
@@ -805,7 +805,7 @@ void eliminarCarta() {
                 numPizzas--;
                 
                 color(hConsole, 10);
-                texto = "PRODUCTO ELIMINADO SATISFACTORIAMENTE";
+                texto = "> PRODUCTO ELIMINADO SATISFACTORIAMENTE <";
                 enlinear(texto, c);
             } else {
                 color(hConsole, 4);
@@ -838,7 +838,7 @@ void eliminarCarta() {
                 numConos--;
                 
                 color(hConsole, 10);
-                texto = "PRODUCTO ELIMINADO SATISFACTORIAMENTE";
+                texto = "> PRODUCTO ELIMINADO SATISFACTORIAMENTE <";
                 enlinear(texto, c);
             } else {
                 color(hConsole, 4);
@@ -872,7 +872,7 @@ void eliminarCarta() {
                 numGaseosas--;
 
                 color(hConsole, 10);
-                texto = "PRODUCTO ELIMINADO SATISFACTORIAMENTE";
+                texto = "> PRODUCTO ELIMINADO SATISFACTORIAMENTE <";
                 enlinear(texto, c);
             } else {
                 color(hConsole, 4);
@@ -906,7 +906,7 @@ void eliminarCarta() {
                 numAguas--;
             
                 color(hConsole, 10);
-                texto = "PRODUCTO ELIMINADO SATISFACTORIAMENTE";
+                texto = "> PRODUCTO ELIMINADO SATISFACTORIAMENTE <";
                 enlinear(texto, c);
             } else {
                 color(hConsole, 4);
@@ -929,14 +929,14 @@ void eliminarCarta() {
     	c='-';
     	
 		color(hConsole, 10);
-		texto = "PRODUCTOS ELIMINADOS SATISFACTORIAMENTE";
+		texto = "| PRODUCTOS ELIMINADOS SATISFACTORIAMENTE |";
 		enlinear(texto, c);
 		color(hConsole, 7);
 	
 		cout << endl << endl;
 	
 		color(hConsole, 8);
-		texto = "VOLVIENDO AL MENU CARTA...";
+		texto = "| VOLVIENDO AL MENU CARTA... |";
 		enlinear(texto, c);
 		color(hConsole, 7);    
 }

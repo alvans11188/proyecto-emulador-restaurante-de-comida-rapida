@@ -3,6 +3,7 @@
 #include "funcionesdespensa.h"
 #include <iostream>
 #include <string>
+#include "FUNCIONESDISENO.h"
 using namespace std;
 
 float montoFinalGanancias = 0;
@@ -201,37 +202,83 @@ void registrarVenta(){
 	int cantidad;
 	string respuesta;
 	int ordenesTotales=0; //para dar el orden a cada Orden
-	cout << endl << endl;
-	cout << "\t\t\t\t\t\t\t\t\t\t\t\tRegistrando una orden..." << endl << endl;
+	
+	string texto;
+	char c;
+	float porcentajePantalla;
+	porcentajePantalla = 45;
+	
+	c='*';
+	color(hConsole, 2);
+	texto = "REGISTRE ORDENES";
+	enlinearYEnjaular(texto, c);
+	cout << endl << endl << endl;
+	
 	do{ // MENU INTERFAZ
+		color(hConsole, 7);
+		c='=';
 		cout << endl;
-		cout << "\t\t\t\t\t\t\t\tElija la categoria." << endl << endl;
-		cout << "\t\t\t\t\t\t\t\t1. Hamburguesas" << endl;
-	    cout << "\t\t\t\t\t\t\t\t2. Pizzas" << endl;
-	    cout << "\t\t\t\t\t\t\t\t3. Conos" << endl;
-	    cout << "\t\t\t\t\t\t\t\t4. Gaseosas" << endl;
-	    cout << "\t\t\t\t\t\t\t\t5. Aguas" << endl;
-	    cout << "\t\t\t\t\t\t\t\t6. Terminar orden." << endl << endl;
-	    cout << "\t\t\t\t\t\t\t\t\t\t= ";
-	    cin >> categoria;
+		color(hConsole, 6);
+		texto = "Elija la categoria.";
+		centrarYSubrayar(texto, c);
+		cout << endl << endl << endl;
+		color(hConsole, 7);
+		
+		c='.';
+		int anchoJaula=50;
+		int salto=1;
+		linea(anchoJaula, c, salto); cout << endl;
+		texto = "1. Hamburguesas";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "2. Pizzas";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "3. Conos";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "4. Gaseosas";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "5. Aguas";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "6. Terminar orden";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		linea(anchoJaula, c, 0); cout << endl;
+		texto = "-------";
+		centrar(texto); cout << endl;
+		centrarCin(1);
+		cin >> categoria;
 		
 		bool continuar = false; //si es que no cumple una condicion, no podra continuar agregando en la orden
 		bool suficiente = true;
-		cout << endl;
+		
+		cout << endl << endl << endl;
+		
 	    switch (categoria) {
 	        case 1:
 	        	do{
-		            cout << "\t\t\t\t\t\t\t\t\t\tSeleccione la hamburguesa:" << endl; // interfaz de menu de hamburguesas
+	        		color(hConsole, 7);
+	        		c='-';
+	        		texto = "Seleccione la hamburguesa: ";
+	        		centrarYSubrayar(texto, c);
+	        		cout << endl << endl;
+	        		
 		            for (int i = 0; i < numHamburguesas; i++) {
-		                cout << i + 1 << ". " << hamburguesas[i].nombre << " S/. " << hamburguesas[i].precio << endl;
+		            	texto = " ";
+						imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-3);
+		                cout << i + 1 << ". " << hamburguesas[i].nombre << "------> S/. " << hamburguesas[i].precio << endl;
 		            }
-		            cout << endl;
-		            cout << "\t\t\t\t\t\t\t\t\t\t= ";
-		            cin >> item;
-		            cout << endl;
+		            cout << endl << endl;
+		            texto = "-------";
+					centrar(texto); cout << endl;
+					centrarCin(1);
+					cin >> item;
+		            
+					cout << endl << endl << endl;
+					
 			        if(0<item && item<=numHamburguesas){
-			            cout << "\t\t\t\t\t\t\t\t\t\tCantidad: ";
+			        	
+			            texto = "Cantidad: ";
+			            centrar(texto);
 						cin >> cantidad;
+						
 						if(alimento[0].cantidad>=CTH*cantidad && alimento[1].cantidad>=CLH*cantidad && alimento[2].cantidad>=CBH*cantidad && alimento[3].cantidad>=CCH*cantidad && alimento[6].cantidad >= CQH*cantidad){ // ingredientes para cocinar una hamburguesa
 			            	ordenRegistro(orden[numFactura], hamburguesas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
 							ordenesTotales++;
@@ -257,23 +304,40 @@ void registrarVenta(){
 							continuar = false;
 						}
 					} else {
-						cout << "Opcion no valida. Intente de nuevo." << endl << endl;
+						color(hConsole, 4);
+						texto = "Opcion no valida. Intente de nuevo.";
+						centrar(texto);
+						cout << endl << endl << endl << endl;
 					}
 				} while(item>numHamburguesas || item<=0);
 				break;
 	        case 2:
 	        	do{
-		            cout << "\t\t\t\t\t\t\t\t\t\tSeleccione la pizza:" << endl;// interfaz de menu de pizzas
+	        		color(hConsole, 7);
+		            c='-';
+	        		texto = "Seleccione la pizza: ";
+	        		centrarYSubrayar(texto, c);
+	        		cout << endl << endl;
+	        		
 		            for (int i = 0; i < numPizzas; i++) {
-		                cout << i + 1 << ". " << pizzas[i].nombre << " S/. " << pizzas[i].precio << endl;
+		            	texto = " ";
+						imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-3);
+		                cout << i + 1 << ". " << pizzas[i].nombre << "------> S/. " << pizzas[i].precio << endl;
 		            }
-		            cout << endl;
-		            cout << "\t\t\t\t\t\t\t\t\t\t= ";
-		            cin >> item;
-		            cout << endl;
-			        if(0<item && item<=numPizzas){
-			            cout << "\t\t\t\t\t\t\t\t\t\tCantidad: ";
-			            cin >> cantidad;
+		            cout << endl << endl;
+		            texto = "-------";
+					centrar(texto); cout << endl;
+					centrarCin(1);
+					cin >> item;
+		            
+					cout << endl << endl << endl;
+			        
+					if(0<item && item<=numPizzas){
+			        	
+			            texto = "Cantidad: ";
+			            centrar(texto);
+						cin >> cantidad;
+						
 						if(alimento[0].cantidad>=CTP*cantidad &&  alimento[2].cantidad>=CBP*cantidad && alimento[3].cantidad>=CCP*cantidad && alimento[6].cantidad >= CQP*cantidad){ // ingredientes para cocinar una hamburguesa
 			            	ordenRegistro(orden[numFactura], pizzas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
 							ordenesTotales++;
@@ -297,23 +361,40 @@ void registrarVenta(){
 							continuar = false;
 						}
 					} else {
-						cout << "Opcion no valida. Intente de nuevo." << endl << endl;
+						color(hConsole, 4);
+						texto = "Opcion no valida. Intente de nuevo.";
+						centrar(texto);
+						cout << endl << endl << endl << endl;
 					}
 				} while(item>numPizzas || item<=0);
 	            break;  
 	        case 3:
 	        	do{
-		            cout << "\t\t\t\t\t\t\t\t\t\tSeleccione el cono:" << endl; // interfaz de menu de conos
+		            color(hConsole, 7);
+		            c='-';
+	        		texto = "Seleccione el cono: ";
+	        		centrarYSubrayar(texto, c);
+	        		cout << endl << endl;
+	        		
 		            for (int i = 0; i < numConos; i++) {
-		                cout << i + 1 << ". " << conos[i].nombre << " S/. " << conos[i].precio << endl;
+		            	texto = " ";
+						imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-3);
+		                cout << i + 1 << ". " << conos[i].nombre << " ------> S/. " << conos[i].precio << endl;
 		            }
-		            cout << endl;
-		            cout << "\t\t\t\t\t\t\t\t\t\t= ";
-		            cin >> item;
-			        cout << endl;
+		            
+		            cout << endl << endl;
+		            texto = "-------";
+					centrar(texto); cout << endl;
+					centrarCin(1);
+					cin >> item;
+					cout << endl << endl << endl;
+					
 				    if(0<item && item<=numConos){
-			            cout << "\t\t\t\t\t\t\t\t\t\tCantidad: ";
+				    	
+			            texto = "Cantidad: ";
+			            centrar(texto);
 						cin >> cantidad;
+						
 						if(alimento[0].cantidad>=CTC*cantidad && alimento[1].cantidad>=CLC*cantidad && alimento[2].cantidad>=CBC*cantidad && alimento[3].cantidad>=CCC*cantidad && alimento[6].cantidad >= CQC*cantidad){ // ingredientes para cocinar una hamburguesa
 			            	ordenRegistro(orden[numFactura], conos, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
 							ordenesTotales++;
@@ -338,23 +419,39 @@ void registrarVenta(){
 							continuar = false;
 						}
 					} else {
-						cout << "Opcion no valida. Intente de nuevo." << endl << endl;
+						color(hConsole, 4);
+						texto = "Opcion no valida. Intente de nuevo.";
+						centrar(texto);
+						cout << endl << endl << endl << endl;
 					}
 				} while(item>numConos || item<=0);
 	            break;
 	        case 4:
 	        	do{
-		            cout << "\t\t\t\t\t\t\t\t\t\tSeleccione la gaseosa:" << endl;
+		            color(hConsole, 7);
+		            c='-';
+	        		texto = "Seleccione la gaseosa: ";
+	        		centrarYSubrayar(texto, c);
+	        		cout << endl << endl;
+	        		
 		            for (int i = 0; i < numGaseosas; i++) {
-		                cout << i + 1 << ". " << gaseosas[i].nombre << " S/. " << gaseosas[i].precio << endl;
+		            	texto = " ";
+						imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-3);
+		                cout << i + 1 << ". " << gaseosas[i].nombre << "-------> S/. " << gaseosas[i].precio << endl;
 		            }
-		            cout << endl;
-		            cout << "\t\t\t\t\t\t\t\t\t\t= ";
-		            cin >> item;
-		            cout << endl;
+		            
+		            cout << endl << endl;
+		            texto = "-------";
+					centrar(texto); cout << endl;
+					centrarCin(1);
+					cin >> item;
+					cout << endl << endl << endl;
 		            if(0<item && item<=numGaseosas){
-			            cout << "\t\t\t\t\t\t\t\t\t\tCantidad: ";
-			            cin >> cantidad;
+		            	
+			            texto = "Cantidad: ";
+			            centrar(texto);
+						cin >> cantidad;
+						
 						if(alimento[4].cantidad>=CG*cantidad){ // ingredientes para cocinar una hamburguesa
 			            	ordenRegistro(orden[numFactura], gaseosas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
 							ordenesTotales++;
@@ -372,23 +469,40 @@ void registrarVenta(){
 							continuar = false;
 						}
 					} else {
-						cout << "Opcion no valida. Intente de nuevo." << endl << endl;
+						color(hConsole, 4);
+						texto = "Opcion no valida. Intente de nuevo.";
+						centrar(texto);
+						cout << endl << endl << endl << endl;
 					}
 				} while(item>numGaseosas || item<=0);
 	            break;
 	        case 5:
 	        	do{
-		            cout << "\t\t\t\t\t\t\t\t\t\tSeleccione el agua:" << endl;
+		            color(hConsole, 7);
+		            c='-';
+	        		texto = "Seleccione el agua: ";
+	        		centrarYSubrayar(texto, c);
+	        		cout << endl << endl;
+	        		
 		            for (int i = 0; i < numAguas; i++) {
-		                cout << i + 1 << ". " << aguas[i].nombre << " S/. " << aguas[i].precio << endl;
+		            	texto = " ";
+						imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-3);
+		                cout << i + 1 << ". " << aguas[i].nombre << "------> S/. " << aguas[i].precio << endl;
 		            }
-		            cout << endl;
-		            cout << "\t\t\t\t\t\t\t\t\t\t= ";
-		            cin >> item;
-			        cout << endl;
+		            
+		            cout << endl << endl;
+		            texto = "-------";
+					centrar(texto); cout << endl;
+					centrarCin(1);
+					cin >> item;
+					cout << endl << endl << endl;
+					
 				    if(0<item && item<=numAguas){
-			            cout << "\t\t\t\t\t\t\t\t\t\tCantidad: ";
-			            cin >> cantidad;
+				    	
+			            texto = "Cantidad: ";
+			            centrar(texto);
+						cin >> cantidad;
+						
 						if(alimento[5].cantidad>=CA*cantidad){ // ingredientes para cocinar una hamburguesa
 			            	ordenRegistro(orden[numFactura], aguas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
 							ordenesTotales++;
@@ -406,35 +520,74 @@ void registrarVenta(){
 							continuar = false;
 						}
 					} else {
-						cout << "\t\t\t\t\t\t\t\tOpcion no valida. Intente de nuevo." << endl << endl;
+						color(hConsole, 4);
+						texto = "Opcion no valida. Intente de nuevo.";
+						centrar(texto);
+						cout << endl << endl << endl << endl;
 					}
 				} while(item>numAguas || item<=0);
 	            break;
 	        default:
-	            cout << "\t\t\t\t\t\t\t\t\tCategoria no valida." << endl;
+	            color(hConsole, 4);
+				texto = "Categoria no encontrada. Intente de nuevo.";
+				centrar(texto);
+				cout << endl << endl << endl << endl;
 	            break;
 	    }
 	    cout << endl;
 	    if(!suficiente){
-	    	cout << "\t\t\t\t\t\t\t\tNo hay suficientes ingredientes." << endl;
+	    	cout << endl << endl << endl;
+	    	c='-';
+	    	color(hConsole, 4);
+	    	texto = "No hay suficientes ingredientes.";
+	    	enlinear(texto, c);
+	    	cout << endl << endl << endl;
+	    	color(hConsole, 7);
 		}
 	    if(continuar){
-	    	cout << "\t\t\t\t\t\t\t\t\t¿Va a agregar algo mas a la orden?(si/no)= ";
-	    	cin >> respuesta;
+	    	cout << endl << endl << endl;
+	    	color(hConsole, 8);
+	    	texto = "¿Va a agregar algo mas a la orden?(si/no)";
+	    	centrar(texto);
+	    	color(hConsole, 7);
+	    	cout << endl << endl;
+		    texto = "-------";
+			centrar(texto); cout << endl;
+			centrarCin(2);
+			cin >> respuesta;
+			espacio();
 		}
 	} while(respuesta!= "no" &&categoria!=6);
-	
-   cout << endl;
-   cout << "\t\t\t\t\t\t\t\t\t\tFACTURA" << endl << endl;
-   cout << "\t\t\t\t\t\t\t\t\tProductos en la orden: " << endl << endl;
+
+	c= '$';
+	separador(c);
+   c='.';
+   texto = "FACTURA";
+   enjaular(texto, c);
+   cout << endl << endl << endl;
+   
+   c='=';
+   texto = "Productos en la orden:";
+   centrarYSubrayar(texto, c);
+   cout << endl << endl << endl;
+   
    int j=0;
    for(int i=0; i<ordenesPorFactura[numFactura]; i++){
-   		cout << "\t\t\t\t\t\t\t\t"<< j+1 << ". " << "(" << orden[numFactura][i].cantidad << ") " << orden[numFactura][i].nombre << " S/. " << orden[numFactura][i].monto << endl;
+   		texto = " ";
+        imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-5);
+   		cout << j+1 << ". " << "(" << orden[numFactura][i].cantidad << ") " << orden[numFactura][i].nombre << "--> S/. " << orden[numFactura][i].monto << endl;
    		j++;
    }
+   
    montoPorFactura(orden[numFactura], ordenesPorFactura[numFactura], montoDeFactura[numFactura]);
-   cout << endl;
-   cout << "\t\t\t\t\t\t\t\t\t\tTotal a pagar: S/. " << montoDeFactura[numFactura] << endl;
+   
+   cout << endl << endl;
+   c='-';
+   separador(c);
+   texto= "Total a pagar --> S/. "; centrar(texto); cout << montoDeFactura[numFactura];
+   separador(c);
+   c= '$';
+	separador(c);
    numFactura++;
 }
 void mostrarOrdenes(){

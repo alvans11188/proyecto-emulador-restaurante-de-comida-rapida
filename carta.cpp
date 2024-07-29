@@ -82,12 +82,12 @@ void menuCarta() {
     } while (opcion != 'F'); //EN CASO SELECCIONAR EL NUMERO 6 REGRESA AL MENU ANTERIOR
 
 		color(hConsole, 8);
-		texto = "SALIENDO DEL MENU CARTA...";
+		texto = "| SALIENDO DEL MENU CARTA... |";
 		enlinear(texto, c);
 		
 		cout << endl << endl;
 		
-		texto = "VOLVIENDO AL MENU PRINCIPAL...";
+		texto = "| VOLVIENDO AL MENU PRINCIPAL... |";
 		enlinear(texto, c);
 		cout << endl << endl << endl;
 		color(hConsole, 7);

@@ -58,14 +58,14 @@ void agregarCliente(Cliente clientes[50], int &cantidadActualClientes) {
 	
 	c='-';
 	color(hConsole, 10);
-	texto = "CLIENTE AGREGADO CORRECTAMENTE";
+	texto = "> CLIENTE AGREGADO CORRECTAMENTE <";
 	enlinear(texto, c);
 	
 	cout << endl << endl;
 	
 	c='-';
 	color(hConsole, 8);
-	texto = "VOLVIENDO AL MENU CLIENTE...";
+	texto = "| VOLVIENDO AL MENU CLIENTE... |";
 	enlinear(texto, c);
 }
 
@@ -147,14 +147,14 @@ void editarDatosCliente(Cliente clientes[50], int &cantidadActualClientes) {
 	
 	c='-';
 	color(hConsole, 10);
-	texto = "CLIENTE EDITADO CORRECTAMENTE";
+	texto = "> CLIENTE EDITADO CORRECTAMENTE <";
 	enlinear(texto, c);
 	
 	cout << endl << endl;
 	
 	c='-';
 	color(hConsole, 8);
-	texto = "VOLVIENDO AL MENU CLIENTE...";
+	texto = "| VOLVIENDO AL MENU CLIENTE... |";
 	enlinear(texto, c);
 }
 
@@ -231,7 +231,7 @@ void ordenarClientesAlfabeticamente(Cliente clientes[50], int &cantidadActualCli
 	espacio();
 	c='-';
 	color(hConsole, 8);
-	texto = "VOLVIENDO AL MENU CLIENTE...";
+	texto = "| VOLVIENDO AL MENU CLIENTE... |";
 	enlinear(texto, c);
 }
 
@@ -272,7 +272,7 @@ void eliminarClientes(Cliente clientes[50], int &cantidadActualClientes) {
 		cantidadActualClientes--; //SE LE RESTA UNO PORQUE SE ELIMINO UN CLIENTE Y LA CANTIDAD ACTUAL SE REDUCE
 		
 		color(hConsole, 10);
-		texto = "CLIENTE ELIMINADO CORRECTAMENTE";
+		texto = "> CLIENTE ELIMINADO CORRECTAMENTE <";
 	} else {
 		color(hConsole, 4);
 		texto = "CLIENTE NO ENCONTRADO. NO SE PUEDE CONTINUAR.";
@@ -283,6 +283,6 @@ void eliminarClientes(Cliente clientes[50], int &cantidadActualClientes) {
 	
 	c='-';
 	color(hConsole, 8);
-	texto = "VOLVIENDO AL MENU CLIENTE...";
+	texto = "| VOLVIENDO AL MENU CLIENTE... |";
 	enlinear(texto, c);
 }

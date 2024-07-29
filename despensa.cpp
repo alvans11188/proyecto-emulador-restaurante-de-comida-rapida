@@ -77,12 +77,12 @@ void menuDespensa(){
 	} while(opcion!='E');
 	
 		color(hConsole, 8);
-		texto = "SALIENDO DEL MENU DESPENSA...";
+		texto = "| SALIENDO DEL MENU DESPENSA... |";
 		enlinear(texto, c);
 		
 		cout << endl << endl;
 		
-		texto = "VOLVIENDO AL MENU PRINCIPAL...";
+		texto = "| VOLVIENDO AL MENU PRINCIPAL... |";
 		enlinear(texto, c);
 		cout << endl << endl << endl;
 		color(hConsole, 7);

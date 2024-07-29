@@ -108,13 +108,13 @@ void AgregarAlimentos(){
 		            	
 		            	c='-';
 		            	color(hConsole, 10);
-		                texto = "ALIMENTOS AGREGADOS SATISFACTORIAMENTE";
+		                texto = "> ALIMENTOS AGREGADOS SATISFACTORIAMENTE <";
 		                enlinear(texto, c);
 		                
 		                cout << endl << endl;
 		                
 		                color(hConsole, 8);
-						texto = "VOLVIENDO AL MENU DESPENSA...";
+						texto = "| VOLVIENDO AL MENU DESPENSA... |";
 						enlinear(texto, c);
 						color(hConsole, 7);
 						
@@ -234,13 +234,13 @@ void actualizarAlimentos(){
 	
 	c='-';
 	color(hConsole, 10);
-	texto = "ALIMENTO ACTUALIZADO CON EXITO";
+	texto = "> ALIMENTO ACTUALIZADO CON EXITO <";
 	enlinear(texto, c);
 	
 	cout << endl << endl;
 		                
 	color(hConsole, 8);
-	texto = "VOLVIENDO AL MENU DESPENSA...";
+	texto = "| VOLVIENDO AL MENU DESPENSA... |";
 	enlinear(texto, c);
 
 }
@@ -291,15 +291,15 @@ void mostrarStock(){
 	espacio();
 	c='-';	                
 	color(hConsole, 8);
-	texto = "VOLVIENDO AL MENU DESPENSA...";
+	texto = "| VOLVIENDO AL MENU DESPENSA... |";
 	enlinear(texto, c);
 }
 
 void mostrarMasMenosUsados(){
 	
 	char opcion;
-	string texto;
 	
+	string texto;
 	char c;
 	float porcentajePantalla;
 	porcentajePantalla = 45;
@@ -370,13 +370,13 @@ void mostrarMasMenosUsados(){
 	
 	c='-';
 	color(hConsole, 10);
-	texto = "ALIMENTOS USADOS ORDENADOS SATISFACTORIAMENTE";
+	texto = "> ALIMENTOS USADOS ORDENADOS SATISFACTORIAMENTE <";
 	enlinear(texto, c);
 	
 	cout << endl << endl;
 		                
 	color(hConsole, 8);
-	texto = "VOLVIENDO AL MENU DESPENSA...";
+	texto = "| VOLVIENDO AL MENU DESPENSA... |";
 	enlinear(texto, c);
 }
 
