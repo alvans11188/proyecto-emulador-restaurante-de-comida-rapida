@@ -1,5 +1,6 @@
 #include "funcionescarta.h"
 #include <iostream>
+#include "FUNCIONESDISENO.h"
 using namespace std;
 
 Producto hamburguesas[MAX_ITEMS] = {
@@ -35,266 +36,501 @@ int numConos = 3;
 int numGaseosas = 2;
 int numAguas = 2;
 
+
 // FUNCION MOSTRAR CARTA
 void mostrarCarta() {
-    cout << "\n // CARTA DE HOY //" << endl;
-
-    cout << "Hamburguesas:" << endl;
+	char c;
+	string texto;
+	float porcentajePantalla;
+	color(hConsole, 14);
+	c='*';
+	texto = "CARTA DE HOY";
+	enlinearYEnjaular(texto, c); cout << endl << endl << endl;
+	color(hConsole, 7);
+	cout << endl;
+	
+	c='#';
+	porcentajePantalla = 30;
+	texto = "Hamburguesas";
+	enjaular(texto, c); cout << endl << endl;
     for (int i = 0; i < numHamburguesas; i++) {
-        cout << "   " << hamburguesas[i].nombre << " S/. " << hamburguesas[i].precio << endl;
+    	texto = " ";
+    	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+        cout << "   " << hamburguesas[i].nombre << "_______________________________" << " S/. " << hamburguesas[i].precio << endl;
     }
-    cout << "\nPizzas:" << endl;
+    cout << endl << endl;
+    texto = "Pizzas";
+	enjaular(texto, c); cout << endl << endl;
     for (int i = 0; i < numPizzas; i++) {
-        cout << "   " << pizzas[i].nombre << " S/. " << pizzas[i].precio << endl;
+    	texto = " ";
+    	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+        cout << "   " << pizzas[i].nombre << "___________________________________" << " S/. " << pizzas[i].precio << endl;
     }
-    cout << "\nConos:" << endl;
+    cout << endl << endl;
+    texto = "Conos";
+	enjaular(texto, c); cout << endl << endl;
     for (int i = 0; i < numConos; i++) {
-        cout << "   " << conos[i].nombre << " S/. " << conos[i].precio << endl;
+    	texto = " ";
+    	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+        cout << "   " << conos[i].nombre << "_________________________________" << " S/. " << conos[i].precio << endl;
     }
-    cout << "\nBebidas:" << endl;
-    cout << "   Gaseosas" << endl;
+    cout << endl << endl << endl;
+    texto = "BEBIDAS";
+    centrar(texto); cout << endl << endl << endl;
+    texto = "Conos";
+	enjaular(texto, c); cout << endl << endl;
     for (int i = 0; i < numGaseosas; i++) {
-        cout << "      " << gaseosas[i].nombre << " S/. " << gaseosas[i].precio << endl;
+    	texto = " ";
+    	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+        cout << "      " << gaseosas[i].nombre << "________________________________" << " S/. " << gaseosas[i].precio << endl;
     }
-    cout << "   Aguas" << endl;
+    cout << endl << endl;
+    texto = "Conos";
+	enjaular(texto, c); cout << endl << endl;
     for (int i = 0; i < numAguas; i++) {
-        cout << "      " << aguas[i].nombre << " S/. " << aguas[i].precio << endl;
+    	texto = " ";
+    	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+        cout << "      " << aguas[i].nombre << "_______________________________" << " S/. " << aguas[i].precio << endl;
     }
+    cout << endl << endl;
 }
 
 //FUNCION PARA EDITAR CARTA
 void editarCarta() {
     int  item;
+    char c;
+    string texto;
+    float porcentajePantalla=35;
 	char categoria;
-    do {
-    	
-    cout << "\n// EDITAR CARTA //" << endl;
-    cout << "Seleccione la categoria para editar:" << endl;
-    cout << "A. Hamburguesas" << endl;
-    cout << "B. Pizzas" << endl;
-    cout << "C. Conos" << endl;
-    cout << "D. Gaseosas" << endl;
-    cout << "E. Aguas" << endl;
-    cout << "F. Volver al menu anterior" << endl;
-    cin >> categoria;
-    
-    switch (categoria) {
-        case 'A':
-            cout << "Seleccione el producto a editar:" << endl;
-            for (int i = 0; i < numHamburguesas; i++) {
-                cout << i + 1 << ". " << hamburguesas[i].nombre << " S/. " << hamburguesas[i].precio << endl;
-            }
-            cin >> item;
-            item -= 1;
-            if (item >= 0 && item < numHamburguesas) {
-                cin.ignore(); // Ignorar el primer valor
-                cout << "Nuevo nombre: ";
-                getline(cin, hamburguesas[item].nombre);
-                cout << "Nuevo precio: ";
-                cin >> hamburguesas[item].precio;
-                cout << "Producto editado satisfactoriamente" << endl;
-            } else {
-                cout << "Producto no valido." << endl;
-            }
-            break;
-        case 'B':
-            cout << "Seleccione el producto a editar:" << endl;
-            for (int i = 0; i < numPizzas; i++) {
-                cout << i + 1 << ". " << pizzas[i].nombre << " S/. " << pizzas[i].precio << endl;
-            }
-            cin >> item;
-            item -= 1;
-            if (item >= 0 && item < numPizzas) {
-                cin.ignore();
-                cout << "Nuevo nombre: ";
-                getline(cin, pizzas[item].nombre);
-                cout << "Nuevo precio: ";
-                cin >> pizzas[item].precio;
-                cout << "Producto editado satisfactoriamente" << endl;
-            } else {
-                cout << "Producto no valido." << endl;
-            }
-            break;
-        case 'C':
-            cout << "Seleccione el producto a editar:" << endl;
-            for (int i = 0; i < numConos; i++) {
-                cout << i + 1 << ". " << conos[i].nombre << " S/. " << conos[i].precio << endl;
-            }
-            cin >> item;
-            item -= 1;
-            if (item >= 0 && item < numConos) {
-                cin.ignore();
-                cout << "Nuevo nombre: ";
-                getline(cin, conos[item].nombre);
-                cout << "Nuevo precio: ";
-                cin >> conos[item].precio;
-                cout << "Producto editado satisfactoriamente" << endl;
-            } else {
-                cout << "Producto no valido." << endl;
-            }
-            break;
-        case 'D':
-            cout << "Seleccione el producto a editar:" << endl;
-            for (int i = 0; i < numGaseosas; i++) {
-                cout << i + 1 << ". " << gaseosas[i].nombre << " S/. " << gaseosas[i].precio << endl;
-            }
-            cin >> item;
-            item -= 1;
-            if (item >= 0 && item < numGaseosas) {
-                cin.ignore();
-                cout << "Nuevo nombre: ";
-                getline(cin, gaseosas[item].nombre);
-                cout << "Nuevo precio: ";
-                cin >> gaseosas[item].precio;
-                cout << "Producto editado satisfactoriamente" << endl;
-            } else {
-                cout << "Producto no valido." << endl;
-            }
-            break;
-        case 'E':
-            cout << "Seleccione el producto a editar:" << endl;
-            for (int i = 0; i < numAguas; i++) {
-                cout << i + 1 << ". " << aguas[i].nombre << " S/. " << aguas[i].precio << endl;
-            }
-            cin >> item;
-            item -= 1;
-            if (item >= 0 && item < numAguas) {
-                cin.ignore();
-                cout << "Nuevo nombre: ";
-                getline(cin, aguas[item].nombre);
-                cout << "Nuevo precio: ";
-                cin >> aguas[item].precio;
-                cout << "Producto editado satisfactoriamente" << endl;
-            } else {
-                cout << "Producto no valido." << endl;
-            }
-            break;
-        case 'F':
-        	cout << "Regresando al menu anterior" << endl;
-        	break;
-        default:
-            cout << "Categoria no encontrada." << endl;
-            break;
-    } 
-
 	
-    }while (categoria != 'F');
+    do {
+    	cout << endl << endl;
+		c='*';
+		color(hConsole, 14);
+		texto = "EDITAR CARTA";
+		enlinearYEnjaular(texto, c); 
+		color(hConsole, 7);
+		cout << endl << endl << endl;
+		
+		c='=';
+		texto = "Seleccione la categoria para editar:";
+		centrarYSubrayar(texto, c); cout << endl << endl << endl;
+		
+		c='*';
+		int anchoJaula=50;
+		int salto=1;
+		linea(anchoJaula, c, salto); cout << endl;
+		texto = "a) Hamburguesas";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "b) Pizzas.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "c) Conos.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "d) Gaseosas.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "e) Aguas.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "f) Volver al menu anterior.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		linea(anchoJaula, c, 0); cout << endl;
+		texto = "-----";
+		centrar(texto); cout << endl;
+		centrarCin(1);
+		cin >> categoria;
+		
+	    cout << endl << endl;
+	    switch (categoria) {
+	        case 'a':
+	        	texto = "Seleccione el producto a editar:";
+	    centrar(texto); cout << endl << endl << endl;
+	            for (int i = 0; i < numHamburguesas; i++) {
+	            	texto = " ";
+	            	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	                cout << i + 1 << ". " << hamburguesas[i].nombre << " S/. " << hamburguesas[i].precio << endl;
+	            }
+	            texto = "-----";
+				centrar(texto); cout << endl;
+				centrarCin(1);
+				cin >> item;
+				cout << endl << endl << endl;
+	            item -= 1;
+	            if (item >= 0 && item < numHamburguesas) {
+	                cin.ignore(); // Ignorar el primer valor
+	                texto =  "| Nuevo nombre: ";
+	                imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	                getline(cin, hamburguesas[item].nombre); cout << endl;
+	                texto =  "| Nuevo precio: ";
+	                imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	                cin >> hamburguesas[item].precio;
+	                cout << endl << endl << endl;
+	                color(hConsole, 10);
+					texto = "PRODUCTO EDITADO SATISFACTORIAMENTE";
+					enlinear(texto, c);
+	            } else {
+	                color(hConsole, 4);
+	                texto = "NO VALIDO. NO ES POSIBLE EDITAR EL PRODUCTO";
+					enlinear(texto, c);
+	            }
+	            break;
+			case 'b':
+				texto = "Seleccione el producto a editar:";
+	    centrar(texto); cout << endl << endl << endl;
+	            for (int i = 0; i < numPizzas; i++) {
+	            	texto = " ";
+	            	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	                cout << i + 1 << ". " << pizzas[i].nombre << " S/. " << pizzas[i].precio << endl;
+	            }
+	            texto = "-----";
+				centrar(texto); cout << endl;
+				centrarCin(1);
+				cin >> item;
+				cout << endl << endl << endl;
+	            item -= 1;
+	            if (item >= 0 && item < numPizzas) {
+	                cin.ignore(); // Ignorar el primer valor
+	                texto =  "| Nuevo nombre: ";
+	                imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	                getline(cin, pizzas[item].nombre); cout << endl;
+	                texto =  "| Nuevo precio: ";
+	                imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	                cin >> pizzas[item].precio;
+	                cout << endl << endl << endl;
+	                color(hConsole, 10);
+					texto = "PRODUCTO EDITADO SATISFACTORIAMENTE";
+					enlinear(texto, c);
+	            } else {
+	            	color(hConsole, 4);
+	                texto = "PRODUCTO NO VALIDO";
+					enlinear(texto, c);
+	            }
+	            break;
+	        case 'c':
+	        	texto = "Seleccione el producto a editar:";
+	    centrar(texto); cout << endl << endl << endl;
+	            for (int i = 0; i < numConos; i++) {
+	            	texto = " ";
+	            	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	                cout << i + 1 << ". " << conos[i].nombre << " S/. " << conos[i].precio << endl;
+	            }
+	            texto = "-----";
+				centrar(texto); cout << endl;
+				centrarCin(1);
+				cin >> item;
+				cout << endl << endl << endl;
+	            item -= 1;
+	            if (item >= 0 && item < numConos) {
+	                cin.ignore(); // Ignorar el primer valor
+	                texto =  "| Nuevo nombre: ";
+	                imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	                getline(cin, conos[item].nombre); cout << endl;
+	                texto =  "| Nuevo precio: ";
+	                imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	                cin >> conos[item].precio;
+	                cout << endl << endl << endl;
+	                color(hConsole, 10);
+					texto = "PRODUCTO EDITADO SATISFACTORIAMENTE";
+					enlinear(texto, c);
+	            } else {
+	            	color(hConsole, 4);
+	                texto = "PRODUCTO NO VALIDO";
+					enlinear(texto, c);
+	            }
+	            break;
+	        case 'd':
+	        	texto = "Seleccione el producto a editar:";
+	    centrar(texto); cout << endl << endl << endl;
+	            for (int i = 0; i < numGaseosas; i++) {
+	            	texto = " ";
+	            	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	                cout << i + 1 << ". " << gaseosas[i].nombre << " S/. " << gaseosas[i].precio << endl;
+	            }
+	            texto = "-----";
+				centrar(texto); cout << endl;
+				centrarCin(1);
+				cin >> item;
+				cout << endl << endl << endl;
+	            item -= 1;
+	            if (item >= 0 && item < numGaseosas) {
+	                cin.ignore(); // Ignorar el primer valor
+	                texto =  "| Nuevo nombre: ";
+	                imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	                getline(cin, gaseosas[item].nombre); cout << endl;
+	                texto =  "| Nuevo precio: ";
+	                imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	                cin >> gaseosas[item].precio;
+	                cout << endl << endl << endl;
+	                color(hConsole, 10);
+					texto = "PRODUCTO EDITADO SATISFACTORIAMENTE";
+					enlinear(texto, c);
+	            } else {
+	            	color(hConsole, 4);
+	                texto = "PRODUCTO NO VALIDO";
+					enlinear(texto, c);
+	            }
+	            break;
+	        case 'e':
+	        	texto = "Seleccione el producto a editar:";
+	    centrar(texto); cout << endl << endl << endl;
+	            for (int i = 0; i < numAguas; i++) {
+	            	texto = " ";
+	            	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	                cout << i + 1 << ". " << aguas[i].nombre << " S/. " << aguas[i].precio << endl;
+	            }
+	            texto = "-----";
+				centrar(texto); cout << endl;
+				centrarCin(1);
+				cin >> item;
+				cout << endl << endl << endl;
+	            item -= 1;
+	            if (item >= 0 && item < numAguas) {
+	                cin.ignore(); // Ignorar el primer valor
+	                texto =  "| Nuevo nombre: ";
+	                imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	                getline(cin, aguas[item].nombre); cout << endl;
+	                texto =  "| Nuevo precio: ";
+	                imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	                cin >> aguas[item].precio;
+	                cout << endl << endl << endl;
+	                color(hConsole, 10);
+					texto = "PRODUCTO EDITADO SATISFACTORIAMENTE";
+					enlinear(texto, c);
+	            } else {
+	            	color(hConsole, 4);
+	                texto = "PRODUCTO NO VALIDO";
+					enlinear(texto, c);
+	            }
+	            break;
+	    }
+	    cout << endl << endl << endl;
+    }while (categoria != 'f');
+    cout << endl << endl << endl;
+		color(hConsole, 8);
+		texto = "DEJANDO DE EDITAR LA CARTA...";
+		enlinear(texto, c);
+		color(hConsole, 7);
 }
 //FUNCION PARA AGREGAR A LA CARTA
 void agregarCarta() {
     char categoria;
+    string texto;
+    char c;
+    float porcentajePantalla=30;
     Producto nuevoProducto;
+    c='*';
+		color(hConsole, 14);
+		texto = "AGREGAR PRODUCTO A LA CARTA";
+		enlinearYEnjaular(texto, c); 
+		color(hConsole, 7);
+		cout << endl << endl << endl;
     do{
-    cout << "\n// AGREGAR PRODUCTO A LA CARTA //" << endl;
-    cout << "Seleccione la categoria para agregar un nuevo producto:" << endl;
-    cout << "A. Hamburguesas" << endl;
-    cout << "B. Pizzas" << endl;
-    cout << "C. Conos" << endl;
-    cout << "D. Gaseosas" << endl;
-    cout << "E. Aguas" << endl;
-    cout << "F. Volver al menu anterior" << endl;
-    cin >> categoria;
-
-   
-     switch (categoria) {
-     	
-        case 'A':
-        	cout << "Ingrese el nombre del nuevo producto: ";
-		    cin.ignore();
-		    getline(cin, nuevoProducto.nombre);
-		    cout << "Ingrese el precio del nuevo producto: ";
-		    cin >> nuevoProducto.precio;
-            if (numHamburguesas < MAX_ITEMS) {
-                hamburguesas[numHamburguesas] = nuevoProducto;
-                numHamburguesas++;
-            cout << "Producto agregado exitosamente" << endl;
-            } else {
-                cout << "No se puede agregar más hamburguesas." << endl;
-            }
-            break;
-        case 'B':
-        	cout << "Ingrese el nombre del nuevo producto: ";
-		    cin.ignore();
-		    getline(cin, nuevoProducto.nombre);
-		    cout << "Ingrese el precio del nuevo producto: ";
-		    cin >> nuevoProducto.precio;
-            if (numPizzas < MAX_ITEMS) {
-                pizzas[numPizzas] = nuevoProducto;
-                numPizzas++;
-            cout << "Producto agregado exitosamente" << endl;
-            } else {
-                cout << "No se puede agregar más pizzas." << endl;
-            }
-            break;
-        case 'C':
-        	cout << "Ingrese el nombre del nuevo producto: ";
-		    cin.ignore();
-		    getline(cin, nuevoProducto.nombre);
-		    cout << "Ingrese el precio del nuevo producto: ";
-		    cin >> nuevoProducto.precio;
-            if (numConos < MAX_ITEMS) {
-                conos[numConos] = nuevoProducto;
-                numConos++;
-            cout << "Producto agregado exitosamente" << endl;
-            } else {
-                cout << "No se puede agregar más conos." << endl;
-            }
-            break;
-        case 'D':
-        	cout << "Ingrese el nombre del nuevo producto: ";
-		    cin.ignore();
-		    getline(cin, nuevoProducto.nombre);
-		    cout << "Ingrese el precio del nuevo producto: ";
-		    cin >> nuevoProducto.precio;
-            if (numGaseosas < MAX_ITEMS) {
-                gaseosas[numGaseosas] = nuevoProducto;
-                numGaseosas++;
-            cout << "Producto agregado exitosamente" << endl;
-            } else {
-                cout << "No se puede agregar más gaseosas." << endl;
-            }
-            break;
-        case 'E':
-        	cout << "Ingrese el nombre del nuevo producto: ";
-		    cin.ignore();
-		    getline(cin, nuevoProducto.nombre);
-		    cout << "Ingrese el precio del nuevo producto: ";
-		    cin >> nuevoProducto.precio;
-            if (numAguas < MAX_ITEMS) {
-                aguas[numAguas] = nuevoProducto;
-                numAguas++;
-            cout << "Producto agregado exitosamente" << endl;
-            } else {
-                cout << "No se puede agregar más aguas." << endl;
-            }
-            break;
-    	case 'F':
-    		categoria = 'F';
-    		break;
-        default:
-            cout << "Valor no valido, asegurese de ingresar una letra de la A hasta la F" << endl;
-            break;
-    }
-    
+    	color(hConsole, 7);
+	    c='=';
+		texto = "Seleccione la categoria para agregar un nuevo producto: ";
+		centrarYSubrayar(texto, c);
+		cout << endl << endl;
+		
+    	c='*';
+		int anchoJaula=50;
+		int salto=1;
+		linea(anchoJaula, c, salto); cout << endl;
+		texto = "A) Hamburguesas.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "B) Pizzas.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "C) Conos.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "D) Gaseosas.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "E) Aguas.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "F) Volver al menu anterior.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		linea(anchoJaula, c, 0); cout << endl;
+		texto = "-----";
+		centrar(texto); cout << endl;
+		centrarCin(1);
+		cin >> categoria;
+		cout << endl << endl;
+	   
+	     switch (categoria) {
+	     	
+	        case 'A':	
+	        	texto =  "Ingrese el nombre del nuevo producto: ";
+	        	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	        	cin.ignore();
+			    getline(cin, nuevoProducto.nombre); cout << endl;
+			    
+			    texto =  "Ingrese el precio del nuevo producto: ";
+			    imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+			    cin >> nuevoProducto.precio;
+			    
+			    cout << endl << endl << endl;
+	            if (numHamburguesas < MAX_ITEMS) {
+	                hamburguesas[numHamburguesas] = nuevoProducto;
+	                numHamburguesas++;
+	            
+	            cout << endl;
+	            c='*';
+	            color(hConsole, 10);
+				texto = "PRODUCTO AGREGADO EXITOSAMENTE";
+				enlinear(texto, c);
+	            } else {
+	                c='*';
+	            	(hConsole, 4);
+				texto = "NO SE PUEDE AGREGAR MAS";
+				enlinear(texto, c);
+	            }
+	            cout << endl << endl << endl;
+	            break;
+	        case 'B':	
+	        	texto =  "Ingrese el nombre del nuevo producto: ";
+	        	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	        	cin.ignore();
+			    getline(cin, nuevoProducto.nombre); cout << endl;
+			    
+			    texto =  "Ingrese el precio del nuevo producto: ";
+			    imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+			    cin >> nuevoProducto.precio;
+			    
+			    cout << endl << endl << endl;
+	            if (numPizzas < MAX_ITEMS) {
+	                pizzas[numPizzas] = nuevoProducto;
+	                numPizzas++;
+	            
+	            cout << endl;
+	            c='*';
+	            color(hConsole, 10);
+				texto = "PRODUCTO AGREGADO EXITOSAMENTE";
+				enlinear(texto, c);
+	            } else {
+	                c='*';
+	            	(hConsole, 4);
+				texto = "NO SE PUEDE AGREGAR MAS";
+				enlinear(texto, c);
+	            }
+	            cout << endl << endl << endl;
+	            break;
+	        case 'C':	
+	        	texto =  "Ingrese el nombre del nuevo producto: ";
+	        	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	        	cin.ignore();
+			    getline(cin, nuevoProducto.nombre); cout << endl;
+			    
+			    texto =  "Ingrese el precio del nuevo producto: ";
+			    imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+			    cin >> nuevoProducto.precio;
+			    
+			    cout << endl << endl << endl;
+	            if (numConos < MAX_ITEMS) {
+	                conos[numConos] = nuevoProducto;
+	                numConos++;
+	            
+	            cout << endl;
+	            c='*';
+	            color(hConsole, 10);
+				texto = "PRODUCTO AGREGADO EXITOSAMENTE";
+				enlinear(texto, c);
+	            } else {
+	                c='*';
+	            	(hConsole, 4);
+				texto = "NO SE PUEDE AGREGAR MAS";
+				enlinear(texto, c);
+	            }
+	            cout << endl << endl << endl;
+	            break;
+	        case 'D':	
+	        	texto =  "Ingrese el nombre del nuevo producto: ";
+	        	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	        	cin.ignore();
+			    getline(cin, nuevoProducto.nombre); cout << endl;
+			    
+			    texto =  "Ingrese el precio del nuevo producto: ";
+			    imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+			    cin >> nuevoProducto.precio;
+			    
+			    cout << endl << endl << endl;
+	            if (numGaseosas < MAX_ITEMS) {
+	                gaseosas[numGaseosas] = nuevoProducto;
+	                numGaseosas++;
+	            
+	            cout << endl;
+	            c='*';
+	            color(hConsole, 10);
+				texto = "PRODUCTO AGREGADO EXITOSAMENTE";
+				enlinear(texto, c);
+	            } else {
+	                c='*';
+	            	(hConsole, 4);
+				texto = "NO SE PUEDE AGREGAR MAS";
+				enlinear(texto, c);
+	            }
+	            cout << endl << endl << endl;
+	            break;
+	        case 'E':	
+	        	texto =  "Ingrese el nombre del nuevo producto: ";
+	        	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	        	cin.ignore();
+			    getline(cin, nuevoProducto.nombre); cout << endl;
+			    
+			    texto =  "Ingrese el precio del nuevo producto: ";
+			    imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+			    cin >> nuevoProducto.precio;
+			    
+			    cout << endl << endl << endl;
+	            if (numAguas < MAX_ITEMS) {
+	                aguas[numAguas] = nuevoProducto;
+	                numAguas++;
+	            
+	            cout << endl;
+	            c='*';
+	            color(hConsole, 10);
+				texto = "PRODUCTO AGREGADO EXITOSAMENTE";
+				enlinear(texto, c);
+	            } else {
+	                c='*';
+	            	(hConsole, 4);
+				texto = "NO SE PUEDE AGREGAR MAS";
+				enlinear(texto, c);
+	            }
+	            cout << endl << endl << endl;
+	            break;
+	    	case 'F':
+	    		break;
+	        default:
+	           cout << endl;
+				color(hConsole, 4);
+				texto = "Opcion no valida. Intente de nuevo";	
+				centrar(texto);
+	            break;
+	    }
+	    cout << endl << endl << endl;
 	}while (categoria !='F');
-	cout << "Volviendo al menu anterior.." << endl;
+	color(hConsole, 8);
+		texto = "VOLVIENDO AL MENU ANTERIOR...";
+		enlinear(texto, c);
+		color(hConsole, 7);
 }
 //FUNCION ORDENAR CARTA
 void ordenarCarta() {
    char categoria;
+   char c;
    do {
    	
-  
-    cout << "\n// ORDENAR CARTA //" << endl;
-    cout << "Seleccione la categoría para ordenar por precio decendente:" << endl;
-    cout << "A. Hamburguesas" << endl;
-    cout << "B. Pizzas" << endl;
-    cout << "C. Conos" << endl;
-    cout << "D. Gaseosas" << endl;
-    cout << "E. Aguas" << endl;
-    cout << "F. Volver al menu anterior" << endl;
+   	c='*';
+   	separador(c);
+    cout << "\t\t\t\t\t\t\t\t\t\t\tORDENAR CARTA"<< endl;
+    separador(c); cout << endl << endl;
+    cout << "\t\t\t\t\t\t\t\tSeleccione la categoría para ordenar por precio decendente:" << endl << endl;
+    cout << "\t\t\t\t\t\t\t\t\tA. Hamburguesas" << endl;
+    cout << "\t\t\t\t\t\t\t\t\tB. Pizzas" << endl;
+    cout << "\t\t\t\t\t\t\t\t\tC. Conos" << endl;
+    cout << "\t\t\t\t\t\t\t\t\tD. Gaseosas" << endl;
+    cout << "\t\t\t\t\t\t\t\t\tE. Aguas" << endl;
+    cout << "\t\t\t\t\t\t\t\t\tF. Volver al menu anterior" << endl << endl;
+    cout << "\t\t\t\t\t\t\t\t\t\t";
     cin >> categoria;
-
+    
+	cout <<endl << endl;
     switch (categoria) {
         case 'A':
             for (int i = 0; i < numHamburguesas - 1; i++) {
@@ -304,7 +540,7 @@ void ordenarCarta() {
                     }
                 }
             }
-            cout << "Hamburguesas ordenadas satisfactoriamente" << endl;
+            cout << "\t\t\t\t\t\t\t\t\Hamburguesas ordenadas satisfactoriamente" << endl;
             break;
         case 'B':
             for (int i = 0; i < numPizzas - 1; i++) {
@@ -314,7 +550,7 @@ void ordenarCarta() {
                     }
                 }
             }
-            cout << "Pizzas ordenadas satisfactoriamente" << endl;
+            cout << "\t\t\t\t\t\t\t\tPizzas ordenadas satisfactoriamente" << endl;
             break;
         case 'C':
             for (int i = 0; i < numConos - 1; i++) {
@@ -324,7 +560,7 @@ void ordenarCarta() {
                     }
                 }
             }
-            cout << "Conos ordenados satisfactoriamente" << endl;
+            cout << "\t\t\t\t\t\t\t\tConos ordenados satisfactoriamente" << endl;
             break;
         case 'D':
             for (int i = 0; i < numGaseosas - 1; i++) {
@@ -334,7 +570,7 @@ void ordenarCarta() {
                     }
                 }
             }
-            cout << "Gaseosas ordenadas satisfactoriamente" << endl;
+            cout << "\t\t\t\t\t\t\t\tGaseosas ordenadas satisfactoriamente" << endl;
             break;
         case 'E':
             for (int i = 0; i < numAguas - 1; i++) {
@@ -344,13 +580,13 @@ void ordenarCarta() {
                     }
                 }
             }
-            cout << "Aguas ordenadas satisfactoriamente" << endl;
+            cout << "\t\t\t\t\t\t\t\tAguas ordenadas satisfactoriamente" << endl;
             break;
         case 'F':
-        	cout << "Volviendo al menu anterior" << endl;
+        	cout << "\t\t\t\t\t\t\t\tVolviendo al menu anterior" << endl;
         	break;
         default:
-            cout << "Categoría no encontrada o ingreso un valor en minuscula, asegurese que su valor ingresado sea en mayuscula" << endl;
+            cout << "\t\t\t\tCategoría no encontrada o ingreso un valor en minuscula, asegurese que su valor ingresado sea en mayuscula" << endl;
             break;
     }
     } while (categoria =! 'F');
@@ -358,112 +594,121 @@ void ordenarCarta() {
 //FUNCION PARA ELIMINAR PRODUCTOS DE LA CARTA
 void eliminarCarta() {
     int item;
+    char c;
     char categoria;
     do {
-    cout << "\n// ELIMINAR PRODUCTO //" << endl;
-    cout << "Seleccione la categoría del producto a eliminar:" << endl;
-    cout << "A. Hamburguesas" << endl;
-    cout << "B. Pizzas" << endl;
-    cout << "C. Conos" << endl;
-    cout << "D. Gaseosas" << endl;
-    cout << "E. Aguas" << endl;
-    cout << "F. Volver al menu anterior" << endl;
-    cin >> categoria;
-
+    c='*';
+   	separador(c);
+    cout << "\t\t\t\t\t\t\t\t\t\tELIMINAR PRODUCTO" << endl;
+    separador(c); cout << endl << endl;
+    cout << "\t\t\t\t\t\t\t\tSeleccione la categoría del producto a eliminar:" << endl;
+    cout << "\t\t\t\t\t\t\t\t\tA. Hamburguesas" << endl;
+    cout << "\t\t\t\t\t\t\t\t\tB. Pizzas" << endl;
+    cout << "\t\t\t\t\t\t\t\t\tC. Conos" << endl;
+    cout << "\t\t\t\t\t\t\t\t\tD. Gaseosas" << endl;
+    cout << "\t\t\t\t\t\t\t\t\tE. Aguas" << endl;
+    cout << "\t\t\t\t\t\t\t\t\tF. Volver al menu anterior" << endl << endl;
+    cout << "\t\t\t\t\t\t\t\t\t\t" << endl << endl;
+	cin >> categoria;
+	cout << endl << endl;
     switch (categoria) {
         case 'A':
-            cout << "Seleccione el producto a eliminar:" << endl;
+            cout << "\t\t\t\t\t\t\t\t\tSeleccione el producto a eliminar:" << endl << endl << endl;
             for (int i = 0; i < numHamburguesas; i++) {
-                cout << i + 1 << ". " << hamburguesas[i].nombre << " S/. " << hamburguesas[i].precio << endl;
+                cout << "\t\t\t\t\t\t\t\t"<< i + 1 << ". " << hamburguesas[i].nombre << " S/. " << hamburguesas[i].precio << endl;
             }
-            cin >> item;
+            cout << "\t\t\t\t\t\t\t\t\t\t" << endl << endl;
+			cin >> item;
             item -= 1;
             if (item >= 0 && item < numHamburguesas) {
                 for (int i = item; i < numHamburguesas - 1; i++) {
                     hamburguesas[i] = hamburguesas[i + 1];
                 }
                 numHamburguesas--;
-                cout << "Producto eliminado satisfactoriamente" << endl;
+                cout << "\t\t\t\t\t\t\t\tProducto eliminado satisfactoriamente" << endl;
             } else {
-                cout << "Producto no valido." << endl;
+                cout << "\t\t\t\t\t\t\t\tProducto no valido." << endl;
             }
             break;
         case 'B':
-            cout << "Seleccione el producto a eliminar:" << endl;
+            cout << "\t\t\t\t\t\t\t\tSeleccione el producto a eliminar:" << endl;
             for (int i = 0; i < numPizzas; i++) {
-                cout << i + 1 << ". " << pizzas[i].nombre << " S/. " << pizzas[i].precio << endl;
+                cout <<"\t\t\t\t\t\t\t\t" << cout << i + 1 << ". " << pizzas[i].nombre << " S/. " << pizzas[i].precio << endl;
             }
-            cin >> item;
+            cout << "\t\t\t\t\t\t\t\t\t\t" << endl << endl;
+			cin >> item;
             item -= 1;
             if (item >= 0 && item < numPizzas) {
                 for (int i = item; i < numPizzas - 1; i++) {
                     pizzas[i] = pizzas[i + 1];
                 }
                 numPizzas--;
-                cout << "Producto eliminado satisfactoriamente" << endl;
+                cout << "\t\t\t\t\t\t\t\tProducto eliminado satisfactoriamente" << endl;
             } else {
-                cout << "Producto no valido." << endl;
+                cout << "\t\t\t\t\t\t\t\tProducto no valido." << endl;
             }
             break;
         case 'C':
-            cout << "Seleccione el producto a eliminar:" << endl;
+        	cout << "\t\t\t\t\t\t\t\t\tSeleccione el producto a eliminar:" << endl << endl << endl;
             for (int i = 0; i < numConos; i++) {
                 cout << i + 1 << ". " << conos[i].nombre << " S/. " << conos[i].precio << endl;
             }
-            cin >> item;
+            cout << "\t\t\t\t\t\t\t\t\t\t" << endl << endl;
+			cin >> item;
             item -= 1;
             if (item >= 0 && item < numConos) {
                 for (int i = item; i < numConos - 1; i++) {
                     conos[i] = conos[i + 1];
                 }
                 numConos--;
-                cout << "Producto eliminado satisfactoriamente" << endl;
+                cout << "\t\t\t\t\t\t\t\tProducto eliminado satisfactoriamente" << endl;
             } else {
-                cout << "Producto no valido." << endl;
+                cout << "\t\t\t\t\t\t\t\tProducto no valido." << endl;
             }
             break;
         case 'D':
-            cout << "Seleccione el producto a eliminar:" << endl;
+            cout << "\t\t\t\t\t\t\t\t\tSeleccione el producto a eliminar:" << endl << endl << endl;
             for (int i = 0; i < numGaseosas; i++) {
                 cout << i + 1 << ". " << gaseosas[i].nombre << " S/. " << gaseosas[i].precio << endl;
             }
-            cin >> item;
+            cout << "\t\t\t\t\t\t\t\t\t\t" << endl << endl;
+			cin >> item;
             item -= 1;
             if (item >= 0 && item < numGaseosas) {
                 for (int i = item; i < numGaseosas - 1; i++) {
                     gaseosas[i] = gaseosas[i + 1];
                 }
                 numGaseosas--;
-                cout << "Producto eliminado satisfactoriamente" << endl;
+                cout << "\t\t\t\t\t\t\t\tProducto eliminado satisfactoriamente" << endl;
             } else {
-                cout << "Producto no valido." << endl;
+                cout << "\t\t\t\t\t\t\t\tProducto no valido." << endl;
             }
             break;
         case 'E':
-            cout << "Seleccione el producto a eliminar:" << endl;
+            cout << "\t\t\t\t\t\t\t\t\tSeleccione el producto a eliminar:" << endl << endl << endl;
             for (int i = 0; i < numAguas; i++) {
                 cout << i + 1 << ". " << aguas[i].nombre << " S/. " << aguas[i].precio << endl;
             }
-            cin >> item;
+            cout << "\t\t\t\t\t\t\t\t\t\t" << endl << endl;
+			cin >> item;
             item -= 1;
             if (item >= 0 && item < numAguas) {
                 for (int i = item; i < numAguas - 1; i++) {
                     aguas[i] = aguas[i + 1];
                 }
                 numAguas--;
-                cout << "Producto eliminado satisfactoriamente" << endl;
+                cout << "\t\t\t\t\t\t\t\tProducto eliminado satisfactoriamente" << endl;
             } else {
-                cout << "Producto no valido." << endl;
+                cout << "\t\t\t\t\t\t\t\tProducto no valido." << endl;
             }
             break;
         case 'F':
-        	cout << "Regresando al menu anterior" << endl;
+        	cout << "\t\t\t\t\t\t\t\tRegresando al menu anterior" << endl;
         	break;
         default:
-            cout << "Categoría no encontrada, Ingrese una categoria del 1 al 6" << endl;
+            cout << "\t\t\t\t\t\t\t\tCategoría no encontrada, Ingrese una categoria del 1 al 6" << endl;
             break;
     }
     } while (categoria!=6);
 }
 //USAR EN FUNCIONESFINANZAS.CPP
-

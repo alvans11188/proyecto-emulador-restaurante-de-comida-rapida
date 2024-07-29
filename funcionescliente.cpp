@@ -1,65 +1,146 @@
 #include <iostream>
+#include <string>
 #include "funcionescliente.h"
+#include "FUNCIONESDISENO.h"
 using namespace std;
 
+char c;
+string texto;
+float porcentajePantalla;
 //FUNCION PARA AGREGAR CLIENTES
 void agregarCliente(Cliente clientes[50], int &cantidadActualClientes) {
+	color(hConsole, 3);
 	cantidadActualClientes++;
-	cout << "// AGREGAR CLIENTE //" << endl;
-	cout << "Nombre del cliente: ";
-	cin.ignore(); //LIMPIAR EL BUFFER POR EL SALTO DE LINEA
-	getline(cin, clientes[cantidadActualClientes].nombre);
-	cout << "Numero del cliente: ";
-	cin >> clientes[cantidadActualClientes].telefono;
+	c='*';
+	texto = "AGREGUE UN CLIENTE";
+	enlinearYEnjaular(texto, c); cout << endl << endl << endl;
+
+	color(hConsole, 12);
+	c='=';
+	texto = "DATOS DEL CLIENTE";
+	centrarYSubrayar(texto, c); cout << endl << endl;
+	color(hConsole, 7);
 	
-	cout << "// Direccion del cliente // " << endl;
-	cout << "Distrito: ";
-	cin.ignore(); //LIMPIAR EL BUFFER POR EL SALTO DE LINEA
+	porcentajePantalla = 30;
+	texto = "|	Nombre del cliente: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin.ignore();
+	getline(cin, clientes[cantidadActualClientes].nombre);
+	texto = "|	Numero del cliente: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin >> clientes[cantidadActualClientes].telefono;
+	cout << endl << endl << endl;
+	
+	color(hConsole, 12);
+	c='=';
+	texto = "DIRECCION DEL CLIENTE";
+	centrarYSubrayar(texto, c); cout << endl << endl;
+	color(hConsole, 7);
+	
+	texto = "|	Distrito: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin.ignore();
 	getline(cin, clientes[cantidadActualClientes].direccionCliente.distrito);
-	cout << "Calle: ";
+	texto = "|	Calle: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin.ignore();
 	getline(cin, clientes[cantidadActualClientes].direccionCliente.calle);
-	cout << "Manzana: ";
+	texto = "|	Manzana: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin.ignore();
 	getline(cin, clientes[cantidadActualClientes].direccionCliente.manzana);
-	cout << "Lote: ";
+	texto = "|	Lote: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin.ignore();
 	getline(cin, clientes[cantidadActualClientes].direccionCliente.lote);
-	cout << "// USUARIO AGREGADO CORRECTAMENTE //" << endl << endl;
+	
+	cout << endl << endl << endl << endl;
+	
+	c='-';
+	color(hConsole, 10);
+	texto = "CLIENTE AGREGADO CORRECTAMENTE";
+	enlinear(texto, c);
 }
 
 //FUNCION PARA EDITAR DATOS DEL CLIENTES
 void editarDatosCliente(Cliente clientes[50], int &cantidadActualClientes) {
 	int clienteEditar; //POSICION DE MEMORIA QUE LUEGO SERA EL CLIENTE QUE SE VA A EDITAR
-	cout << "// EDITAR CLIENTE //" << endl;
+	
+	color(hConsole, 3);
+	cantidadActualClientes++;
+	c='*';
+	texto = "EDITE UN CLIENTE";
+	enlinearYEnjaular(texto, c); 
+	color(hConsole, 7);
+	cout << endl << endl << endl;	
 	
 	do { //DO WHILE PARA REPETIR EN TAL CASO EL USUARIO INGRESE NUMEROS QUE NO ESTEN ENTRE 1 Y 20
-		cout << "Ingrese la posicion del usuario que desea editar (1 - " << cantidadActualClientes + 1 << "): ";
+		texto = "Ingrese la posicion del usuario que desea editar (1-";
+		centrar(texto); cout << cantidadActualClientes + 1 << ")";
+		cout << endl;
+		texto = "----";
+		centrar(texto); cout << endl;
+		centrarCin(1);
 		cin >> clienteEditar;
+		
+		cout << endl << endl;
 		if ( clienteEditar >= 1 && clienteEditar <= cantidadActualClientes + 1 ) {
-			cout << "// POSICION VALIDA //" << endl << endl;
+			texto = "POSICION ENCONTRADA";
+			color(hConsole, 8);
+			centrar(texto); cout << endl << endl;
 		} else {
-			cout << "// ERROR: VALOR INCORRECTO //" << endl;
+			texto = "ERROR: POSICION NO ENCONTRADA";
+			color(hConsole, 8);
+			centrar(texto); cout << endl << endl;
 		}
 	} while ( clienteEditar < 1 || clienteEditar > cantidadActualClientes + 1);
-	
+	cout << endl;
 	clienteEditar--; //SE REDUCE EN 1 PARA QUE SEA LA POSICION CORRECTA, YA QUE SE CUENTA LA POSICION 0
 	
-	cout << "// DATOS DEL CLIENTE A EDITAR //" << endl;
-	cout << "Nombre del cliente: ";
-	cin.ignore(); //LIMPIAR EL BUFFER POR EL SALTO DE LINEA
-	getline(cin, clientes[clienteEditar].nombre);
-	cout << "Numero del cliente: ";
-	cin >> clientes[clienteEditar].telefono;
+	color(hConsole, 12);
+	c='=';
+	texto = "DATOS DEL CLIENTE A EDITAR";
+	centrarYSubrayar(texto, c); cout << endl << endl;
+	color(hConsole, 7);
 	
-	cout << "// Direccion del cliente // " << endl;
-	cout << "Distrito: ";
-	cin.ignore(); //LIMPIAR EL BUFFER POR EL SALTO DE LINEA
+	porcentajePantalla = 30;
+	texto = "|	Nombre del cliente: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin.ignore();
+	getline(cin, clientes[clienteEditar].nombre);
+	texto = "|	Numero del cliente: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin >> clientes[clienteEditar].telefono;
+	cout << endl << endl << endl;
+	
+	color(hConsole, 12);
+	c='=';
+	texto = "DIRECCION DEL CLIENTE";
+	centrarYSubrayar(texto, c); cout << endl << endl;
+	color(hConsole, 7);
+	
+	texto = "|	Distrito: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin.ignore();
 	getline(cin, clientes[clienteEditar].direccionCliente.distrito);
-	cout << "Calle: ";
+	texto = "|	Calle: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin.ignore();
 	getline(cin, clientes[clienteEditar].direccionCliente.calle);
-	cout << "Manzana: ";
+	texto = "|	Manzana: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin.ignore();
 	getline(cin, clientes[clienteEditar].direccionCliente.manzana);
-	cout << "Lote: ";
+	texto = "|	Lote: ";
+	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
+	cin.ignore();
 	getline(cin, clientes[clienteEditar].direccionCliente.lote);
-	cout << "// USUARIO AGREGADO CORRECTAMENTE //" << endl << endl;
+	cout << endl << endl << endl << endl;
+	
+	c='-';
+	color(hConsole, 10);
+	texto = "CLIENTE EDITADO CORRECTAMENTE";
+	enlinear(texto, c);
 }
 
 //FUNCION PARA ORDENAR LOS CLIENTES ALFABETICAMENTE
@@ -98,18 +179,38 @@ void ordenarClientesAlfabeticamente(Cliente clientes[50], int &cantidadActualCli
 	}
 	
 	//BUCLE PARA MOSTRAR LOS CLIENTES ORDENADOS Y SUS DATOS
-	cout << "// CLIENTES ORDENADOS ALFABETICAMENTE //" << endl;
+	color(hConsole, 3);
+	c='*';
+	texto = "CLIENTES ORDENADOS ALFABETICAMENTE";
+	enlinearYEnjaular(texto, c); 
+	cout << endl << endl << endl;
+	color(hConsole, 7);
 	
+	c='-';
+	porcentajePantalla = 30;
 	for ( int i = 0; i <= cantidadActualClientes; i++ ) {
-		cout << "Cliente Nro " << i + 1 << ":" << endl;
-		cout << "Nombre: " << clientes[i].nombre << endl;
-		cout << "Telefono: " << clientes[i].telefono << endl;
+		color(hConsole, 12);
+		texto = "CLIENTE ";
+		centrar(texto);cout << i+1 << endl;
+		linea(10, c, 0); cout << endl << endl;
+		color(hConsole, 7);
 		
-		cout << "// DIRECCION DEL CLIENTE // " << endl;
-		cout << "Distrito: " << clientes[i].direccionCliente.distrito << endl;
-		cout << "Calle: " << clientes[i].direccionCliente.calle << endl;
-		cout << "Manzana: " << clientes[i].direccionCliente.manzana << endl;
-		cout << "Lote: " << clientes[i].direccionCliente.lote << endl << endl;
+		texto = "|	Nombre: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << clientes[i].nombre << endl;
+		texto = "|	Telefono: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << clientes[i].telefono << endl << endl;
+		
+		texto = "Direccion del cliente:";
+		centrar(texto); cout << endl << endl;
+		
+		texto = "|	Distrito: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << clientes[i].direccionCliente.distrito << endl;
+		texto = "|	Calle: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << clientes[i].direccionCliente.distrito << endl;
+		texto = "|	Manzana: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << clientes[i].direccionCliente.manzana << endl;
+		texto = "|	Lote: ";
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << clientes[i].direccionCliente.lote << endl << endl << endl << endl;
 	}
 }
 
@@ -117,10 +218,25 @@ void ordenarClientesAlfabeticamente(Cliente clientes[50], int &cantidadActualCli
 void eliminarClientes(Cliente clientes[50], int &cantidadActualClientes) {
 	//POSICION QUE EL USUARIO VA A ELIMINAR
 	int posicionEliminar;
-	cout << "// ELIMINAR CLIENTE //" << endl;
-	cout << "Eliga que cliente desea eliminar (1 - " << cantidadActualClientes + 1 << "): "; //SE SUMA MÁS UNO PORQUE EL 0 CUENTA COMO UNA POSICIÓN DE UN CLIENTE
-	cin >> posicionEliminar;
 	
+	c='*';
+	color(hConsole, 3);
+	texto = "ELIMINE UN CLIENTE";
+	enlinearYEnjaular(texto, c); 
+	cout << endl << endl << endl;
+	color(hConsole, 7);
+	
+	texto = "Eliga que cliente desea eliminar (1-";
+		centrar(texto); cout << cantidadActualClientes + 1 << ")";//SE SUMA MÁS UNO PORQUE EL 0 CUENTA COMO UNA POSICIÓN DE UN CLIENTE
+		cout << endl;
+		texto = "----";
+		centrar(texto); cout << endl;
+		centrarCin(1);
+		cin >> posicionEliminar;
+		
+		c='-';
+		cout << endl << endl << endl;
+
 	//VERIFICAR QUE LA POSICIÓN ESTÁ DENTRO DEL RANGO
 	if ( posicionEliminar >= 1 && posicionEliminar <= cantidadActualClientes + 1 ) {
 		//BUCLE FOR PARA SUSTITUIR LA POSICION ELIMINADA
@@ -133,8 +249,13 @@ void eliminarClientes(Cliente clientes[50], int &cantidadActualClientes) {
 			clientes[i].direccionCliente.lote = clientes[i + 1].direccionCliente.lote;
 		}
 		cantidadActualClientes--; //SE LE RESTA UNO PORQUE SE ELIMINO UN CLIENTE Y LA CANTIDAD ACTUAL SE REDUCE
-		cout << "// CLIENTE ELIMINADO CORRECTAMENTE // " << endl << endl;
+		
+		color(hConsole, 10);
+		texto = "CLIENTE ELIMINADO CORRECTAMENTE";
+		enlinear(texto, c);
 	} else {
-		cout << "Ingreso un número inválido" << endl << endl;
+		color(hConsole, 4);
+		texto = "CLIENTE NO ENCONTRADO. NO SE PUEDE CONTINUAR.";
+		enlinear(texto, c);
 	}
 }

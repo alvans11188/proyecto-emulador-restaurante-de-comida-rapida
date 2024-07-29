@@ -1,13 +1,18 @@
 #include <iostream>
 #include "menus.h"
 #include "funcionescliente.h"
+
+#include "FUNCIONESDISENO.h"
+#include <locale.h> //libreria para incluir el idioma espa?ol
 using namespace std;
+
 
 //FUNCION DEL MENU CLIENTE
 void menuCliente() {
 	char opcion;
+	char c;
+	string texto;
 	int cantidadActualClientes = 9; //SON 10 PERO AL SER UN ARREGLO EMPIEZA POR "0"
-	
 	//SE AGREGAN 10 CLIENTES PREDEFINIDOS
 	Cliente clientes[50] = {
 		{"Carlos Flores", "827364958", {"Miraflores", "Av. Pardo", "Mz. B", "Lt. 12"}}, //POSICION 0
@@ -21,17 +26,44 @@ void menuCliente() {
 		{"Elena Mamani", "934217501", {"Polanco", "Av. Arequipa", "Mz. G", "Lt. 7"}}, //POSICION 8
 		{"Jorge Morales", "091245762", {"Palermo", "Calle Salaverry", "Mz. L", "Lt. 3"}} //POSICION 9
 	};
-	
+	color(hConsole, 48);
+	c='*';
+	separador(c);
+	texto = "AREA DE CLIENTE";
+	centrarParaPintar(texto);
+	separador(c);
+	color(hConsole, 7);
+	cout << endl << endl << endl;
+	texto = "Estas en el menu del area de cliente";
+	enjaular(texto, c); cout << endl << endl << endl;
 	//DO WHILE QUE REPITE EL MENU HASTA QUE SE SELECCIONE LA OPCION 6
 	do {
-		cout << "// MENU: CLIENTE //" << endl;
-		cout << "A. Agregar cliente" << endl;
-		cout << "B. Editar datos del cliente" << endl;
-		cout << "C. Ordenar y mostrar clientes alfabeticamente" << endl;
-		cout << "D. Eliminar clientes" << endl;
-		cout << "E. Volver al menu principal" << endl;
+		color(hConsole, 7);
+		c='=';
+		texto = "Elija que accion va a realizar";
+		centrarYSubrayar(texto, c);
+		cout << endl << endl;
+		
+		c='*';
+		int anchoJaula=50;
+		int salto=1;
+		linea(anchoJaula, c, salto); cout << endl;
+		texto = "A) Agregar cliente.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "B) Editar datos del cliente.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "C) Ordenar y mostrar clientes alfabeticamente.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "D) Eliminar clientes.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "E) Volver al menu principal.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		linea(anchoJaula, c, 0); cout << endl;
+		texto = "---------------";
+		centrar(texto); cout << endl;
+		centrarCin(1);
 		cin >> opcion;
-			
+		cout << endl << endl << endl;
 		//SWITCH PARA LAS DISTINTAS FUNCIONES DEL MENU CLIENTE
 		switch ( opcion ) {
 			case 'A':
@@ -49,9 +81,18 @@ void menuCliente() {
 			case 'E':
 				break;
 			default:
-				cout << "ERROR: VALOR INVALIDO" << endl << endl;
+				cout << endl;
+				color(hConsole, 4);
+				texto = "Opcion no valida. Intente de nuevo";	
+				centrar(texto);
 				break;
 		}
+		cout << endl << endl << endl << endl << endl;
 	} while ( opcion != 'E' );
-	cout << "// VOLVIENDO AL MENU PRINCIPAL //" << endl << endl;
+		cout << endl << endl << endl;
+		color(hConsole, 8);
+		texto = "VOLVIENDO AL MENU PRINCIPAL...";
+		enlinear(texto, c);
+		cout << endl << endl << endl;
+		color(hConsole, 7);
 }
