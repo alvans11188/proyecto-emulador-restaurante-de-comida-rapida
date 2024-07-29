@@ -202,17 +202,17 @@ void registrarVenta(){
 	string respuesta;
 	int ordenesTotales=0; //para dar el orden a cada Orden
 	cout << endl << endl;
-	cout << "Registrando una orden..." << endl << endl;
+	cout << "\t\t\t\t\t\t\t\t\t\t\t\tRegistrando una orden..." << endl << endl;
 	do{ // MENU INTERFAZ
 		cout << endl;
-		cout << "Elija la categoria." << endl << endl;
-		cout << "1. Hamburguesas" << endl;
-	    cout << "2. Pizzas" << endl;
-	    cout << "3. Conos" << endl;
-	    cout << "4. Gaseosas" << endl;
-	    cout << "5. Aguas" << endl;
-	    cout << "6. Terminar orden." << endl << endl;
-	    cout << "= ";
+		cout << "\t\t\t\t\t\t\t\tElija la categoria." << endl << endl;
+		cout << "\t\t\t\t\t\t\t\t1. Hamburguesas" << endl;
+	    cout << "\t\t\t\t\t\t\t\t2. Pizzas" << endl;
+	    cout << "\t\t\t\t\t\t\t\t3. Conos" << endl;
+	    cout << "\t\t\t\t\t\t\t\t4. Gaseosas" << endl;
+	    cout << "\t\t\t\t\t\t\t\t5. Aguas" << endl;
+	    cout << "\t\t\t\t\t\t\t\t6. Terminar orden." << endl << endl;
+	    cout << "\t\t\t\t\t\t\t\t\t\t= ";
 	    cin >> categoria;
 		
 		bool continuar = false; //si es que no cumple una condicion, no podra continuar agregando en la orden
@@ -221,16 +221,16 @@ void registrarVenta(){
 	    switch (categoria) {
 	        case 1:
 	        	do{
-		            cout << "Seleccione la hamburguesa:" << endl; // interfaz de menu de hamburguesas
+		            cout << "\t\t\t\t\t\t\t\t\t\tSeleccione la hamburguesa:" << endl; // interfaz de menu de hamburguesas
 		            for (int i = 0; i < numHamburguesas; i++) {
 		                cout << i + 1 << ". " << hamburguesas[i].nombre << " S/. " << hamburguesas[i].precio << endl;
 		            }
 		            cout << endl;
-		            cout << "= ";
+		            cout << "\t\t\t\t\t\t\t\t\t\t= ";
 		            cin >> item;
 		            cout << endl;
 			        if(0<item && item<=numHamburguesas){
-			            cout << "Cantidad: ";
+			            cout << "\t\t\t\t\t\t\t\t\t\tCantidad: ";
 						cin >> cantidad;
 						if(alimento[0].cantidad>=CTH*cantidad && alimento[1].cantidad>=CLH*cantidad && alimento[2].cantidad>=CBH*cantidad && alimento[3].cantidad>=CCH*cantidad && alimento[6].cantidad >= CQH*cantidad){ // ingredientes para cocinar una hamburguesa
 			            	ordenRegistro(orden[numFactura], hamburguesas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
@@ -263,16 +263,16 @@ void registrarVenta(){
 				break;
 	        case 2:
 	        	do{
-		            cout << "Seleccione la pizza:" << endl;// interfaz de menu de pizzas
+		            cout << "\t\t\t\t\t\t\t\t\t\tSeleccione la pizza:" << endl;// interfaz de menu de pizzas
 		            for (int i = 0; i < numPizzas; i++) {
 		                cout << i + 1 << ". " << pizzas[i].nombre << " S/. " << pizzas[i].precio << endl;
 		            }
 		            cout << endl;
-		            cout << "= ";
+		            cout << "\t\t\t\t\t\t\t\t\t\t= ";
 		            cin >> item;
 		            cout << endl;
 			        if(0<item && item<=numPizzas){
-			            cout << "Cantidad: ";
+			            cout << "\t\t\t\t\t\t\t\t\t\tCantidad: ";
 			            cin >> cantidad;
 						if(alimento[0].cantidad>=CTP*cantidad &&  alimento[2].cantidad>=CBP*cantidad && alimento[3].cantidad>=CCP*cantidad && alimento[6].cantidad >= CQP*cantidad){ // ingredientes para cocinar una hamburguesa
 			            	ordenRegistro(orden[numFactura], pizzas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
@@ -303,16 +303,16 @@ void registrarVenta(){
 	            break;  
 	        case 3:
 	        	do{
-		            cout << "Seleccione el cono:" << endl; // interfaz de menu de conos
+		            cout << "\t\t\t\t\t\t\t\t\t\tSeleccione el cono:" << endl; // interfaz de menu de conos
 		            for (int i = 0; i < numConos; i++) {
 		                cout << i + 1 << ". " << conos[i].nombre << " S/. " << conos[i].precio << endl;
 		            }
 		            cout << endl;
-		            cout << "= ";
+		            cout << "\t\t\t\t\t\t\t\t\t\t= ";
 		            cin >> item;
 			        cout << endl;
 				    if(0<item && item<=numConos){
-			            cout << "Cantidad: ";
+			            cout << "\t\t\t\t\t\t\t\t\t\tCantidad: ";
 						cin >> cantidad;
 						if(alimento[0].cantidad>=CTC*cantidad && alimento[1].cantidad>=CLC*cantidad && alimento[2].cantidad>=CBC*cantidad && alimento[3].cantidad>=CCC*cantidad && alimento[6].cantidad >= CQC*cantidad){ // ingredientes para cocinar una hamburguesa
 			            	ordenRegistro(orden[numFactura], conos, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
@@ -344,16 +344,16 @@ void registrarVenta(){
 	            break;
 	        case 4:
 	        	do{
-		            cout << "Seleccione la gaseosa:" << endl;
+		            cout << "\t\t\t\t\t\t\t\t\t\tSeleccione la gaseosa:" << endl;
 		            for (int i = 0; i < numGaseosas; i++) {
 		                cout << i + 1 << ". " << gaseosas[i].nombre << " S/. " << gaseosas[i].precio << endl;
 		            }
 		            cout << endl;
-		            cout << "= ";
+		            cout << "\t\t\t\t\t\t\t\t\t\t= ";
 		            cin >> item;
 		            cout << endl;
 		            if(0<item && item<=numGaseosas){
-			            cout << "Cantidad: ";
+			            cout << "\t\t\t\t\t\t\t\t\t\tCantidad: ";
 			            cin >> cantidad;
 						if(alimento[4].cantidad>=CG*cantidad){ // ingredientes para cocinar una hamburguesa
 			            	ordenRegistro(orden[numFactura], gaseosas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
@@ -378,16 +378,16 @@ void registrarVenta(){
 	            break;
 	        case 5:
 	        	do{
-		            cout << "Seleccione el agua:" << endl;
+		            cout << "\t\t\t\t\t\t\t\t\t\tSeleccione el agua:" << endl;
 		            for (int i = 0; i < numAguas; i++) {
 		                cout << i + 1 << ". " << aguas[i].nombre << " S/. " << aguas[i].precio << endl;
 		            }
 		            cout << endl;
-		            cout << "= ";
+		            cout << "\t\t\t\t\t\t\t\t\t\t= ";
 		            cin >> item;
 			        cout << endl;
 				    if(0<item && item<=numAguas){
-			            cout << "Cantidad: ";
+			            cout << "\t\t\t\t\t\t\t\t\t\tCantidad: ";
 			            cin >> cantidad;
 						if(alimento[5].cantidad>=CA*cantidad){ // ingredientes para cocinar una hamburguesa
 			            	ordenRegistro(orden[numFactura], aguas, item, ordenesTotales, cantidad); // funcion para generar nombre y el monto de cada orden, asi poder presentarlo en la factura
@@ -406,48 +406,48 @@ void registrarVenta(){
 							continuar = false;
 						}
 					} else {
-						cout << "Opcion no valida. Intente de nuevo." << endl << endl;
+						cout << "\t\t\t\t\t\t\t\tOpcion no valida. Intente de nuevo." << endl << endl;
 					}
 				} while(item>numAguas || item<=0);
 	            break;
 	        default:
-	            cout << "Categoria no valida." << endl;
+	            cout << "\t\t\t\t\t\t\t\t\tCategoria no valida." << endl;
 	            break;
 	    }
 	    cout << endl;
 	    if(!suficiente){
-	    	cout << "No hay suficientes ingredientes." << endl;
+	    	cout << "\t\t\t\t\t\t\t\tNo hay suficientes ingredientes." << endl;
 		}
 	    if(continuar){
-	    	cout << "¿Va a agregar algo mas a la orden?(si/no)= ";
+	    	cout << "\t\t\t\t\t\t\t\t\t¿Va a agregar algo mas a la orden?(si/no)= ";
 	    	cin >> respuesta;
 		}
 	} while(respuesta!= "no" &&categoria!=6);
 	
    cout << endl;
-   cout << "FACTURA" << endl << endl;
-   cout << "Productos en la orden: " << endl << endl;
+   cout << "\t\t\t\t\t\t\t\t\t\tFACTURA" << endl << endl;
+   cout << "\t\t\t\t\t\t\t\t\tProductos en la orden: " << endl << endl;
    int j=0;
    for(int i=0; i<ordenesPorFactura[numFactura]; i++){
-   		cout << j+1 << ". " << "(" << orden[numFactura][i].cantidad << ") " << orden[numFactura][i].nombre << " S/. " << orden[numFactura][i].monto << endl;
+   		cout << "\t\t\t\t\t\t\t\t"<< j+1 << ". " << "(" << orden[numFactura][i].cantidad << ") " << orden[numFactura][i].nombre << " S/. " << orden[numFactura][i].monto << endl;
    		j++;
    }
    montoPorFactura(orden[numFactura], ordenesPorFactura[numFactura], montoDeFactura[numFactura]);
    cout << endl;
-   cout << "Total a pagar: S/. " << montoDeFactura[numFactura] << endl;
+   cout << "\t\t\t\t\t\t\t\t\t\tTotal a pagar: S/. " << montoDeFactura[numFactura] << endl;
    numFactura++;
 }
 void mostrarOrdenes(){
 	cout << endl;
-	cout << "MOSTRANDO FACTURAS REGISTRADAS" << endl << endl;
+	cout << "\t\t\t\t\t\t\t\t\tMOSTRANDO FACTURAS REGISTRADAS" << endl << endl;
 	for(int i=0; i<numFactura; i++){
-		cout << i+1 << ". FACTURA" << endl << endl;
-		cout << "Productos:" << endl << endl;
+		cout << "\t\t\t\t\t\t\t\t\t\t"<< i+1 << ". FACTURA" << endl << endl;
+		cout << "\t\t\t\t\t\t\t\t\t\tProductos:" << endl << endl;
 		for(int j=0; j<ordenesPorFactura[i]; j++){
-			cout << "(" << orden[i][j].cantidad << ") " << orden[i][j].nombre << " S/. " << orden[i][j].monto << endl;
+			cout << "\t\t\t\t\t\t\t\t"<< "(" << orden[i][j].cantidad << ") " << orden[i][j].nombre << " S/. " << orden[i][j].monto << endl;
 		}
 		cout << endl;
-		cout << "Monto final: S/. " << montoDeFactura[i] << endl << endl;
+		cout << "\t\t\t\t\t\t\t\t\t\tMonto final: S/. " << montoDeFactura[i] << endl << endl;
 	}
 	cout << endl;
 }
@@ -455,55 +455,55 @@ void gastosGanancias(){
 	montoFinalGanancias=0;
 	cout << endl;
 	char respuesta;
-		cout << "¿Que quieres ver?" << endl << endl;
-		cout << "- ) Gastos." << endl;
-		cout << "+ ) Ganancias." << endl << endl;
+		cout << "\t\t\t\t\t\t\t\t\t\t¿Que quieres ver?" << endl << endl;
+		cout << "\t\t\t\t\t\t\t\t\t\t- ) Gastos." << endl;
+		cout << "\t\t\t\t\t\t\t\t\t\t+ ) Ganancias." << endl << endl;
 		
 		do{
-			cout << "= ";
+			cout << "\t\t\t\t\t\t\t\t\t\t= ";
 			cin >> respuesta;
 			cout << endl;
 			
 			switch(respuesta){
 				case '-':
-					cout << "Gastos consumidos hasta el momento (mayor a menor)" << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\t\tGastos consumidos hasta el momento (mayor a menor)" << endl << endl;
 	                ordenarGastos(gastos, MAX_ALIMENTOS);
 	                for(int i=0; i<MAX_ALIMENTOS; i++){
-	                	cout << gastos[i].nombre << " (" << gastos[i].cantidadUsada << "): S/." << -gastos[i].cantidadUsada*alimento[i].precio << endl;
+	                	cout << "\t\t\t\t\t\t\t\t\t\t" << gastos[i].nombre << " (" << gastos[i].cantidadUsada << "): S/." << -gastos[i].cantidadUsada*alimento[i].precio << endl;
 					}
 	 				break;
 				case '+':
-					cout << "Ganancias por categoria" << endl << endl;
-	                cout << "HAMBURGUESAS" << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\t\t\tGanancias por categoria" << endl << endl;
+	                cout << "\t\t\t\t\t\t\t\t\t\tHAMBURGUESAS" << endl << endl;
 	                for(int i=0; i<numHamburguesas; i++){
 	                	cout  << hamburguesas[i].nombre << ": S/. " << hamburguesas[i].cantidadVendida*hamburguesas[i].precio << endl;
 					}
 					cout << endl;
-	                cout << "PIZZAS" << endl << endl;
+	                cout << "\t\t\t\t\t\t\t\t\t\tPIZZAS" << endl << endl;
 					for(int i=0; i<numPizzas; i++){
 	                	cout << pizzas[i].nombre << ": S/. " << pizzas[i].cantidadVendida*pizzas[i].precio << endl;
 					}
 					cout << endl;
-	                cout << "CONOS" << endl << endl;
+	                cout << "\t\t\t\t\t\t\t\t\t\tCONOS" << endl << endl;
 					for(int i=0; i<numConos; i++){
 	                	cout << conos[i].nombre << ": S/. " << conos[i].cantidadVendida*conos[i].precio << endl;
 					}
 					cout << endl;
-	                cout << "GASEOSAS" << endl << endl;
+	                cout << "\t\t\t\t\t\t\t\t\t\tGASEOSAS" << endl << endl;
 					for(int i=0; i<numGaseosas; i++){
 	                	cout << gaseosas[i].nombre << ": S/. " << gaseosas[i].cantidadVendida*gaseosas[i].precio << endl;
 					}
 					cout << endl;
-	                cout << "AGUAS" << endl << endl;
+	                cout << "\t\t\t\t\t\t\t\t\t\tAGUAS" << endl << endl;
 					for(int i=0; i<numAguas; i++){
 	                	cout << aguas[i].nombre << ": S/. " << aguas[i].cantidadVendida*aguas[i].precio << endl;
 					}
 					cout << endl;
 					gananciasTotales(orden, montoFinalGanancias);
-					cout << "Ganancias totales: S/." << montoFinalGanancias << endl;
+					cout << "\t\t\t\t\t\t\t\t\t\tGanancias totales: S/." << montoFinalGanancias << endl;
 					break;
 					default:
-						cout << "Opcion no valida. Intente de nuevo." << endl << endl;
+						cout << "\t\t\t\t\t\t\t\t\t\tOpcion no valida. Intente de nuevo." << endl << endl;
 					break;
 			}
 		}while(respuesta!='+' && respuesta != '-');
@@ -513,24 +513,24 @@ void ordenarMasVendido(){
 	cout << endl;
 	char opcion;
 	agregarMontoArreglo();
-	cout << "ORDENAR POR GANANCIAS" << endl << endl;
+	cout << "\t\t\t\t\t\t\t\t\t\tORDENAR POR GANANCIAS" << endl << endl;
 	do{
-		cout << "a) De mayor a menor." << endl;
-		cout << "b) De menor a mayor." << endl << endl;
-		cout << "= ";
+		cout << "\t\t\t\t\t\t\t\t\t\ta) De mayor a menor." << endl;
+		cout << "\t\t\t\t\t\t\t\t\t\tb) De menor a mayor." << endl << endl;
+		cout << "\t\t\t\t\t\t\t\t\t\t= ";
 		cin >> opcion;
 		cout << endl;
 		switch(opcion){
 			case 'a':
-				cout << "Ordenado de mayor a menor ganancias." << endl << endl;
+				cout << "\t\t\t\t\t\t\t\t\t\tOrdenado de mayor a menor ganancias." << endl << endl;
 				ordenarPorMasVendidos(ordenarVentas, totalComidas);
 				break;
 			case 'b':
-				cout << "Ordenado de menor a mayor ganancias." << endl << endl;
+				cout << "\t\t\t\t\t\t\t\t\t\tOrdenado de menor a mayor ganancias." << endl << endl;
 				ordenarPorMenosVendidos(ordenarVentas, totalComidas);
 				break;
 			default:
-				cout << "Opcion no valida. Intente de nuevo." << endl << endl;
+				cout << "\t\t\t\t\t\t\t\t\t\tOpcion no valida. Intente de nuevo." << endl << endl;
 				break;
 		}
 	}while(opcion!='a'&& opcion!='b');
@@ -551,8 +551,8 @@ void estadisticasGenerales(){
 	string contrasenaDante="2024-119039";
 	string contrasena;
 	char opcion;
-	cout << "Indique la contraseña" << endl << endl;
-	cout << "= ";
+	cout << "\t\t\t\t\t\t\tIndique la contraseña" << endl << endl;
+	cout << "\t\t\t\t\t\t\t\t\t\t= ";
 	cin >> contrasena;
 	cout << endl;
 	
@@ -564,90 +564,90 @@ void estadisticasGenerales(){
 	
 	if(contrasena==contrasenaJhonel || contrasena==contrasenaAlex || contrasena==contrasenaDante ){
 		if(contrasena==contrasenaJhonel){
-			cout << "¡Bienvenido Ingeniero Jhonel, revise como va su negocio!" << endl;
+			cout << "\t\t\t\t\t\t\t\t¡Bienvenido Ingeniero Jhonel, revise como va su negocio!" << endl;
 		} else if(contrasena==contrasenaAlex){
-			cout << "¡Bienvenido Ingeniero Alex, revise como va su negocio!" << endl;
+			cout << "\t\t\t\t\t\t\t\t¡Bienvenido Ingeniero Alex, revise como va su negocio!" << endl;
 		} else {
-			cout << "¡Bienvenido Ingeniero Dante, revise como va su negocio!" << endl;
+			cout << "\t\t\t\t\t\t\t\t¡Bienvenido Ingeniero Dante, revise como va su negocio!" << endl;
 		}
 		do{
 			cout << endl;
-			cout << "ESTADISTICAS GENERALES DEL NEGOCIO" << endl << endl;
-			cout << "a) Ingresos brutos." << endl;
-			cout << "b) Egresos brutos." << endl;
-			cout << "c) Ingresos netos." << endl;
-			cout << "d) Ticket promedio de factura." << endl;
-			cout << "e) Margen de Ganancia Neta." << endl;
-			cout << "f) ROI (Retorno sobre la inversion)." << endl;
-			cout << "g) RIG (Ratio de Ingresos sobre Gastos)." << endl;
-			cout << "h) Ver todas las metricas juntas." << endl;
-			cout << "i) Salir." << endl << endl;
-			cout << "= ";
+			cout << "\t\t\t\t\t\t\t\tESTADISTICAS GENERALES DEL NEGOCIO" << endl << endl;
+			cout << "\t\t\t\t\t\t\t\ta) Ingresos brutos." << endl;
+			cout << "\t\t\t\t\t\t\t\tb) Egresos brutos." << endl;
+			cout << "\t\t\t\t\t\t\t\tc) Ingresos netos." << endl;
+			cout << "\t\t\t\t\t\t\t\td) Ticket promedio de factura." << endl;
+			cout << "\t\t\t\t\t\t\t\te) Margen de Ganancia Neta." << endl;
+			cout << "\t\t\t\t\t\t\t\tf) ROI (Retorno sobre la inversion)." << endl;
+			cout << "\t\t\t\t\t\t\t\tg) RIG (Ratio de Ingresos sobre Gastos)." << endl;
+			cout << "\t\t\t\t\t\t\t\th) Ver todas las metricas juntas." << endl;
+			cout << "\t\t\t\t\t\t\t\ti) Salir." << endl << endl;
+			cout << "\t\t\t\t\t\t\t\t\t= ";
 			cin >> opcion;
 			cout << endl;
 			switch(opcion){
 				case 'a':
-					cout << "Ingresos brutos (totales) del negocio." << endl;
-					cout << "--> " << montoFinalGanancias << endl;
+					cout << "\t\t\t\t\t\t\t\t\tIngresos brutos (totales) del negocio." << endl;
+					cout << "\t\t\t\t\t\t\t\t\t\t--> " << montoFinalGanancias << endl;
 					break;
 				case 'b':
-					cout << "Egresos brutos (totales) del negocio." << endl;
-					cout << "--> " << montoFinalGastos << endl;
+					cout << "\t\t\t\t\t\t\t\t\tEgresos brutos (totales) del negocio." << endl;
+					cout << "\t\t\t\t\t\t\t\\tt\t--> " << montoFinalGastos << endl;
 					break;
 				case 'c':
-					cout << "Ingresos netos del negocio." << endl << endl;
-					cout << "Ingresos totales: " << montoFinalGanancias << endl;
-					cout << "Egresos totales: " << montoFinalGastos << endl;
-					cout << "Ingresos netos: " << gananciaNeta << endl;
+					cout << "\t\t\t\t\t\t\t\t\tIngresos netos del negocio." << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\tIngresos totales: " << montoFinalGanancias << endl;
+					cout << "\t\t\t\t\t\t\t\t\tEgresos totales: " << montoFinalGastos << endl;
+					cout << "\t\t\t\t\t\t\t\t\t\tIngresos netos: " << gananciaNeta << endl;
 					break;
 				case 'd':
 					if(numFactura>0){
-						cout << "Cuanto se gasta por factura: " << endl;
-						cout << "= " << montoFinalGanancias/numFactura << endl;	
+						cout << "\t\t\t\t\t\t\t\t\tCuanto se gasta por factura: " << endl;
+						cout << "\t\t\t\t\t\t\\tt\t\t= " << montoFinalGanancias/numFactura << endl;	
 					}else{
-						cout << "No hay facturas por analizar." << endl;
+						cout << "\t\t\t\t\t\t\t\t\tNo hay facturas por analizar." << endl;
 					}
 					break;
 				case 'e':
-					cout << "El margen de ganancia neta del negocio es: " << endl;
-					cout << "= " << margenGananciaNeta << "%" << endl;
+					cout << "\t\t\t\t\t\t\t\t\tEl margen de ganancia neta del negocio es: " << endl;
+					cout << "\t\t\t\t\t\t\t\t\t\t= " << margenGananciaNeta << "%" << endl;
 					break;
 				case 'f':
-					cout << "El ROI de su negocio es: " << endl;
-					cout << "= " << ROI << "%" << endl << endl;
-					cout << "Eso quiere decir que por cada S/.1 gastado, usted esta ganando " << ROI << "% adicional, osea S/. " << 1+ROI/100 << endl;
+					cout << "\t\t\t\t\t\t\t\t\tEl ROI de su negocio es: " << endl;
+					cout << "\t\t\t\t\t\t\t\t\t\t= " << ROI << "%" << endl << endl;
+					cout << "\t\t\tEso quiere decir que por cada S/.1 gastado, usted esta ganando " << ROI << "% adicional, osea S/. " << 1+ROI/100 << endl;
 					break;
 				case 'g':
-					cout << "El RIG de su negocio es: " << endl;
-					cout << "= " << RIG << endl << endl;
-					cout << "Eso quiere decir que por cada S/. 1 gastado, usted gana S/. " << RIG << endl;
+					cout << "\t\t\t\t\t\t\t\t\tEl RIG de su negocio es: " << endl;
+					cout << "\t\t\t\t\t\t\t\t\t\t= " << RIG << endl << endl;
+					cout << "\t\t\t\t\Eso quiere decir que por cada S/. 1 gastado, usted gana S/. " << RIG << endl;
 					break;
 				case 'h':
-					cout << "Ingresos brutos" << endl << endl;
-					cout << "= S/. " << montoFinalGanancias << endl << endl;
-					cout << "Egresos brutos"  << endl << endl;
-					cout << "= S/. " << montoFinalGastos << endl << endl;
-					cout << "Ingresos netos"  << endl << endl;
-					cout << "= S/. " << gananciaNeta << endl << endl;
-					cout << "Ticket promedio de factura"  << endl << endl;
-					cout << "= S/. " << montoFinalGanancias/numFactura << endl << endl;
-					cout << "Margen de Ganancia Neta"  << endl << endl;
-					cout << "= " << margenGananciaNeta << "%" << endl << endl;
-					cout << "ROI"  << endl << endl;
-					cout << "= " << ROI << "%" << endl << endl;
-					cout << "RIG"  << endl << endl;
-					cout << "= S/. " << RIG << endl;
+					cout << "\t\t\t\t\t\t\t\t\tIngresos brutos" << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\t\t= S/. " << montoFinalGanancias << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\tEgresos brutos"  << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\t= S/. " << montoFinalGastos << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\tIngresos netos"  << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\t\t= S/. " << gananciaNeta << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\tTicket promedio de factura"  << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\t\t= S/. " << montoFinalGanancias/numFactura << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\tMargen de Ganancia Neta"  << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\t\t= " << margenGananciaNeta << "%" << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\tROI"  << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\t\t= " << ROI << "%" << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\tRIG"  << endl << endl;
+					cout << "\t\t\t\t\t\t\t\t\t\t= S/. " << RIG << endl;
 					break;
 				case 'i':
-					cout << "Saliendo del area de estadisticas generales..." << endl;
+					cout << "\t\t\t\t\t\t\t\tSaliendo del area de estadisticas generales..." << endl;
 					break;
 				default:
-					cout << "Opcion no valida. Intente de nuevo." << endl;
+					cout << "\t\t\t\t\t\t\t\t\t\tOpcion no valida. Intente de nuevo." << endl;
 					break;
 			}
 			cout << endl;
 		}while(opcion!='i');
 	} else {
-		cout << "Usuario invalido. No puede ingresar, lo siento." << endl;
+		cout << "\t\t\t\t\t\tUsuario invalido. No puede ingresar, lo siento." << endl;
 	}
 }

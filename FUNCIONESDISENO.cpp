@@ -1,12 +1,9 @@
 #include "FUNCIONESDISENO.h"
-
 #include <iostream>
 #include <windows.h>
-#include <locale.h> //libreria para incluir el idioma espa?ol
-#define color SetConsoleTextAttribute
 using namespace std;
 
-
+HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 // Funci?n para obtener el ancho de la consola
 int anchoConsola() {
     CONSOLE_SCREEN_BUFFER_INFO csbi; //declara variable de tipo CONSOLE_SCREEN_BUFFER_INFO (es una estructura definida en la libreria windows.h)
@@ -35,8 +32,8 @@ void imprimirEspacio(int n){
 		cout << " ";
 	}
 }
-// Funcion para centrar el texto
-void centrar(const string& text) {
+// Funcion para centrar el texto que se pintara (titulos grandes)
+void centrarParaPintar(const string& text) {
     int tamanoconsola = anchoConsola(); // ya que hallamos columnas con la funcion, le asignamos una variable al retorno
     int tamanotexto = text.length(); //"text.lenght()" halla el tama?o del texto en caracteres. le asignamos una variable de tipo int a la anchura del texto
     int espaciado = (tamanoconsola - tamanotexto) / 2; // la diferencia de ambos entre 2 es la distancia para centrar un texto
@@ -47,6 +44,17 @@ void centrar(const string& text) {
     
     imprimirEspacio(espaciado);
     
+}
+// Funcion para centrar un texto que no se pintara
+void centrar(const string& text) {
+    int tamanoconsola = anchoConsola(); // ya que hallamos columnas con la funcion, le asignamos una variable al retorno
+    int tamanotexto = text.length(); //"text.lenght()" halla el tama?o del texto en caracteres. le asignamos una variable de tipo int a la anchura del texto
+    int espaciado = (tamanoconsola - tamanotexto) / 2; // la diferencia de ambos entre 2 es la distancia para centrar un texto
+    // Imprimir espacios en blanco antes del texto
+    imprimirEspacio(espaciado);
+    // Imprimir el texto
+    cout << text;
+     
 }
 // Funcion para centrar una entrada "cin"
 void centrarCin(int tamanoAproxEntrada){
@@ -239,5 +247,48 @@ void enlinear(string text, char caracter){
 	// ej: 		*********** text ************
 }
 
+void enlinearYEnjaular(string text, char caracter){
+	int tamanoconsola = anchoConsola();
+	int tamanotexto = text.length();
+	int espaciado = (tamanoconsola - tamanotexto-3)/2;
+	int tamanoJaula = tamanotexto + 3;
+	int tamanoLinea = (tamanoconsola - tamanoJaula)/2;
+	
+	imprimirEspacio(espaciado);
+	
+	for(int i=0; i<tamanoJaula; i++){
+		cout << caracter;
+	}
+	
+	cout << caracter <<endl;
+	
+	for(int i=0; i<tamanoLinea+1; i++){
+		cout << caracter;
+	}
+	
+	cout << " " << text << " ";
+	
+	for(int i=0; i<tamanoLinea; i++){
+		cout << caracter;
+	}
+	
+	cout << endl;
+	
+	imprimirEspacio(espaciado);
+	
+	for(int i=0; i<tamanoJaula; i++){
+		cout << caracter;
+	}
+	cout << caracter;
+}
+
+void imprimirEnEspaciadoPorcentaje(string text, float porcentaje){
+	int tamanoconsola = anchoConsola();
+	int espaciado = tamanoconsola*porcentaje/100;
+	
+	imprimirEspacio(espaciado);
+	
+	cout << text;
+}
 
 int nada();

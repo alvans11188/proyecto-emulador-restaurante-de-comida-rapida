@@ -1,14 +1,21 @@
 #ifndef FUNCIONESDISENO_H
 #define FUNCIONESDISENO_H
 #include <string>
+#include <windows.h>
+#define color SetConsoleTextAttribute
+
 using namespace std;
+
+extern HANDLE hConsole;
 
 int anchoConsola(); //devuelve el ancho real de la pantalla en ese momento.
 
 void imprimirEspacio(int espacios); //n representa la cantidad de espacios que se hara desde el lado izquierdo de la pantalla, hasta imprimir "n" espacios
 //Es perfecto cuando queremos poner en el medio una cadena de texto o simbolos.
 
-void centrar(const string& text); //pone en el centro de la pantalla un texto
+void centrarParaPintar(const string& text); //pone en el centro de la pantalla un texto
+
+void centrar(const string& text);
 
 void centrarCin(int tamanoAproxEntrada);//pone en el centro de la pantalla el "cin" (se indica cuanto aprox. sera la entrada, para que este en el centro lo mas posible
 
@@ -24,4 +31,7 @@ void contenidoJaula(string text, int tamanoJaula, char caracter, int saltoDeLine
 
 void enlinear(string text, char caracter); // ej: 		*********** text ************
 
+void enlinearYEnjaular(string text, char caracter); //enlinea y enjaula un texto a la vez
+
+void imprimirEnEspaciadoPorcentaje(string text, float porcentaje);
 #endif

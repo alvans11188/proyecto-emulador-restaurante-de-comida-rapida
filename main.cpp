@@ -1,12 +1,10 @@
 #include <iostream>
 #include "menus.h"
-#include "FUNCIONESDISENO.h"
-#include <windows.h>
-#include <locale.h> //libreria para incluir el idioma espa?ol
-#define color SetConsoleTextAttribute
-using namespace std;
 
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+#include "FUNCIONESDISENO.h"
+#include <locale.h> //libreria para incluir el idioma espa?ol
+
+using namespace std;
 
 int main() {
 	
@@ -16,17 +14,18 @@ int main() {
 	int opcion;
 	string texto;
 	char c;
-	color(hConsole, 79);
-	c = '*';
-	separador(c);
-	texto = "ESIS'S RESTAURANT MANAGEMENT";
-	centrar(texto);
-	separador(c);
-	cout << endl << endl;
+	
 	do {
 		//OPCIONES A ESCOGER
-		
+		color(hConsole, 79);
+		c = '*';
+		separador(c);
+		texto = "ESIS'S RESTAURANT MANAGEMENT";
+		centrarParaPintar(texto);
+		separador(c);
 		color(hConsole, 7);
+		cout << endl << endl << endl;
+
 		texto = "Elija que va a administrar";
 		enjaular(texto, c);
 		cout << endl << endl;
@@ -34,7 +33,6 @@ int main() {
 		
 		int anchoJaula=40;
 		int salto=2;
-		
 		linea(anchoJaula, c, salto); cout << endl;
 		texto = "1. Cliente.";
 		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
@@ -47,10 +45,10 @@ int main() {
 		texto = "5. Salir del programa.";
 		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
 		linea(anchoJaula, c, 0); cout << endl;
-		
 		texto = "---------------";
 		centrar(texto); cout << endl;
 		centrarCin(1);
+		
 		cin >> opcion;
 		cout << endl;
 		
