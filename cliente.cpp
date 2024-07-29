@@ -91,8 +91,13 @@ void menuCliente() {
 		}
 		espacio();
 	} while ( opcion != 'E' );
-		cout << endl << endl << endl;
+
 		color(hConsole, 8);
+		texto = "SALIENDO DEL MENU CLIENTE...";
+		enlinear(texto, c);
+		
+		cout << endl << endl;
+		
 		texto = "VOLVIENDO AL MENU PRINCIPAL...";
 		enlinear(texto, c);
 		cout << endl << endl << endl;
