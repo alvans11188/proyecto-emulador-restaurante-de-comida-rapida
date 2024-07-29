@@ -54,11 +54,18 @@ void agregarCliente(Cliente clientes[50], int &cantidadActualClientes) {
 	cin.ignore();
 	getline(cin, clientes[cantidadActualClientes].direccionCliente.lote);
 	
-	cout << endl << endl << endl << endl;
+	espacio();
 	
 	c='-';
 	color(hConsole, 10);
-	texto = "CLIENTE AGREGADO CORRECTAMENTE";
+	texto = "> CLIENTE AGREGADO CORRECTAMENTE <";
+	enlinear(texto, c);
+	
+	cout << endl << endl;
+	
+	c='-';
+	color(hConsole, 8);
+	texto = "| VOLVIENDO AL MENU CLIENTE... |";
 	enlinear(texto, c);
 }
 
@@ -75,24 +82,24 @@ void editarDatosCliente(Cliente clientes[50], int &cantidadActualClientes) {
 	cout << endl << endl << endl;	
 	
 	do { //DO WHILE PARA REPETIR EN TAL CASO EL USUARIO INGRESE NUMEROS QUE NO ESTEN ENTRE 1 Y 20
+		color(hConsole, 7);
 		texto = "Ingrese la posicion del usuario que desea editar (1-";
 		centrar(texto); cout << cantidadActualClientes + 1 << ")";
 		cout << endl;
-		texto = "----";
+		texto = "-----";
 		centrar(texto); cout << endl;
 		centrarCin(1);
 		cin >> clienteEditar;
 		
 		cout << endl << endl;
+		color(hConsole, 8);
 		if ( clienteEditar >= 1 && clienteEditar <= cantidadActualClientes + 1 ) {
-			texto = "POSICION ENCONTRADA";
-			color(hConsole, 8);
-			centrar(texto); cout << endl << endl;
+			texto = "POSICION ENCONTRADA"; 
 		} else {
 			texto = "ERROR: POSICION NO ENCONTRADA";
-			color(hConsole, 8);
-			centrar(texto); cout << endl << endl;
 		}
+		centrar(texto);
+		cout << endl << endl << endl;
 	} while ( clienteEditar < 1 || clienteEditar > cantidadActualClientes + 1);
 	cout << endl;
 	clienteEditar--; //SE REDUCE EN 1 PARA QUE SEA LA POSICION CORRECTA, YA QUE SE CUENTA LA POSICION 0
@@ -135,11 +142,19 @@ void editarDatosCliente(Cliente clientes[50], int &cantidadActualClientes) {
 	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
 	cin.ignore();
 	getline(cin, clientes[clienteEditar].direccionCliente.lote);
-	cout << endl << endl << endl << endl;
+	
+	espacio();
 	
 	c='-';
 	color(hConsole, 10);
-	texto = "CLIENTE EDITADO CORRECTAMENTE";
+	texto = "> CLIENTE EDITADO CORRECTAMENTE <";
+	enlinear(texto, c);
+	
+	cout << endl << endl;
+	
+	c='-';
+	color(hConsole, 8);
+	texto = "| VOLVIENDO AL MENU CLIENTE... |";
 	enlinear(texto, c);
 }
 
@@ -210,8 +225,14 @@ void ordenarClientesAlfabeticamente(Cliente clientes[50], int &cantidadActualCli
 		texto = "|	Manzana: ";
 		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << clientes[i].direccionCliente.manzana << endl;
 		texto = "|	Lote: ";
-		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << clientes[i].direccionCliente.lote << endl << endl << endl << endl;
+		imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla); cout << clientes[i].direccionCliente.lote << endl;
 	}
+	
+	espacio();
+	c='-';
+	color(hConsole, 8);
+	texto = "| VOLVIENDO AL MENU CLIENTE... |";
+	enlinear(texto, c);
 }
 
 //FUNCION PARA ELIMINAR CLIENTES
@@ -235,7 +256,7 @@ void eliminarClientes(Cliente clientes[50], int &cantidadActualClientes) {
 		cin >> posicionEliminar;
 		
 		c='-';
-		cout << endl << endl << endl;
+		espacio();
 
 	//VERIFICAR QUE LA POSICIÓN ESTÁ DENTRO DEL RANGO
 	if ( posicionEliminar >= 1 && posicionEliminar <= cantidadActualClientes + 1 ) {
@@ -251,11 +272,17 @@ void eliminarClientes(Cliente clientes[50], int &cantidadActualClientes) {
 		cantidadActualClientes--; //SE LE RESTA UNO PORQUE SE ELIMINO UN CLIENTE Y LA CANTIDAD ACTUAL SE REDUCE
 		
 		color(hConsole, 10);
-		texto = "CLIENTE ELIMINADO CORRECTAMENTE";
-		enlinear(texto, c);
+		texto = "> CLIENTE ELIMINADO CORRECTAMENTE <";
 	} else {
 		color(hConsole, 4);
 		texto = "CLIENTE NO ENCONTRADO. NO SE PUEDE CONTINUAR.";
-		enlinear(texto, c);
 	}
+	enlinear(texto, c);
+	
+	cout << endl << endl;
+	
+	c='-';
+	color(hConsole, 8);
+	texto = "| VOLVIENDO AL MENU CLIENTE... |";
+	enlinear(texto, c);
 }

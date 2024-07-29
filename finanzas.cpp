@@ -7,22 +7,51 @@ using namespace std;
 void menuFinanzas(){
 	char opcion;
 	char c;
-	c='*';
-	separador(c);
-	cout << "\t\t\t\t\t\t\t\t\t\tINGRESANDO AL AREA DE FINANZAS..." << endl;
-	separador(c);
+	string texto;
+
 	do{
-		cout << endl;
-		cout << "\t\t\t\t\t\t\t\t\t\tElija que accion va a realizar." << endl << endl;
-		cout << "\t\t\t\t\t\t\t\tA) Registrar una orden." << endl;
-		cout << "\t\t\t\t\t\t\t\tB) Mostrar facturas de ordenes registradas." << endl;
-		cout << "\t\t\t\t\t\t\t\tC) Gastos y ganancias." << endl;
-		cout << "\t\t\t\t\t\t\t\tD) Ordenar por lo mas o menos vendido." << endl;
-		cout << "\t\t\t\t\t\t\t\tE) Estadisticas generales." << endl;
-		cout << "\t\t\t\t\t\t\t\tF) Salir del area de finanzas." << endl << endl;
-		cout << "\t\t\t\t\t\t\t\t\t\t= ";
+		color(hConsole, 160);
+		c='*';
+		separador(c);
+		texto = "$$$ AREA DE FINANZAS $$$";
+		centrarParaPintar(texto);
+		separador(c);
+		color(hConsole, 7);
+    	cout << endl << endl << endl;
+
+		texto = "Estas en el menu del area de finanzas";
+		enjaular(texto, c); cout << endl << endl << endl;
+		c='=';
+		color(hConsole, 2);
+		texto = "Elija que accion va a realizar";
+		centrarYSubrayar(texto, c);
+		cout << endl << endl;
+		
+		color(hConsole, 7);
+    	c='*';
+		int anchoJaula=50;
+		int salto=1;
+		linea(anchoJaula, c, salto); cout << endl;
+		texto = "A) Registrar ordenes.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "B) Mostrar facturas de ordenes registradas.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "C) Gastos y ganancias.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "D) Ordenar por lo mas o menos vendido.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "E) Estadisticas generales.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "F) Salir del area de finanzas.";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		linea(anchoJaula, c, 0); cout << endl;
+		texto = "---------------";
+		centrar(texto); cout << endl;
+		centrarCin(1);
 		cin >> opcion;
-		cout << endl;
+		
+		espacio();
+		
 		switch(opcion){
 			case 'A':
 				registrarVenta();
@@ -39,10 +68,26 @@ void menuFinanzas(){
 			case 'E':
 				estadisticasGenerales();
 				break;
+			case 'F':
+				break;
 			default:
-				cout << "\t\t\t\t\t\t\t\t\t\tOpcion no valida. Intente de nuevo." << endl;
+				cout << endl;
+				color(hConsole, 4);
+				texto = "Opcion no valida. Intente de nuevo";	
+				centrar(texto);
 				break;
 		}
-		cout << endl;
+		espacio();
 	}while(opcion!='F');
+	
+		color(hConsole, 8);
+		texto = "| SALIENDO DEL MENU DE FINANZAS... |";
+		enlinear(texto, c);
+		
+		cout << endl << endl;
+		
+		texto = "| VOLVIENDO AL MENU PRINCIPAL... |";
+		enlinear(texto, c);
+		cout << endl << endl << endl;
+		color(hConsole, 7);
 }

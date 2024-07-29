@@ -5,6 +5,10 @@ using namespace std;
 
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 // Funci?n para obtener el ancho de la consola
+
+void espacio(){
+	cout << endl << endl << endl << endl << endl;
+}
 int anchoConsola() {
     CONSOLE_SCREEN_BUFFER_INFO csbi; //declara variable de tipo CONSOLE_SCREEN_BUFFER_INFO (es una estructura definida en la libreria windows.h)
     // esta contiene info sobre el bufer de la pantalla de consola, como las dimensiones (lo que necesitamos)

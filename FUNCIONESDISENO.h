@@ -8,6 +8,8 @@ using namespace std;
 
 extern HANDLE hConsole;
 
+void espacio();
+
 int anchoConsola(); //devuelve el ancho real de la pantalla en ese momento.
 
 void imprimirEspacio(int espacios); //n representa la cantidad de espacios que se hara desde el lado izquierdo de la pantalla, hasta imprimir "n" espacios

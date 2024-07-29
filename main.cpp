@@ -18,14 +18,19 @@ int main() {
 	do {
 		//OPCIONES A ESCOGER
 		color(hConsole, 79);
-		c = '*';
+		c = '-';
+		separador(c);
+		c='*';
 		separador(c);
 		texto = "ESIS'S RESTAURANT MANAGEMENT";
 		centrarParaPintar(texto);
 		separador(c);
+		c='-';
+		separador(c);
 		color(hConsole, 7);
 		cout << endl << endl << endl;
-
+		
+		c='*';
 		texto = "Elija que va a administrar";
 		enjaular(texto, c);
 		cout << endl << endl;
@@ -50,7 +55,7 @@ int main() {
 		centrarCin(1);
 		
 		cin >> opcion;
-		cout << endl;
+		espacio();
 		
 		//SWITCH CON EL MENU A ESCOGER
 		switch (opcion){
@@ -79,7 +84,7 @@ int main() {
 	} while ( opcion !=5 );
 		cout << endl;
 		color(hConsole, 2);
-		texto = "Programa finalizado";
+		texto = "| PROGRAMA FINALIZADO, GRACIAS POR SU USO |";
 		enlinear(texto, c);
 		cout << endl;
 		color(hConsole, 7);
