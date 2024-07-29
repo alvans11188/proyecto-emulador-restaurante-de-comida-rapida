@@ -26,19 +26,21 @@ void menuCliente() {
 		{"Elena Mamani", "934217501", {"Polanco", "Av. Arequipa", "Mz. G", "Lt. 7"}}, //POSICION 8
 		{"Jorge Morales", "091245762", {"Palermo", "Calle Salaverry", "Mz. L", "Lt. 3"}} //POSICION 9
 	};
-	color(hConsole, 48);
-	c='*';
-	separador(c);
-	texto = "AREA DE CLIENTE";
-	centrarParaPintar(texto);
-	separador(c);
-	color(hConsole, 7);
-	cout << endl << endl << endl;
-	texto = "Estas en el menu del area de cliente";
-	enjaular(texto, c); cout << endl << endl << endl;
+	
 	//DO WHILE QUE REPITE EL MENU HASTA QUE SE SELECCIONE LA OPCION 6
 	do {
+		color(hConsole, 48);
+		c='*';
+		separador(c);
+		texto = "AREA DE CLIENTE";
+		centrarParaPintar(texto);
+		separador(c);
+		
 		color(hConsole, 7);
+		cout << endl << endl << endl;
+		texto = "Estas en el menu del area de cliente";
+		enjaular(texto, c); cout << endl << endl << endl;
+		
 		c='=';
 		texto = "Elija que accion va a realizar";
 		centrarYSubrayar(texto, c);
@@ -63,7 +65,7 @@ void menuCliente() {
 		centrar(texto); cout << endl;
 		centrarCin(1);
 		cin >> opcion;
-		cout << endl << endl << endl;
+		espacio();
 		//SWITCH PARA LAS DISTINTAS FUNCIONES DEL MENU CLIENTE
 		switch ( opcion ) {
 			case 'A':
@@ -87,7 +89,7 @@ void menuCliente() {
 				centrar(texto);
 				break;
 		}
-		cout << endl << endl << endl << endl << endl;
+		espacio();
 	} while ( opcion != 'E' );
 		cout << endl << endl << endl;
 		color(hConsole, 8);

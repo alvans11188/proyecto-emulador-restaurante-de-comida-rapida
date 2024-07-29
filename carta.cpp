@@ -12,17 +12,17 @@ void menuCarta() {
 	string texto;
 	setlocale(LC_ALL, "");
     char opcion;
-    
-    color(hConsole, 224);
-	c='*';
-	separador(c);
-	texto = "MENU CARTA";
-	centrarParaPintar(texto);
-	separador(c);
-	color(hConsole, 7);
+
     do {
-    	color(hConsole, 7);
+    	color(hConsole, 224);
+		c='*';
+		separador(c);
+		texto = "MENU CARTA";
+		centrarParaPintar(texto);
+		separador(c);
+		color(hConsole, 7);
     	cout << endl << endl << endl;
+    	
 		texto = "Estas en el menu del area de cliente";
 		enjaular(texto, c); cout << endl << endl << endl;
 		c='=';
@@ -51,7 +51,7 @@ void menuCarta() {
 		centrar(texto); cout << endl;
 		centrarCin(1);
 		cin >> opcion;
-		cout << endl << endl << endl;
+		espacio();
         // SWITCH PARA SELECIONAR LAS DIFERENTES OPCIONES DEL MENU CARTA
         switch (opcion) {
             case 'A':
@@ -78,7 +78,7 @@ void menuCarta() {
 				centrar(texto);
                 break;
         }
-        cout << endl << endl << endl << endl << endl;
+        espacio();
     } while (opcion != 'F'); //EN CASO SELECCIONAR EL NUMERO 6 REGRESA AL MENU ANTERIOR
 		cout << endl << endl << endl;
 		color(hConsole, 8);
