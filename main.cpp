@@ -84,7 +84,7 @@ int main() {
 	} while ( opcion !=5 );
 		cout << endl;
 		color(hConsole, 2);
-		texto = "| Programa finalizado |";
+		texto = "| PROGRAMA FINALIZADO, GRACIAS POR SU USO |";
 		enlinear(texto, c);
 		cout << endl;
 		color(hConsole, 7);

@@ -122,6 +122,7 @@ void ordenarPorMenosVendidos(paraOrdenarVentas arr[], int n) {
     }
 }
 void gastosTotales(){
+	montoFinalGastos=0;
 	for(int i=0; i<MAX_ALIMENTOS; i++){
 		montoFinalGastos += gastos[i].cantidadUsada*alimento[i].precio;
 	}
@@ -160,40 +161,49 @@ void gananciasTotales(Ordenes orden[][MAX_FACTURAS], float& montoFinalGanancias)
     }
 }
 void agregarMontoArreglo(){
-	
-	for(int i=0; i<numHamburguesas; i++){
-		ordenarVentas[i].nombre = hamburguesas[i].nombre;
-		ordenarVentas[i].total = hamburguesas[i].cantidadVendida*hamburguesas[i].precio;
-		ordenarVentas[i].coste = costeHamburguesas;
-	}
-	for(int i=0; i<numPizzas; i++){
-		ordenarVentas[numHamburguesas+i].nombre = pizzas[i].nombre;
-		ordenarVentas[numHamburguesas+i].total = pizzas[i].cantidadVendida*pizzas[i].precio;
-		ordenarVentas[numHamburguesas+i].coste = costePizzas;
-	}
-	for(int i=0; i<numConos; i++){
-		ordenarVentas[numPizzas+i].nombre = conos[i].nombre;
-		ordenarVentas[numPizzas+i].total = conos[i].cantidadVendida*conos[i].precio;
-		ordenarVentas[numPizzas+i].coste = costeConos;
-		ordenarVentas[numHamburguesas+numPizzas+i].nombre = conos[i].nombre;
-		ordenarVentas[numHamburguesas+numPizzas+i].total = conos[i].cantidadVendida*conos[i].precio;
-		ordenarVentas[numHamburguesas+numPizzas+i].coste = costeConos;
-	}
-	for(int i=0; i<numGaseosas; i++){
-		ordenarVentas[numConos+i].nombre = gaseosas[i].nombre;
-		ordenarVentas[numConos+i].total = gaseosas[i].cantidadVendida*gaseosas[i].precio;
-		ordenarVentas[numConos+i].coste = costeGaseosas;
-		ordenarVentas[numHamburguesas+numPizzas+numConos+i].nombre = gaseosas[i].nombre;
-		ordenarVentas[numHamburguesas+numPizzas+numConos+i].total = gaseosas[i].cantidadVendida*gaseosas[i].precio;
-		ordenarVentas[numHamburguesas+numPizzas+numConos+i].coste = costeGaseosas;
-	}
-	for(int i=0; i<numAguas; i++){
-		ordenarVentas[numGaseosas+i].nombre = aguas[i].nombre;
-		ordenarVentas[numGaseosas+i].total = aguas[i].cantidadVendida*aguas[i].precio;
-		ordenarVentas[numHamburguesas+numPizzas+numConos+numGaseosas+i].nombre = aguas[i].nombre;
-		ordenarVentas[numHamburguesas+numPizzas+numConos+numGaseosas+i].total = aguas[i].cantidadVendida*aguas[i].precio;
-	}
+    int idx = 0; // Índice para recorrer el arreglo ordenarVentas
+
+    // Agregar hamburguesas
+    for(int i = 0; i < numHamburguesas; i++){
+        ordenarVentas[idx].nombre = hamburguesas[i].nombre;
+        ordenarVentas[idx].total = hamburguesas[i].cantidadVendida * hamburguesas[i].precio;
+        ordenarVentas[idx].coste = costeHamburguesas;
+        idx++;
+    }
+
+    // Agregar pizzas
+    for(int i = 0; i < numPizzas; i++){
+        ordenarVentas[idx].nombre = pizzas[i].nombre;
+        ordenarVentas[idx].total = pizzas[i].cantidadVendida * pizzas[i].precio;
+        ordenarVentas[idx].coste = costePizzas;
+        idx++;
+    }
+
+    // Agregar conos
+    for(int i = 0; i < numConos; i++){
+        ordenarVentas[idx].nombre = conos[i].nombre;
+        ordenarVentas[idx].total = conos[i].cantidadVendida * conos[i].precio;
+        ordenarVentas[idx].coste = costeConos;
+        idx++;
+    }
+
+    // Agregar gaseosas
+    for(int i = 0; i < numGaseosas; i++){
+        ordenarVentas[idx].nombre = gaseosas[i].nombre;
+        ordenarVentas[idx].total = gaseosas[i].cantidadVendida * gaseosas[i].precio;
+        ordenarVentas[idx].coste = costeGaseosas;
+        idx++;
+    }
+
+    // Agregar aguas
+    for(int i = 0; i < numAguas; i++){
+        ordenarVentas[idx].nombre = aguas[i].nombre;
+        ordenarVentas[idx].total = aguas[i].cantidadVendida * aguas[i].precio;
+        ordenarVentas[idx].coste = costeAguas;
+        idx++;
+    }
 }
+
 
 void registrarVenta(){
 	int categoria;
@@ -206,7 +216,7 @@ void registrarVenta(){
 	string texto;
 	char c;
 	float porcentajePantalla;
-	porcentajePantalla = 45;
+	porcentajePantalla = 45-2;
 	
 	c='*';
 	color(hConsole, 2);
@@ -527,6 +537,8 @@ void registrarVenta(){
 					}
 				} while(item>numAguas || item<=0);
 	            break;
+	        case 6:
+	        	break;
 	        default:
 	            color(hConsole, 4);
 				texto = "Categoria no encontrada. Intente de nuevo.";
@@ -558,12 +570,22 @@ void registrarVenta(){
 			espacio();
 		}
 	} while(respuesta!= "no" &&categoria!=6);
-
+	
+	color(hConsole, 8);
+	texto = "G e n e r a n d o   f a c t u r a . . .";
+	centrar(texto);
+	cout <<endl << endl << endl;
+	
+	color(hConsole, 7);
+	
+	c= '-';
+	separador(c);
 	c= '$';
 	separador(c);
-   c='.';
-   texto = "FACTURA";
-   enjaular(texto, c);
+   texto = "F  A  C  T  U  R  A";
+   centrar(texto);
+   c= '$';
+	separador(c);
    cout << endl << endl << endl;
    
    c='=';
@@ -588,110 +610,325 @@ void registrarVenta(){
    separador(c);
    c= '$';
 	separador(c);
+	c= '-';
+	separador(c);
    numFactura++;
+   cout << endl << endl;
+   texto = " ";
+    imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-5);
+	system("pause");
+	
+	espacio();
+	
+	c='-';               
+	color(hConsole, 8);
+	texto = "| VOLVIENDO AL MENU DEL AREA DE FINANZAS... |";
+	enlinear(texto, c);
 }
 void mostrarOrdenes(){
-	cout << endl;
-	cout << "\t\t\t\t\t\t\t\t\tMOSTRANDO FACTURAS REGISTRADAS" << endl << endl;
-	for(int i=0; i<numFactura; i++){
-		cout << "\t\t\t\t\t\t\t\t\t\t"<< i+1 << ". FACTURA" << endl << endl;
-		cout << "\t\t\t\t\t\t\t\t\t\tProductos:" << endl << endl;
-		for(int j=0; j<ordenesPorFactura[i]; j++){
-			cout << "\t\t\t\t\t\t\t\t"<< "(" << orden[i][j].cantidad << ") " << orden[i][j].nombre << " S/. " << orden[i][j].monto << endl;
+	
+	string texto;
+	char c;
+	float porcentajePantalla;
+	porcentajePantalla = 45;
+	
+	c='*';
+	color(hConsole, 2);
+	texto = "MOSTRAR FACTURAS REGISTRADAS";
+	enlinearYEnjaular(texto, c);
+	color(hConsole, 7);
+	
+	
+	if(numFactura>0){
+		for(int i=0; i<numFactura; i++){
+
+			c='-';
+			separador(c);
+			espacio();
+			texto = " ";
+			imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla+2);
+			cout << i+1 << ". FACTURA" << endl;
+			c='=';
+			linea(15, c, 0); cout << endl << endl;
+			
+			
+			c='-';
+			texto = ">> Productos <<";
+			centrarYSubrayar(texto, c);
+			cout << endl << endl;
+			
+			for(int j=0; j<ordenesPorFactura[i]; j++){
+				texto = " ";
+				imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-6);
+				cout << "(" << orden[i][j].cantidad << ") " << orden[i][j].nombre << "_____S/. " << orden[i][j].monto << endl;
+			}
+			cout << endl << endl;
+			c='.';
+			separador(c); cout << endl;
+			centrarCin(20); cout << "Monto final----> S/. " << montoDeFactura[i];
+			separador(c); 
 		}
-		cout << endl;
-		cout << "\t\t\t\t\t\t\t\t\t\tMonto final: S/. " << montoDeFactura[i] << endl << endl;
+	} else{
+		espacio();
+		texto = "NO HAY FACTURAS REGISTRADAS";
+		color(hConsole, 4);
+		centrar(texto);
 	}
-	cout << endl;
+	
+	espacio();
+	
+	c='-';               
+	color(hConsole, 8);
+	texto = "| VOLVIENDO AL MENU DEL AREA DE FINANZAS... |";
+	enlinear(texto, c);
 }
 void gastosGanancias(){
+	gastosTotales();
 	montoFinalGanancias=0;
 	cout << endl;
 	char respuesta;
-		cout << "\t\t\t\t\t\t\t\t\t\t¿Que quieres ver?" << endl << endl;
-		cout << "\t\t\t\t\t\t\t\t\t\t- ) Gastos." << endl;
-		cout << "\t\t\t\t\t\t\t\t\t\t+ ) Ganancias." << endl << endl;
-		
+	
+	string texto;
+	char c;
+	float porcentajePantalla;
+	porcentajePantalla = 45;
+	
+	c='*';
+	color(hConsole, 2);
+	texto = "GASTOS Y GANANCIAS";
+	enlinearYEnjaular(texto, c);
+	color(hConsole, 7);
+	
+	cout << endl << endl << endl;
+	
+	c='=';
+	texto = "¿Que quieres ver?";
+	centrarYSubrayar(texto, c);
+	cout << endl << endl << endl;
+	
+	c='.';
+	color(hConsole, 14);
+	int anchoJaula=25;
+		int salto=2;
+		linea(anchoJaula, c, 1); cout << endl;
+		texto = "-) Gastos";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "+) Ganancias";
+		contenidoJaula(texto, anchoJaula, c, 1); cout << endl;
+		linea(anchoJaula, c, 0);
+
+		color(hConsole, 7);
 		do{
-			cout << "\t\t\t\t\t\t\t\t\t\t= ";
+			color(hConsole, 7);
+			cout << endl << endl;
+			texto = "------";
+			centrar(texto); cout << endl;
+			centrarCin(1);
 			cin >> respuesta;
-			cout << endl;
+			
+			cout << endl << endl << endl;
 			
 			switch(respuesta){
 				case '-':
-					cout << "\t\t\t\t\t\t\t\t\t\tGastos consumidos hasta el momento (mayor a menor)" << endl << endl;
+					c='=';
+					texto = "Gastos consumidos hasta el momento (mayor a menor)";
+					centrarYSubrayar(texto, c);
+					
+					cout << endl << endl << endl;
+					
 	                ordenarGastos(gastos, MAX_ALIMENTOS);
+	                
 	                for(int i=0; i<MAX_ALIMENTOS; i++){
-	                	cout << "\t\t\t\t\t\t\t\t\t\t" << gastos[i].nombre << " (" << gastos[i].cantidadUsada << "): S/." << -gastos[i].cantidadUsada*alimento[i].precio << endl;
+	                	texto = " ";
+						imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-7);
+	                	cout << "S/. " << -gastos[i].cantidadUsada*alimento[i].precio << "______"<< gastos[i].nombre << " (" << gastos[i].cantidadUsada << ")"<<endl;
 					}
+					cout << endl << endl << endl;
+					texto = " ";
+					imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-5);
+					cout << "Gastos totales: S/." << montoFinalGastos << endl;
 	 				break;
 				case '+':
-					cout << "\t\t\t\t\t\t\t\t\t\t\tGanancias por categoria" << endl << endl;
-	                cout << "\t\t\t\t\t\t\t\t\t\tHAMBURGUESAS" << endl << endl;
+					c='=';
+					texto = "Ganancias por categoria";
+					centrarYSubrayar(texto, c);
+					
+					cout << endl << endl << endl;
+					
+					c='-';
+					texto = "HAMBURGUESAS";
+					centrarYSubrayar(texto, c);
+					
+					cout << endl << endl;
+					
 	                for(int i=0; i<numHamburguesas; i++){
-	                	cout  << hamburguesas[i].nombre << ": S/. " << hamburguesas[i].cantidadVendida*hamburguesas[i].precio << endl;
+	                	texto = " ";
+						imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-5);
+	                	cout <<"S/. " << hamburguesas[i].cantidadVendida*hamburguesas[i].precio << "_______" << hamburguesas[i].nombre << endl;
 					}
-					cout << endl;
-	                cout << "\t\t\t\t\t\t\t\t\t\tPIZZAS" << endl << endl;
+					
+					cout << endl << endl << endl;
+					
+					c='-';
+					texto = "PIZZAS";
+					centrarYSubrayar(texto, c);
+					
+					cout << endl << endl;
+					
 					for(int i=0; i<numPizzas; i++){
-	                	cout << pizzas[i].nombre << ": S/. " << pizzas[i].cantidadVendida*pizzas[i].precio << endl;
+	                	texto = " ";
+						imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-5);
+	                	cout <<"S/. " << pizzas[i].cantidadVendida*pizzas[i].precio << "_______" << pizzas[i].nombre << endl;
 					}
-					cout << endl;
-	                cout << "\t\t\t\t\t\t\t\t\t\tCONOS" << endl << endl;
-					for(int i=0; i<numConos; i++){
-	                	cout << conos[i].nombre << ": S/. " << conos[i].cantidadVendida*conos[i].precio << endl;
+					
+					cout << endl << endl << endl;
+					
+					c='-';
+					texto = "CONOS";
+					centrarYSubrayar(texto, c);
+					
+					cout << endl << endl;
+					
+	                for(int i=0; i<numConos; i++){
+	                	texto = " ";
+						imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-5);
+	                	cout <<"S/. " << conos[i].cantidadVendida*conos[i].precio << "_______" << conos[i].nombre << endl;
 					}
-					cout << endl;
-	                cout << "\t\t\t\t\t\t\t\t\t\tGASEOSAS" << endl << endl;
-					for(int i=0; i<numGaseosas; i++){
-	                	cout << gaseosas[i].nombre << ": S/. " << gaseosas[i].cantidadVendida*gaseosas[i].precio << endl;
+					
+					cout << endl << endl << endl;
+
+					c='-';
+					texto = "GASEOSAS";
+					centrarYSubrayar(texto, c);
+					
+					cout << endl << endl;
+					
+	                for(int i=0; i<numGaseosas; i++){
+	                	texto = " ";
+						imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-5);
+	                	cout <<"S/. " << gaseosas[i].cantidadVendida*gaseosas[i].precio << "_______" << gaseosas[i].nombre << endl;
 					}
-					cout << endl;
-	                cout << "\t\t\t\t\t\t\t\t\t\tAGUAS" << endl << endl;
-					for(int i=0; i<numAguas; i++){
-	                	cout << aguas[i].nombre << ": S/. " << aguas[i].cantidadVendida*aguas[i].precio << endl;
+					
+					cout << endl << endl << endl;
+
+					c='-';
+					texto = "AGUAS";
+					centrarYSubrayar(texto, c);
+					
+					cout << endl << endl;
+					
+	                for(int i=0; i<numAguas; i++){
+	                	texto = " ";
+						imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-5);
+	                	cout <<"S/. " << aguas[i].cantidadVendida*aguas[i].precio << "_______" << aguas[i].nombre << endl;
 					}
-					cout << endl;
+					
+					cout << endl << endl << endl;
+					
 					gananciasTotales(orden, montoFinalGanancias);
-					cout << "\t\t\t\t\t\t\t\t\t\tGanancias totales: S/." << montoFinalGanancias << endl;
+					texto = " ";
+					imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-5);
+					cout << "Ganancias totales: S/." << montoFinalGanancias << endl;
 					break;
 					default:
-						cout << "\t\t\t\t\t\t\t\t\t\tOpcion no valida. Intente de nuevo." << endl << endl;
+						cout << endl << endl;
+						color(hConsole, 4);
+						texto = "Opcion no valida. Intente de nuevo.";
+						centrar(texto);
+						cout << endl << endl << endl;
 					break;
 			}
 		}while(respuesta!='+' && respuesta != '-');
-		cout << endl;
+	
+	espacio();
+	
+	c='-';                
+	color(hConsole, 8);
+	texto = "| VOLVIENDO AL MENU DEL AREA DE FINANZAS... |";
+	enlinear(texto, c);
 }
 void ordenarMasVendido(){
 	cout << endl;
 	char opcion;
 	agregarMontoArreglo();
-	cout << "\t\t\t\t\t\t\t\t\t\tORDENAR POR GANANCIAS" << endl << endl;
+	
+	string texto;
+	char c;
+	float porcentajePantalla;
+	porcentajePantalla = 45;
+	
+	c='*';
+	color(hConsole, 2);
+	texto = "ORDENAR POR GANANCIAS";
+	enlinearYEnjaular(texto, c);
+	color(hConsole, 7);
+	
+	cout << endl << endl << endl;
+	c='.';
+	color(hConsole, 14);
+	int anchoJaula=25;
+		int salto=2;
+		linea(anchoJaula, c, 1); cout << endl;
+		texto = "a) De mayor a menor";
+		contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+		texto = "b) De menor a mayor";
+		contenidoJaula(texto, anchoJaula, c, 1); cout << endl;
+		linea(anchoJaula, c, 0);
+		cout << endl << endl << endl;
+	
 	do{
-		cout << "\t\t\t\t\t\t\t\t\t\ta) De mayor a menor." << endl;
-		cout << "\t\t\t\t\t\t\t\t\t\tb) De menor a mayor." << endl << endl;
-		cout << "\t\t\t\t\t\t\t\t\t\t= ";
+		color(hConsole, 7);
+		cout << endl << endl;
+		texto = "------";
+		centrar(texto); cout << endl;
+		centrarCin(1);
 		cin >> opcion;
-		cout << endl;
+		
+		cout << endl << endl << endl;
 		switch(opcion){
 			case 'a':
-				cout << "\t\t\t\t\t\t\t\t\t\tOrdenado de mayor a menor ganancias." << endl << endl;
+				c='=';
+				texto = "Ordenado de mayor a menor ganancias";
+				centrarYSubrayar(texto, c);
 				ordenarPorMasVendidos(ordenarVentas, totalComidas);
 				break;
 			case 'b':
-				cout << "\t\t\t\t\t\t\t\t\t\tOrdenado de menor a mayor ganancias." << endl << endl;
+				c='=';
+				texto = "Ordenado de menor a mayor ganancias";
+				centrarYSubrayar(texto, c);
 				ordenarPorMenosVendidos(ordenarVentas, totalComidas);
 				break;
 			default:
-				cout << "\t\t\t\t\t\t\t\t\t\tOpcion no valida. Intente de nuevo." << endl << endl;
+				cout << endl << endl << endl;
+				color(hConsole, 4);
+				texto = "Opcion no valida. Intente de nuevo.";
+				centrar(texto);
+				cout << endl << endl << endl;
 				break;
 		}
 	}while(opcion!='a'&& opcion!='b');
-
+	
+	cout << endl << endl << endl;
+	
 		for(int i=0; i<totalComidas; i++){
+			texto = " ";
+			imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla-7);
 			ordenarVentas[i].RIG = ordenarVentas[i].total / ordenarVentas[i].coste;
-			cout << i+1 << ". " << ordenarVentas[i].nombre << ": S/. " << ordenarVentas[i].total << endl;
+			cout << "S/. " << ordenarVentas[i].total << "__________" << ordenarVentas[i].nombre << endl;
 		}
+		
+	espacio();
+	
+	c='-';
+	color(hConsole, 10);
+	texto = "> PLATOS DE COMIDA ORDENADOS SATISFACTORIAMENTE <";
+	enlinear(texto, c);
+	
+	cout << endl << endl;
+		                
+	color(hConsole, 8);
+	texto = "| VOLVIENDO AL MENU DEL AREA DE FINANZAS... |";
+	enlinear(texto, c);
 }
 void estadisticasGenerales(){
 	gastosTotales();
@@ -704,10 +941,30 @@ void estadisticasGenerales(){
 	string contrasenaDante="2024-119039";
 	string contrasena;
 	char opcion;
-	cout << "\t\t\t\t\t\t\tIndique la contraseña" << endl << endl;
-	cout << "\t\t\t\t\t\t\t\t\t\t= ";
+	
+	int aux;
+	string texto;
+	char c;
+	float porcentajePantalla;
+	porcentajePantalla = 45;
+	
+	c='*';
+	color(hConsole, 2);
+	texto = "ESTADISTICAS GENERALES";
+	enlinearYEnjaular(texto, c);
+	color(hConsole, 7);
+	
+	cout << endl << endl << endl;
+	c='.';
+	texto = "INDIQUE LA CONTRASEÑA";
+	enjaular(texto, c);
+	
+	color(hConsole, 7);
+	cout << endl << endl;
+	texto = "--------------";
+	centrar(texto); cout << endl;
+	centrarCin(10);
 	cin >> contrasena;
-	cout << endl;
 	
 	float gananciaNeta = montoFinalGanancias - montoFinalGastos;
 	float margenGananciaNeta = (gananciaNeta/montoFinalGanancias)*100;
@@ -715,92 +972,205 @@ void estadisticasGenerales(){
 	float RIG = (montoFinalGanancias/montoFinalGastos);
 	float RIGcomidas;
 	
+	espacio();
+	
 	if(contrasena==contrasenaJhonel || contrasena==contrasenaAlex || contrasena==contrasenaDante ){
 		if(contrasena==contrasenaJhonel){
-			cout << "\t\t\t\t\t\t\t\t¡Bienvenido Ingeniero Jhonel, revise como va su negocio!" << endl;
+			texto = "|  ¡Bienvenido Ingeniero Jhonel, revise como va su negocio!  |";
 		} else if(contrasena==contrasenaAlex){
-			cout << "\t\t\t\t\t\t\t\t¡Bienvenido Ingeniero Alex, revise como va su negocio!" << endl;
+			texto = "|  ¡Bienvenido Ingeniero Alex, revise como va su negocio!  |";
 		} else {
-			cout << "\t\t\t\t\t\t\t\t¡Bienvenido Ingeniero Dante, revise como va su negocio!" << endl;
+			texto = "|  ¡Bienvenido Ingeniero Dante, revise como va su negocio!  |";
 		}
+		
+		color(hConsole, 241);
+		c= '-';
+		separador(c); cout << endl;
+		enlinear(texto, c);
+		separador(c);
+		color(hConsole, 7);	
+		
 		do{
-			cout << endl;
-			cout << "\t\t\t\t\t\t\t\tESTADISTICAS GENERALES DEL NEGOCIO" << endl << endl;
-			cout << "\t\t\t\t\t\t\t\ta) Ingresos brutos." << endl;
-			cout << "\t\t\t\t\t\t\t\tb) Egresos brutos." << endl;
-			cout << "\t\t\t\t\t\t\t\tc) Ingresos netos." << endl;
-			cout << "\t\t\t\t\t\t\t\td) Ticket promedio de factura." << endl;
-			cout << "\t\t\t\t\t\t\t\te) Margen de Ganancia Neta." << endl;
-			cout << "\t\t\t\t\t\t\t\tf) ROI (Retorno sobre la inversion)." << endl;
-			cout << "\t\t\t\t\t\t\t\tg) RIG (Ratio de Ingresos sobre Gastos)." << endl;
-			cout << "\t\t\t\t\t\t\t\th) Ver todas las metricas juntas." << endl;
-			cout << "\t\t\t\t\t\t\t\ti) Salir." << endl << endl;
-			cout << "\t\t\t\t\t\t\t\t\t= ";
+			cout << endl << endl << endl;
+			
+			c='$';
+			texto = "Indique que estadistica quiere ver";
+			enjaular(texto, c);
+			
+			cout << endl << endl << endl;
+			
+			c='.';
+			color(hConsole, 14);
+			int anchoJaula=45;
+			int salto=2;
+			linea(anchoJaula, c, 1); cout << endl;
+			texto = "a) Ingresos brutos";
+			contenidoJaula(texto, anchoJaula, c, salto); cout << endl;
+			texto = "b) Egresos brutos";
+			contenidoJaula(texto, anchoJaula, c, 1); cout << endl;
+			texto = "c) Ingresos netos";
+			contenidoJaula(texto, anchoJaula, c, 1); cout << endl;
+			texto = "d) Ticket promedio de factura";
+			contenidoJaula(texto, anchoJaula, c, 1); cout << endl;
+			texto = "e) Margen de Ganancia Neta";
+			contenidoJaula(texto, anchoJaula, c, 1); cout << endl;
+			texto = "f) ROI (Retorno sobre la inversion)";
+			contenidoJaula(texto, anchoJaula, c, 1); cout << endl;
+			texto = "g) RIG (Ratio de Ingresos sobre Gastos)";
+			contenidoJaula(texto, anchoJaula, c, 1); cout << endl;
+			texto = "h) Ver todas las metricas juntas";
+			contenidoJaula(texto, anchoJaula, c, 1); cout << endl;
+			texto = "i) Salir al menu de finanzas";
+			contenidoJaula(texto, anchoJaula, c, 1); cout << endl;
+			linea(anchoJaula, c, 0);
+			
+			color(hConsole, 7);
+			cout << endl << endl;
+			texto = "------";
+			centrar(texto); cout << endl;
+			centrarCin(1);
 			cin >> opcion;
-			cout << endl;
+			
+			cout << endl << endl << endl;
+			
 			switch(opcion){
 				case 'a':
-					cout << "\t\t\t\t\t\t\t\t\tIngresos brutos (totales) del negocio." << endl;
-					cout << "\t\t\t\t\t\t\t\t\t\t--> " << montoFinalGanancias << endl;
+					c='*';
+					texto = "Ingresos brutos (totales) del negocio";
+					centrarYSubrayar(texto, c);
+					cout << endl << endl << endl;
+					
+					centrarCin(10);
+					cout << "--> " << montoFinalGanancias << endl;
+					
 					break;
 				case 'b':
-					cout << "\t\t\t\t\t\t\t\t\tEgresos brutos (totales) del negocio." << endl;
-					cout << "\t\t\t\t\t\t\t\\tt\t--> " << montoFinalGastos << endl;
+					
+					c='*';
+					texto = "Egresos brutos (totales) del negocio";
+					centrarYSubrayar(texto, c);
+					cout << endl << endl << endl;
+					
+					centrarCin(10);
+					cout << "--> " << montoFinalGastos << endl;
+
 					break;
 				case 'c':
-					cout << "\t\t\t\t\t\t\t\t\tIngresos netos del negocio." << endl << endl;
-					cout << "\t\t\t\t\t\t\t\t\tIngresos totales: " << montoFinalGanancias << endl;
-					cout << "\t\t\t\t\t\t\t\t\tEgresos totales: " << montoFinalGastos << endl;
-					cout << "\t\t\t\t\t\t\t\t\t\tIngresos netos: " << gananciaNeta << endl;
+					
+					c='=';
+					texto = "Ingresos netos del negocio";
+					centrarYSubrayar(texto, c);
+					cout << endl << endl << endl;
+					
+					centrarCin(20);
+					cout << "Ingresos totales --> " << montoFinalGanancias << endl;
+					centrarCin(20);
+					cout << "Egresos totales ---> " << montoFinalGastos << endl << endl;
+					centrarCin(20);
+					cout << "Ingresos netos ----> " << gananciaNeta << endl;
+					
 					break;
 				case 'd':
 					if(numFactura>0){
-						cout << "\t\t\t\t\t\t\t\t\tCuanto se gasta por factura: " << endl;
-						cout << "\t\t\t\t\t\t\\tt\t\t= " << montoFinalGanancias/numFactura << endl;	
+						c='=';
+						texto = "Ticket promedio de factura";
+						centrarYSubrayar(texto, c);
+						cout << endl << endl << endl;
+						
+						centrarCin(10);
+						cout << "--> " << montoFinalGanancias/numFactura << endl;
+					
 					}else{
-						cout << "\t\t\t\t\t\t\t\t\tNo hay facturas por analizar." << endl;
+						color(hConsole, 4);
+						texto = "No hay facturas por analizar.";
+						centrar(texto);
+						color(hConsole, 4);
 					}
 					break;
 				case 'e':
-					cout << "\t\t\t\t\t\t\t\t\tEl margen de ganancia neta del negocio es: " << endl;
-					cout << "\t\t\t\t\t\t\t\t\t\t= " << margenGananciaNeta << "%" << endl;
+						c='=';
+						texto = "Margen de ganancia neta del negocio es:";
+						centrarYSubrayar(texto, c);
+						cout << endl << endl << endl;
+						
+						centrarCin(10);
+						cout << "--> " << margenGananciaNeta << "%" << endl;
+						
 					break;
 				case 'f':
-					cout << "\t\t\t\t\t\t\t\t\tEl ROI de su negocio es: " << endl;
-					cout << "\t\t\t\t\t\t\t\t\t\t= " << ROI << "%" << endl << endl;
-					cout << "\t\t\tEso quiere decir que por cada S/.1 gastado, usted esta ganando " << ROI << "% adicional, osea S/. " << 1+ROI/100 << endl;
+					
+					c='=';
+						texto = "El ROI de su negocio es";
+						centrarYSubrayar(texto, c);
+						cout << endl << endl << endl;
+						
+						centrarCin(10);
+						cout << "--> " << ROI << "%";
+						cout << endl << endl << endl;
+						
+						centrarCin(90);
+						cout << "Eso quiere decir que por cada S/.1 gastado, usted esta ganando " << ROI << "% adicional, osea S/. " << 1+ROI/100 << endl;
 					break;
 				case 'g':
-					cout << "\t\t\t\t\t\t\t\t\tEl RIG de su negocio es: " << endl;
-					cout << "\t\t\t\t\t\t\t\t\t\t= " << RIG << endl << endl;
-					cout << "\t\t\t\t\Eso quiere decir que por cada S/. 1 gastado, usted gana S/. " << RIG << endl;
+					
+					c='=';
+						texto = "El RIG de su negocio es";
+						centrarYSubrayar(texto, c);
+						cout << endl << endl << endl;
+						
+						centrarCin(10);
+						cout << "--> " << RIG;
+						cout << endl << endl << endl;
+						
+						centrarCin(60);
+						cout << "Eso quiere decir que por cada S/. 1 gastado, usted gana S/. " << RIG << endl;
+						
 					break;
 				case 'h':
-					cout << "\t\t\t\t\t\t\t\t\tIngresos brutos" << endl << endl;
-					cout << "\t\t\t\t\t\t\t\t\t\t= S/. " << montoFinalGanancias << endl << endl;
-					cout << "\t\t\t\t\t\t\t\t\tEgresos brutos"  << endl << endl;
-					cout << "\t\t\t\t\t\t\t\t\t= S/. " << montoFinalGastos << endl << endl;
-					cout << "\t\t\t\t\t\t\t\t\tIngresos netos"  << endl << endl;
-					cout << "\t\t\t\t\t\t\t\t\t\t= S/. " << gananciaNeta << endl << endl;
-					cout << "\t\t\t\t\t\t\t\t\tTicket promedio de factura"  << endl << endl;
-					cout << "\t\t\t\t\t\t\t\t\t\t= S/. " << montoFinalGanancias/numFactura << endl << endl;
-					cout << "\t\t\t\t\t\t\t\t\tMargen de Ganancia Neta"  << endl << endl;
-					cout << "\t\t\t\t\t\t\t\t\t\t= " << margenGananciaNeta << "%" << endl << endl;
-					cout << "\t\t\t\t\t\t\t\t\tROI"  << endl << endl;
-					cout << "\t\t\t\t\t\t\t\t\t\t= " << ROI << "%" << endl << endl;
-					cout << "\t\t\t\t\t\t\t\t\tRIG"  << endl << endl;
-					cout << "\t\t\t\t\t\t\t\t\t\t= S/. " << RIG << endl;
+					c='=';
+					 aux=40;
+					centrarCin(aux);
+					cout << "Ingresos brutos ----------------- S/. " << montoFinalGanancias << endl<< endl;
+					centrarCin(aux);
+					cout << "Egresos brutos ------------------ S/. " << montoFinalGastos << endl<< endl;
+					centrarCin(aux);
+					cout << "Ingresos netos ------------------ S/. " << gananciaNeta << endl<< endl;
+					centrarCin(aux);
+					cout << "Ticket promedio de factura ------ S/. " << montoFinalGanancias/numFactura << endl<< endl;
+					centrarCin(aux);
+					cout << "Margen de Ganancia Neta --------- " << margenGananciaNeta << "%" << endl<< endl;
+					centrarCin(aux);
+					cout << "ROI ----------------------------- " << ROI << "%" << endl<< endl;
+					centrarCin(aux);
+					cout << "RIG ----------------------------- S/. " << RIG << endl;
+					
 					break;
 				case 'i':
-					cout << "\t\t\t\t\t\t\t\tSaliendo del area de estadisticas generales..." << endl;
 					break;
 				default:
-					cout << "\t\t\t\t\t\t\t\t\t\tOpcion no valida. Intente de nuevo." << endl;
+					color(hConsole, 4);
+					texto = "Opcion no valida. Intente de nuevo.";
+					centrar(texto);
+					cout << endl << endl << endl;
 					break;
 			}
-			cout << endl;
 		}while(opcion!='i');
 	} else {
-		cout << "\t\t\t\t\t\tUsuario invalido. No puede ingresar, lo siento." << endl;
+		color(hConsole, 4);
+		texto = "Contraseña incorrecta. No puede ingresar, lo siento.";
+		centrar(texto);
 	}
+	
+	espacio();
+	
+	c='-';
+	color(hConsole, 10);
+	texto = "> SALIENDO DEL AREA DE ESTADISTICAS GENERALES <";
+	enlinear(texto, c);
+	
+	cout << endl << endl;
+		                
+	color(hConsole, 8);
+	texto = "| VOLVIENDO AL MENU DEL AREA DE FINANZAS... |";
+	enlinear(texto, c);
 }
