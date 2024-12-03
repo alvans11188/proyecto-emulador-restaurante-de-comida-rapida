@@ -25,10 +25,10 @@ void agregarCliente(Cliente clientes[50], int &cantidadActualClientes) {
 	texto = "|	Nombre del cliente: ";
 	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
 	cin.ignore();
-	getline(cin, clientes[cantidadActualClientes].nombre);
+	getline(cin, clientes[cantidadActualClientes].nombre); //entrada
 	texto = "|	Numero del cliente: ";
 	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
-	cin >> clientes[cantidadActualClientes].telefono;
+	cin >> clientes[cantidadActualClientes].telefono;  //entrada
 	cout << endl << endl << endl;
 	
 	color(hConsole, 12);
@@ -40,19 +40,19 @@ void agregarCliente(Cliente clientes[50], int &cantidadActualClientes) {
 	texto = "|	Distrito: ";
 	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
 	cin.ignore();
-	getline(cin, clientes[cantidadActualClientes].direccionCliente.distrito);
+	getline(cin, clientes[cantidadActualClientes].direccionCliente.distrito); //entrada
 	texto = "|	Calle: ";
 	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
 	cin.ignore();
-	getline(cin, clientes[cantidadActualClientes].direccionCliente.calle);
+	getline(cin, clientes[cantidadActualClientes].direccionCliente.calle); //entrada
 	texto = "|	Manzana: ";
 	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
 	cin.ignore();
-	getline(cin, clientes[cantidadActualClientes].direccionCliente.manzana);
+	getline(cin, clientes[cantidadActualClientes].direccionCliente.manzana); //entrada
 	texto = "|	Lote: ";
 	imprimirEnEspaciadoPorcentaje(texto, porcentajePantalla);
 	cin.ignore();
-	getline(cin, clientes[cantidadActualClientes].direccionCliente.lote);
+	getline(cin, clientes[cantidadActualClientes].direccionCliente.lote); //entrada
 	
 	espacio();
 	
